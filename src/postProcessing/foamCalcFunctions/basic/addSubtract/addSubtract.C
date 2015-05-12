@@ -223,6 +223,10 @@ void Foam::calcTypes::addSubtract::preCalc
     {
         calcMode_ = SUBTRACT;
     }
+    else if (calcModeName == "mult")
+    {
+        calcMode_ = MULT;
+    }
     else
     {
         FatalErrorIn("calcTypes::addSubtract::preCalc")
