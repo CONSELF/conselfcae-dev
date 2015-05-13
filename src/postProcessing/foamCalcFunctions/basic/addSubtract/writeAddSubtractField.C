@@ -46,9 +46,14 @@ void Foam::calcTypes::addSubtract::writeAddSubtractField
             {
                 resultName_ = baseHeader.name() + "_add_" + addHeader.name();
             }
-            else
+            else if (calcMode_ == SUBTRACT)
             {
                 resultName_ = baseHeader.name() + "_subtract_"
+                    + addHeader.name();
+            }
+            else if (calcMode_ == MULT)
+            {
+                resultName_ = baseHeader.name() + "_mult_"
                     + addHeader.name();
             }
         }
