@@ -34,6 +34,9 @@
 export WM_PROJECT=OpenFOAM
 export WM_PROJECT_VERSION=2.3.x
 
+CONSELFoamSRC=/home/rupole1185/PROJECT/conself/cfd/OpenFOAM/CONSELFoam
+export CONSELFoamSRC
+
 ################################################################################
 # USER EDITABLE PART: Changes made here may be lost with the next upgrade
 #
@@ -42,9 +45,9 @@ export WM_PROJECT_VERSION=2.3.x
 #
 # Location of the OpenFOAM installation
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-foamInstall=$HOME/$WM_PROJECT
+foamInstall=$CONSELFoamSRC
+# foamInstall=$HOME/$WM_PROJECT
 # foamInstall=~$WM_PROJECT
-# foamInstall=/opt/$WM_PROJECT
 # foamInstall=/usr/local/$WM_PROJECT
 #
 # END OF (NORMAL) USER EDITABLE PART
@@ -55,7 +58,9 @@ foamInstall=$HOME/$WM_PROJECT
 # overridden from the prefs.sh file or from command-line specification
 #
 #- note the location for later use (eg, in job scripts)
-: ${FOAM_INST_DIR:=$foamInstall}; export FOAM_INST_DIR
+#: ${FOAM_INST_DIR:=$foamInstall}; export FOAM_INST_DIR
+FOAM_INST_DIR=$CONSELFoamSRC
+export FOAM_INST_DIR
 
 #- Compiler location:
 #    foamCompiler= system | ThirdParty (OpenFOAM)
@@ -110,8 +115,9 @@ fi
 
 # Location of installation
 # ~~~~~~~~~~~~~~~~~~~~~~~~
-export WM_PROJECT_INST_DIR=$FOAM_INST_DIR
-export WM_PROJECT_DIR=$WM_PROJECT_INST_DIR/$WM_PROJECT-$WM_PROJECT_VERSION
+# export WM_PROJECT_DIR=$WM_PROJECT_INST_DIR/$WM_PROJECT-$WM_PROJECT_VERSION
+export WM_PROJECT_INST_DIR=$CONSELFoamSRC
+export WM_PROJECT_DIR=$CONSELFoamSRC
 
 # Location of third-party software
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

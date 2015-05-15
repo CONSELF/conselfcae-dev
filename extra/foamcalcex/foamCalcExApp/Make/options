@@ -1,0 +1,17 @@
+ifdef FOAM_DEV
+  FOAM_DEV_OPTION = -DFOAM_DEV
+else
+  FOAM_OPTION = -lgenericPatchFields
+endif
+
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I../postProcessing/foamCalcFunctionsEx/lnInclude/ \
+    $(FOAM_DEV_OPTION)
+
+EXE_LIBS = \
+    -lfiniteVolume \
+	$(FOAM_OPTION) \
+    -L$(FOAM_USER_LIBBIN) \
+    -lfoamCalcFunctionsEx
+    

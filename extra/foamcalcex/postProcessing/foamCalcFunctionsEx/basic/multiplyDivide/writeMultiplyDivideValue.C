@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
+    \\  /    A nd           | Copyright held by original author
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -23,8 +23,10 @@ License
 
 \*---------------------------------------------------------------------------*/
 
+#include "scalar.H"
+
 template<class Type>
-void Foam::calcTypes::addSubtract::writeAddSubtractValue
+void Foam::calcTypes::multiplyDivide::writeMultiplyDivideValue
 (
     const IOobject& baseHeader,
     const string& valueStr,
@@ -38,21 +40,17 @@ void Foam::calcTypes::addSubtract::writeAddSubtractValue
     {
         if (resultName_ == "")
         {
-            if (calcMode_ == ADD)
+            if (calcMode_ == MULTIPLY)
             {
-                resultName_ = baseHeader.name() + "_add_value";
+                resultName_ = baseHeader.name() + "_multiply_value";
             }
-            else if (calcMode_ == SUBTRACT)
+            else
             {
-                resultName_ = baseHeader.name() + "_subtract_value";
-            }
-            else if (calcMode_ == MULT)
-            {
-                resultName_ = baseHeader.name() + "_mult_value";
+                resultName_ = baseHeader.name() + "_divide_value";
             }
         }
 
-        Type value;
+        scalar value;
         IStringStream(valueStr)() >> value;
 
         Info<< "    Reading " << baseHeader.name() << endl;
@@ -71,21 +69,15 @@ void Foam::calcTypes::addSubtract::writeAddSubtractValue
         );
 
         Info<< "    Calculating " << resultName_ << endl;
-        if (calcMode_ == ADD)
+        if (calcMode_ == MULTIPLY)
         {
-            newField == baseField
-                + dimensioned<Type>("value", baseField.dimensions(), value);
+            newField == baseField * value;
+                //+ dimensioned<Type>("value", baseField.dimensions(), value);
         }
-        else if (calcMode_ == SUBTRACT)
+        else
         {
-            newField == baseField
-                - dimensioned<Type>("value", baseField.dimensions(), value);
-        }
-        else if (calcMode_ == MULT)
-        {
-            // TODO find an alternative to this
-            //newField == baseField * value;
-            //newField == baseField;
+            newField == baseField / value;
+                //- dimensioned<Type>("value", baseField.dimensions(), value);
         }
 
         newField.write();

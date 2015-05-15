@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
+    \\  /    A nd           | Copyright held by original author
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -24,75 +24,68 @@ License
 \*---------------------------------------------------------------------------*/
 
 template<class Type>
-void Foam::calcTypes::addSubtract::writeAddSubtractValue
+void Foam::calcTypes::addSubtract::writeAddSubtractField
 (
     const IOobject& baseHeader,
-    const string& valueStr,
+    const IOobject& addHeader,
     const fvMesh& mesh,
     bool& processed
 )
 {
     typedef GeometricField<Type, fvPatchField, volMesh> fieldType;
 
-    if (baseHeader.headerClassName() == fieldType::typeName)
+    if
+    (
+        baseHeader.headerClassName() == fieldType::typeName
+     && baseHeader.headerClassName() == addHeader.headerClassName()
+    )
     {
         if (resultName_ == "")
         {
             if (calcMode_ == ADD)
             {
-                resultName_ = baseHeader.name() + "_add_value";
+                resultName_ = baseHeader.name() + "_add_" + addHeader.name();
             }
-            else if (calcMode_ == SUBTRACT)
+            else
             {
-                resultName_ = baseHeader.name() + "_subtract_value";
-            }
-            else if (calcMode_ == MULT)
-            {
-                resultName_ = baseHeader.name() + "_mult_value";
+                resultName_ = baseHeader.name() + "_subtract_"
+                    + addHeader.name();
             }
         }
-
-        Type value;
-        IStringStream(valueStr)() >> value;
 
         Info<< "    Reading " << baseHeader.name() << endl;
         fieldType baseField(baseHeader, mesh);
 
-        fieldType newField
-        (
-            IOobject
+        Info<< "    Reading " << addHeader.name() << endl;
+        fieldType addField(addHeader, mesh);
+
+        if (baseField.dimensions() == addField.dimensions())
+        {
+            Info<< "    Calculating " << resultName_ << endl;
+
+            fieldType newField
             (
-                resultName_,
-                mesh.time().timeName(),
-                mesh,
-                IOobject::NO_READ
-            ),
-            baseField
-        );
-
-        Info<< "    Calculating " << resultName_ << endl;
-        if (calcMode_ == ADD)
-        {
-            newField == baseField
-                + dimensioned<Type>("value", baseField.dimensions(), value);
+                IOobject
+                (
+                    resultName_,
+                    mesh.time().timeName(),
+                    mesh,
+                    IOobject::NO_READ
+                ),
+                calcMode_ == ADD ? baseField + addField : baseField - addField
+            );
+            newField.write();
         }
-        else if (calcMode_ == SUBTRACT)
+        else
         {
-            newField == baseField
-                - dimensioned<Type>("value", baseField.dimensions(), value);
+            Info<< "    Cannot calculate " << resultName_ << nl
+                << "    - inconsistent dimensions: "
+                << baseField.dimensions() << " - " << addField.dimensions()
+                << endl;
         }
-        else if (calcMode_ == MULT)
-        {
-            // TODO find an alternative to this
-            //newField == baseField * value;
-            //newField == baseField;
-        }
-
-        newField.write();
 
         processed = true;
     }
-
 }
 
 

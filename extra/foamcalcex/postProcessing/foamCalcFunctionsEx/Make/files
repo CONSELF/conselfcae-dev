@@ -1,0 +1,26 @@
+calcType/calcType.C
+calcType/calcTypeNew.C
+
+field/components/components.C
+field/mag/mag.C
+field/magSqr/magSqr.C
+field/magGrad/magGrad.C
+field/grad/grad.C
+field/div/div.C
+field/randomise/randomise.C
+field/interpolate/interpolate.C
+field/min/min.C
+field/minMax/minMax.C
+field/minMaxMag/minMaxMag.C
+field/cellMinMax/cellMinMax.C
+field/max/max.C
+field/average/average.C
+field/volIntegrate/volIntegrate.C
+field/laplacian/laplacian.C
+field/smooth/smooth.C
+field/curl/curl.C
+
+basic/addSubtract/addSubtract.C
+basic/multiplyDivide/multiplyDivide.C
+
+LIB = $(FOAM_USER_LIBBIN)/libfoamCalcFunctionsEx
