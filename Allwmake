@@ -29,6 +29,11 @@ fi
 src/Allwmake $*
 applications/Allwmake $*
 
+# extra CONSELF libraries
+cd $WM_PROJECT_DIR/extra/foamcalcex
+./Allwmake
+cd $WM_PROJECT_DIR
+
 if [ "$1" = doc ]
 then
     doc/Allwmake $*
