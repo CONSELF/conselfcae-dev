@@ -34,6 +34,7 @@
 export WM_PROJECT=OpenFOAM
 export WM_PROJECT_VERSION=2.3.x
 
+#CONSELFoamSRC=/path/to/this/file
 CONSELFoamSRC=/home/rupole1185/PROJECT/conself/cfd/OpenFOAM/CONSELFoam
 export CONSELFoamSRC
 
@@ -135,8 +136,8 @@ fi
 
 # Location of user files
 # ~~~~~~~~~~~~~~~~~~~~~~
-export WM_PROJECT_USER_DIR=$HOME/$WM_PROJECT/$USER-$WM_PROJECT_VERSION
-
+#export WM_PROJECT_USER_DIR=$HOME/$WM_PROJECT/$USER-$WM_PROJECT_VERSION
+export WM_PROJECT_USER_DIR=$CONSELFoamSRC
 
 # Source files, possibly with some verbosity
 _foamSource()
