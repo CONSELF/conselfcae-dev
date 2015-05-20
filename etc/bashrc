@@ -34,9 +34,8 @@
 export WM_PROJECT=OpenFOAM
 export WM_PROJECT_VERSION=2.3.x
 
-#CONSELFoamSRC=/path/to/this/file
-CONSELFoamSRC=/home/rupole1185/PROJECT/conself/cfd/OpenFOAM/CONSELFoam
-export CONSELFoamSRC
+#Add to your bash the following line
+#export CONSELFoamSRC=/path/to/this/file
 
 ################################################################################
 # USER EDITABLE PART: Changes made here may be lost with the next upgrade
