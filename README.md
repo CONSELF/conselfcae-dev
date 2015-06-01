@@ -12,6 +12,7 @@ sed -i "CONSELFoam/d" ~/.bashrc
 echo "export CONSELFoamSRC=/path/to/CONSELFoam/directory" >> ~/.bashrc
 echo "alias CONSELFoam='source $CONSELFoamSRC/etc/bashrc'" >> ~/.bashrc
 
+bash
 cd $CONSELFoamSRC
 CONSELFoam
 ./Allwmake
