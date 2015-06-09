@@ -4,7 +4,7 @@ CONSELFoam represent a customization made by CONSELF of OpenFOAM.
 
 ### How can I install it? ###
 
-Follow the instructions below and modify the path with your local system
+Clone it to any local directory you want. After this, follow the instructions below and modify the path with your local system
 
 ```
 sed -i "CONSELFoam/d" ~/.bashrc
@@ -12,7 +12,9 @@ sed -i "CONSELFoam/d" ~/.bashrc
 echo "export CONSELFoamSRC=/path/to/CONSELFoam/directory" >> ~/.bashrc
 echo "alias CONSELFoam='source $CONSELFoamSRC/etc/bashrc'" >> ~/.bashrc
 
-cd $CONSELFoam
+bash
+cd $CONSELFoamSRC
+CONSELFoam
 ./Allwmake
 
 ```
