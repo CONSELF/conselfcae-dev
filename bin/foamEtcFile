@@ -99,11 +99,11 @@ unset versionNum
 # handle standard and debian naming convention
 #
 case "$projectDirName" in
-OpenFOAM-*)         # standard naming convention OpenFOAM-<VERSION>
+conselfoam-*)         # standard naming convention OpenFOAM-<VERSION>
     version="${projectDirName##OpenFOAM-}"
     ;;
 
-openfoam[0-9]*)     # debian naming convention 'openfoam<VERSION>'
+conselfoam[0-9]*)     # debian naming convention 'openfoam<VERSION>'
     versionNum="${projectDirName##openfoam}"
     case "$versionNum" in
     ??)         # convert 2 digit version number to decimal delineated
