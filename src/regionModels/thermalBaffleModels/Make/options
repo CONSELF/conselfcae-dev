@@ -17,6 +17,6 @@ LIB_LIBS = \
     -lcompressibleTurbulenceModel \
     -lfiniteVolume \
     -lmeshTools \
-    -lOpenFOAM \
+    -lconselfoam \
     -lradiationModels \
     -ldynamicMesh

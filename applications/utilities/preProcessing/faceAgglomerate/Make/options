@@ -4,7 +4,7 @@ EXE_INC = \
     -I$(LIB_SRC)/fvAgglomerationMethods/pairPatchAgglomeration/lnInclude
 
 EXE_LIBS = \
-    -lOpenFOAM \
+    -lconselfoam \
     -lfiniteVolume \
     -lpairPatchAgglomeration \
     -ltriSurface \
