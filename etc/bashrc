@@ -51,6 +51,9 @@ export WM_PROJECT_VERSION=dev
 
 foamInstall=$CONSELFoamSRC
 
+# Parallel run
+export WM_NCOMPPROCS=4
+
 # foamInstall=$HOME/$WM_PROJECT
 # foamInstall=~$WM_PROJECT
 # foamInstall=/usr/local/$WM_PROJECT
@@ -104,7 +107,6 @@ export FOAM_SIGFPE=
 #- memory initialisation:
 #    set or unset
 #export FOAM_SETNAN=
-
 
 ################################################################################
 
