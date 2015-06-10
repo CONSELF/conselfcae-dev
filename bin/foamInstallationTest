@@ -411,7 +411,7 @@ echo "Executing $0:"
 #------------------------------------------------------------------------------
 heading "Checking basic setup..."
 hline
-checkOpenFOAMEnvironment
+#checkOpenFOAMEnvironment
 checkUserShell
 checkHostName
 checkOS
