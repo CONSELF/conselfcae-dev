@@ -28,6 +28,19 @@
 #     Miscellaneous functions for running tutorial cases
 #------------------------------------------------------------------------------
 
+# CONSELF customization
+
+#Function to get data directly from files, avoiding extra DB queries
+## USAGE: getFileData filename dataname
+
+function getFileData()
+{
+   sed_arg="s/^$2 *\(.*\);/\1/p"
+   sed -ne "$sed_arg" $1
+}
+
+# OpenFOAM default functions
+
 getNumberOfProcessors()
 {
     sed -ne 's/^numberOfSubdomains\s*\(.*\);/\1/p' system/decomposeParDict
