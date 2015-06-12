@@ -1,0 +1,3 @@
+simpleFoamPPM.C
+
+EXE = $(FOAM_APPBIN)/simpleFoamPPM
