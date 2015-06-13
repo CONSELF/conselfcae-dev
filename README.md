@@ -19,7 +19,7 @@ CONSELFoam
 
 ```
 
-The installation process takes 1/2 hours depending on your system ... so do it at night!
+The installation process takes between 1 and 2 hours depending on your system ... so do it at night!
 
 ### Using CONSELFoam ###
 
