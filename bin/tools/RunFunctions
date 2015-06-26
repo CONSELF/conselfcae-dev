@@ -33,7 +33,7 @@
 #Function to get data directly from files, avoiding extra DB queries
 ## USAGE: getFileData filename dataname
 
-function getFileData()
+getFileData()
 {
    sed_arg="s/^$2 *\(.*\);/\1/p"
    sed -ne "$sed_arg" $1
