@@ -1,0 +1,20 @@
+#!/bin/sh
+
+. $CONSELFoamSRC/bin/tools/RunFunctions
+
+foamLog log.`getApplication` > log.foamLog
+
+gnuplot -persist > /dev/null 2>&1 << EOF
+        set logscale y
+        set title "Residual vs. Iteration"
+        set xlabel "Iteration"
+        set ylabel "Residual"
+        plot "logs/Ux_0" with lines,\
+             "logs/Uy_0" with lines,\
+             "logs/Uz_0" with lines,\
+             "logs/Urelx_0" with lines,\
+             "logs/Urely_0" with lines,\
+             "logs/Urelz_0" with lines,\
+             "logs/p_0" with lines
+EOF
+

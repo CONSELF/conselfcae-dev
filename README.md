@@ -10,7 +10,7 @@ Clone it to any local directory you want. After this, follow the instructions be
 sed -i "CONSELFoam/d" ~/.bashrc
 
 echo "export CONSELFoamSRC=/path/to/CONSELFoam/directory" >> ~/.bashrc
-echo "alias CONSELFoam='source $CONSELFoamSRC/etc/bashrc'" >> ~/.bashrc
+echo "alias CONSELFoam='source \$CONSELFoamSRC/etc/bashrc'" >> ~/.bashrc
 
 bash
 cd $CONSELFoamSRC
