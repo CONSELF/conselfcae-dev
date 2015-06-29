@@ -33,7 +33,9 @@ CONSELFoam
 ### Usefull applications ###
 
 *foamResiduals* -> plot of residuals of current simulation
+
 *foamInstallationTest* -> Installation test of CONSELFoam
+
 *patchSummary* -> Summary of boundary conditions applied to the current case
 
 
