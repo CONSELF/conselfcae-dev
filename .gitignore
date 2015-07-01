@@ -84,4 +84,14 @@ doc/Doxygen/DTAGS
 # Ignore the test directory
 /tutorialsTest
 
+# Ignore test data
+*processor[0-9]*
+*polyMesh
+*[0-9]
+*log.*
+*.foam
+*.pvsm
+*.avi
+*.gz
+
 # end-of-file
