@@ -1,0 +1,33 @@
+#!/bin/sh
+
+. $CONSELFoamSRC/bin/tools/RunFunctions
+
+grep "sum of forces" log.`getApplication` -A 2 > log.Forces
+
+grep "pressure" log.Forces > log.ForcesPressure
+sed -i 's/pressure ://' log.ForcesPressure
+sed -i 's/(//' log.ForcesPressure
+sed -i 's/)//' log.ForcesPressure
+cat -n log.ForcesPressure > log.ForcesPressure_fin
+mv log.ForcesPressure_fin log.ForcesPressure
+
+grep "viscous" log.Forces > log.ForcesViscous 
+sed -i 's/viscous  ://' log.ForcesViscous 
+sed -i 's/(//' log.ForcesViscous 
+sed -i 's/)//' log.ForcesViscous 
+cat -n log.ForcesViscous  > log.ForcesViscous_fin
+mv log.ForcesViscous_fin log.ForcesViscous
+
+gnuplot -persist > /dev/null 2>&1 << EOF
+        set title "Forces vs. Iteration"
+        set xlabel "Iteration"
+        set ylabel "Forces"
+        plot for [col=2:4:1] '< tail -3 log.ForcesPressure' using col with lines
+        MAX=GPVAL_Y_MAX
+        MIN=GPVAL_Y_MIN
+        set yrange [MIN*2:MAX*2]
+        plot for [col=2:4:1] 'log.ForcesPressure' using col with lines, \
+             for [col=2:4:1] 'log.ForcesViscous' using col with lines
+EOF
+
+rm log.Forces*

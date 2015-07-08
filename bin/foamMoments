@@ -1,0 +1,33 @@
+#!/bin/sh
+
+. $CONSELFoamSRC/bin/tools/RunFunctions
+
+grep "sum of moments" log.`getApplication` -A 2 > log.Moments
+
+grep "pressure" log.Moments > log.MomentsPressure
+sed -i 's/pressure ://' log.MomentsPressure
+sed -i 's/(//' log.MomentsPressure
+sed -i 's/)//' log.MomentsPressure
+cat -n log.MomentsPressure > log.MomentsPressure_fin
+mv log.MomentsPressure_fin log.MomentsPressure
+
+grep "viscous" log.Moments > log.MomentsViscous 
+sed -i 's/viscous  ://' log.MomentsViscous 
+sed -i 's/(//' log.MomentsViscous 
+sed -i 's/)//' log.MomentsViscous 
+cat -n log.MomentsViscous  > log.MomentsViscous_fin
+mv log.MomentsViscous_fin log.MomentsViscous
+
+gnuplot -persist > /dev/null 2>&1 << EOF
+        set title "Moments vs. Iteration"
+        set xlabel "Iteration"
+        set ylabel "Moments"
+        plot for [col=2:4:1] '< tail -3 log.MomentsPressure' using col with lines
+        MAX=GPVAL_Y_MAX
+        MIN=GPVAL_Y_MIN
+        set yrange [MIN*2:MAX*2]
+        plot for [col=2:4:1] 'log.MomentsPressure' using col with lines, \
+             for [col=2:4:1] 'log.MomentsViscous' using col with lines
+EOF
+
+rm log.Moments*
