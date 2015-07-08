@@ -28,6 +28,10 @@ gnuplot -persist > /dev/null 2>&1 << EOF
         set yrange [MIN*2:MAX*2]
         plot for [col=2:4:1] 'log.MomentsPressure' using col with lines, \
              for [col=2:4:1] 'log.MomentsViscous' using col with lines
+
+        set term png
+        set output "moments.png"
+        replot
 EOF
 
 rm log.Moments*
