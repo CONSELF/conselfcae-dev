@@ -78,7 +78,7 @@ runParallel()
     else
         nProcs=$1
         shift
-        echo "Running $APP_RUN in parallel on $PWD using $nProcs processes"
+        #echo "Running $APP_RUN in parallel on $PWD using $nProcs processes"
 
         #if [ "$WM_SCHEDULER" ]
         #then
