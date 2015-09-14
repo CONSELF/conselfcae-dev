@@ -61,7 +61,7 @@ runApplication()
     then
         echo "$APP_NAME already run on $PWD: remove log file to re-run"
     else
-        echo "Running $APP_RUN on $PWD"
+        #echo "Running $APP_RUN on $PWD"
         $APP_RUN "$@" > log.$APP_NAME 2>&1
     fi
 }
