@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -21,32 +21,27 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
-Global
-    compressibleCourantNo
-
-Description
-    Calculates the mean and maximum wave speed based Courant Numbers.
-
 \*---------------------------------------------------------------------------*/
 
-scalar CoNum = 0.0;
-scalar meanCoNum = 0.0;
+// * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //
 
-if (mesh.nInternalFaces())
+inline Foam::label Foam::block::vtxLabel(label i, label j, label k) const
 {
-    surfaceScalarField amaxSfbyDelta
+    return
     (
-        mesh.surfaceInterpolation::deltaCoeffs()*amaxSf
+        i
+      + j * (meshDensity().x() + 1)
+      + k * (meshDensity().x() + 1) * (meshDensity().y() + 1)
     );
-
-    CoNum = max(amaxSfbyDelta/mesh.magSf()).value()*runTime.deltaTValue();
-
-    meanCoNum =
-        (sum(amaxSfbyDelta)/sum(mesh.magSf())).value()
-       *runTime.deltaTValue();
 }
 
-Info<< "Mean and max Courant Numbers = "
-    << meanCoNum << " " << CoNum << endl;
+
+// * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
+
+inline const Foam::blockDescriptor& Foam::block::blockDef() const
+{
+    return *this;
+}
+
 
 // ************************************************************************* //
