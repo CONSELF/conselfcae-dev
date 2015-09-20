@@ -60,10 +60,11 @@ int main(int argc, char *argv[])
         {
             #include "UEqn.H"
             #include "pEqn.H"
-            #include "PPMEqn.H"
         }
 
         turbulence->correct();
+
+        #include "PPMEqn.H"
 
         runTime.write();
 
