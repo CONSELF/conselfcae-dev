@@ -4,7 +4,7 @@ cd ${0%/*} || exit 1    # run from this directory
 # CONSELFoam for UBUNTU 14.04
 # official package list: http://www.openfoam.org/download/source.php
 echo "CONSELFoam runs on UBUNTU only!"
-sudo apt-get install build-essential flex bison cmake zlib1g-dev libopenmpi-dev openmpi-bin gnuplot libreadline-dev libncurses-dev libxt-dev qt4-dev-tools libqt4-dev libqt4-opengl-dev freeglut3-dev libqtwebkit-dev libscotch-dev libcgal-dev
+sudo apt-get install build-essential flex bison cmake zlib1g-dev libopenmpi-dev openmpi-bin gnuplot libreadline-dev libncurses-dev libxt-dev qt4-dev-tools libqt4-dev libqt4-opengl-dev freeglut3-dev libqtwebkit-dev libscotch-dev libcgal-dev lam4-dev libmpich-dev libopenmpi-dev
 
 wmakeCheckPwd "$WM_PROJECT_DIR" || {
     echo "Error: Current directory is not \$WM_PROJECT_DIR"
