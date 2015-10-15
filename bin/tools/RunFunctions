@@ -57,13 +57,13 @@ runApplication()
     APP_NAME=${1##*/}
     shift
 
-    if [ -f log.$APP_NAME ]
-    then
-        echo "$APP_NAME already run on $PWD: remove log file to re-run"
-    else
-        #echo "Running $APP_RUN on $PWD"
-        $APP_RUN "$@" > log.$APP_NAME 2>&1
-    fi
+    #if [ -f log.$APP_NAME ]
+    #then
+    #    echo "$APP_NAME already run on $PWD: removing log file and re-run"
+    #fi
+
+    #echo "Running $APP_RUN on $PWD"
+    $APP_RUN "$@" > log.$APP_NAME 2>&1
 }
 
 runParallel()
