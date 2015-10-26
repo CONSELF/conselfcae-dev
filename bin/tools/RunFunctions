@@ -63,7 +63,7 @@ runApplication()
     #fi
 
     #echo "Running $APP_RUN on $PWD"
-    $APP_RUN "$@" > log.$APP_NAME 2>&1
+    $APP_RUN "$@" > log.$APP_NAME
 }
 
 runParallel()
