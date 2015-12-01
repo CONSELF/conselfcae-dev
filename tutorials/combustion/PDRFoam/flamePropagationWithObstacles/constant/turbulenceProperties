@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                                 |
+|  \\    /   O peration     | Version:  3.0.x                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -15,7 +15,28 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-simulationType  RASModel;
+simulationType  RAS;
+
+RAS
+{
+    RASModel PDRkEpsilon;
+
+    PDRkEpsilonCoeffs
+    {
+        Cmu              0.09;
+        C1               1.44;
+        C2               1.92;
+        C3               0;
+        C4               0.1;
+        alphah           1;
+        alphak           1;
+        alphaEps         0.76923;
+    }
+
+    turbulence      on;
+
+    printCoeffs     on;
+}
 
 
 // ************************************************************************* //

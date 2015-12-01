@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                                 |
+|  \\    /   O peration     | Version:  3.0.x                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -87,8 +87,8 @@ subModels
             outerDiameter   1.9e-4;
             innerDiameter   0;
             duration        1.25e-3;
-            position        ( 0 0.0995 0 );
-            direction       ( 0 -1 0 );
+            position        (0 0.0995 0);
+            direction       (0 -1 0);
             parcelsPerSecond 20000000;
             flowRateProfile table
             (

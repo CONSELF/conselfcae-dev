@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                                 |
+|  \\    /   O peration     | Version:  3.0.x                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -52,11 +52,5 @@ maxAlphaCo      0.1;
 
 maxDeltaT       1;
 
-libs
-(
-    "libturbulenceDerivedFvPatchFields.so"
-    "libincompressibleTurbulenceModel.so"
-    "libincompressibleRASModels.so"
-);
 
 // ************************************************************************* //

@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                                 |
+|  \\    /   O peration     | Version:  3.0.x                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -22,8 +22,8 @@ boundaryField
 {
     movingWall
     {
-        type            fixedValue;
-        value           uniform (1 0 0);
+        type            movingWallVelocity;
+        value           $internalField;
     }
 
     farFieldMoving
@@ -41,7 +41,7 @@ boundaryField
     left
     {
         type            pressureInletOutletVelocity;
-        value           uniform (0 0 0);
+        value           $internalField;
     }
 
     farField

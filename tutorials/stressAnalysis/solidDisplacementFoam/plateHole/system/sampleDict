@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                                 |
+|  \\    /   O peration     | Version:  3.0.x                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -25,13 +25,13 @@ sets
     {
         type    uniform;
         axis    y;
-        start   ( 0 0.5 0.25 );
-        end     ( 0 2 0.25 );
+        start   (0 0.5 0.25);
+        end     (0 2 0.25);
         nPoints 100;
     }
 );
 
-fields          ( sigmaEq );
+fields          (sigmaEq);
 
 
 // ************************************************************************* //

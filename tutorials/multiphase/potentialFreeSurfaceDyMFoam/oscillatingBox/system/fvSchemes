@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                                 |
+|  \\    /   O peration     | Version:  3.0.x                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -29,7 +29,7 @@ divSchemes
 {
     default         none;
     div(phi,U)      Gauss upwind;
-    div((nuEff*dev(T(grad(U))))) Gauss linear;
+    div((nuEff*dev2(T(grad(U))))) Gauss linear;
 }
 
 laplacianSchemes
@@ -46,13 +46,5 @@ snGradSchemes
 {
     default         corrected;
 }
-
-fluxRequired
-{
-    default         no;
-    p_gh;
-    pcorr;
-}
-
 
 // ************************************************************************* //
