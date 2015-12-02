@@ -77,11 +77,11 @@
     {
         fvScalarMatrix alpha1Eqn
         (
-            #ifdef LTSSOLVE
-            fv::localEulerDdtScheme<scalar>(mesh, rDeltaT.name()).fvmDdt(alpha1)
-            #else
-            fv::EulerDdtScheme<scalar>(mesh).fvmDdt(alpha1)
-            #endif
+            (
+                LTS
+              ? fv::localEulerDdtScheme<scalar>(mesh).fvmDdt(alpha1)
+              : fv::EulerDdtScheme<scalar>(mesh).fvmDdt(alpha1)
+            )
           + fv::gaussConvectionScheme<scalar>
             (
                 mesh,
@@ -98,23 +98,19 @@
             << "  Max(" << alpha1.name() << ") = " << max(alpha1).value()
             << endl;
 
-        tmp<surfaceScalarField> tphiAlphaUD(alpha1Eqn.flux());
-        phiAlpha = tphiAlphaUD();
+        tmp<surfaceScalarField> talphaPhiUD(alpha1Eqn.flux());
+        alphaPhi = talphaPhiUD();
 
-        if (alphaApplyPrevCorr && tphiAlphaCorr0.valid())
+        if (alphaApplyPrevCorr && talphaPhiCorr0.valid())
         {
             Info<< "Applying the previous iteration compression flux" << endl;
-            #ifdef LTSSOLVE
-            MULES::LTScorrect(alpha1, phiAlpha, tphiAlphaCorr0(), 1, 0);
-            #else
-            MULES::correct(alpha1, phiAlpha, tphiAlphaCorr0(), 1, 0);
-            #endif
+            MULES::correct(alpha1, alphaPhi, talphaPhiCorr0(), 1, 0);
 
-            phiAlpha += tphiAlphaCorr0();
+            alphaPhi += talphaPhiCorr0();
         }
 
         // Cache the upwind-flux
-        tphiAlphaCorr0 = tphiAlphaUD;
+        talphaPhiCorr0 = talphaPhiUD;
 
         alpha2 = 1.0 - alpha1;
 
@@ -126,7 +122,7 @@
     {
         surfaceScalarField phir(phic*mixture.nHatf());
 
-        tmp<surfaceScalarField> tphiAlphaUn
+        tmp<surfaceScalarField> talphaPhiUn
         (
             fvc::flux
             (
@@ -145,41 +141,33 @@
         // Calculate the Crank-Nicolson off-centred alpha flux
         if (ocCoeff > 0)
         {
-            tphiAlphaUn =
-                cnCoeff*tphiAlphaUn + (1.0 - cnCoeff)*phiAlpha.oldTime();
+            talphaPhiUn =
+                cnCoeff*talphaPhiUn + (1.0 - cnCoeff)*alphaPhi.oldTime();
         }
 
         if (MULESCorr)
         {
-            tmp<surfaceScalarField> tphiAlphaCorr(tphiAlphaUn() - phiAlpha);
+            tmp<surfaceScalarField> talphaPhiCorr(talphaPhiUn() - alphaPhi);
             volScalarField alpha10("alpha10", alpha1);
 
-            #ifdef LTSSOLVE
-            MULES::LTScorrect(alpha1, tphiAlphaUn(), tphiAlphaCorr(), 1, 0);
-            #else
-            MULES::correct(alpha1, tphiAlphaUn(), tphiAlphaCorr(), 1, 0);
-            #endif
+            MULES::correct(alpha1, talphaPhiUn(), talphaPhiCorr(), 1, 0);
 
             // Under-relax the correction for all but the 1st corrector
             if (aCorr == 0)
             {
-                phiAlpha += tphiAlphaCorr();
+                alphaPhi += talphaPhiCorr();
             }
             else
             {
                 alpha1 = 0.5*alpha1 + 0.5*alpha10;
-                phiAlpha += 0.5*tphiAlphaCorr();
+                alphaPhi += 0.5*talphaPhiCorr();
             }
         }
         else
         {
-            phiAlpha = tphiAlphaUn;
+            alphaPhi = talphaPhiUn;
 
-            #ifdef LTSSOLVE
-            MULES::explicitLTSSolve(alpha1, phi, phiAlpha, 1, 0);
-            #else
-            MULES::explicitSolve(alpha1, phiCN, phiAlpha, 1, 0);
-            #endif
+            MULES::explicitSolve(alpha1, phiCN, alphaPhi, 1, 0);
         }
 
         alpha2 = 1.0 - alpha1;
@@ -189,7 +177,7 @@
 
     if (alphaApplyPrevCorr && MULESCorr)
     {
-        tphiAlphaCorr0 = phiAlpha - tphiAlphaCorr0;
+        talphaPhiCorr0 = alphaPhi - talphaPhiCorr0;
     }
 
     if
@@ -198,18 +186,18 @@
      == fv::EulerDdtScheme<vector>::typeName
     )
     {
-        rhoPhi = phiAlpha*(rho1 - rho2) + phiCN*rho2;
+        rhoPhi = alphaPhi*(rho1 - rho2) + phiCN*rho2;
     }
     else
     {
         if (ocCoeff > 0)
         {
             // Calculate the end-of-time-step alpha flux
-            phiAlpha = (phiAlpha - (1.0 - cnCoeff)*phiAlpha.oldTime())/cnCoeff;
+            alphaPhi = (alphaPhi - (1.0 - cnCoeff)*alphaPhi.oldTime())/cnCoeff;
         }
 
         // Calculate the end-of-time-step mass flux
-        rhoPhi = phiAlpha*(rho1 - rho2) + phi*rho2;
+        rhoPhi = alphaPhi*(rho1 - rho2) + phi*rho2;
     }
 
     Info<< "Phase-1 volume fraction = "

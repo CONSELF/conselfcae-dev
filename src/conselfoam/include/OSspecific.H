@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -37,7 +37,6 @@ SourceFiles
 #define OSspecific_H
 
 #include "fileNameList.H"
-#include "long.H"
 
 #include <sys/types.h>
 
@@ -197,7 +196,7 @@ bool ping(const string&, const label timeOut=10);
 //- Execute the specified command
 int system(const std::string& command);
 
-//- open a shared library. Return handle to library. Print error message
+//- Open a shared library. Return handle to library. Print error message
 //  if library cannot be loaded (check = true)
 void* dlOpen(const fileName& lib, const bool check = true);
 

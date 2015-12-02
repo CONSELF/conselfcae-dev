@@ -12,11 +12,11 @@
         mesh
     );
 
-#   include "createPhi.H"
+    #include "createPhi.H"
 
     singlePhaseTransportModel laminarTransport(U, phi);
 
     autoPtr<incompressible::RASModel> RASModel
     (
-        incompressible::RASModel::New(U, phi, laminarTransport)
+        incompressible::New<incompressible::RASModel>(U, phi, laminarTransport)
     );

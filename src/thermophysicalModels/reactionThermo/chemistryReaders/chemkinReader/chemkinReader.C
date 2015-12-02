@@ -841,7 +841,7 @@ Foam::chemkinReader::chemkinReader
     speciesTable_(species),
     reactions_(speciesTable_, speciesThermo_),
     newFormat_(newFormat),
-    imbalanceTol_(sqrt(SMALL))
+    imbalanceTol_(ROOTSMALL)
 {
     read(CHEMKINFileName, thermoFileName);
 }
@@ -858,7 +858,7 @@ Foam::chemkinReader::chemkinReader
     speciesTable_(species),
     reactions_(speciesTable_, speciesThermo_),
     newFormat_(thermoDict.lookupOrDefault("newFormat", false)),
-    imbalanceTol_(thermoDict.lookupOrDefault("imbalanceTolerance", sqrt(SMALL)))
+    imbalanceTol_(thermoDict.lookupOrDefault("imbalanceTolerance", ROOTSMALL))
 {
     if (newFormat_)
     {

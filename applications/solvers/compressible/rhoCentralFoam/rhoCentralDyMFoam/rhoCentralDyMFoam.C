@@ -33,7 +33,7 @@ Description
 #include "fvCFD.H"
 #include "dynamicFvMesh.H"
 #include "psiThermo.H"
-#include "turbulenceModel.H"
+#include "turbulentFluidThermoModel.H"
 #include "zeroGradientFvPatchFields.H"
 #include "fixedRhoFvPatchScalarField.H"
 #include "directionInterpolate.H"
@@ -47,6 +47,7 @@ int main(int argc, char *argv[])
     #include "createTime.H"
     #include "createDynamicFvMesh.H"
     #include "createFields.H"
+    #include "createTimeControls.H"
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2013 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2013-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -254,14 +254,14 @@ public:
             virtual volScalarField& he()
             {
                 notImplemented("multiphaseMixtureThermo::he()");
-                return phases_[0]->thermo().he();
+                return phases_[0].thermo().he();
             }
 
             //- Enthalpy/Internal energy [J/kg]
             virtual const volScalarField& he() const
             {
                 notImplemented("multiphaseMixtureThermo::he() const");
-                return phases_[0]->thermo().he();
+                return phases_[0].thermo().he();
             }
 
             //- Enthalpy/Internal energy
@@ -315,6 +315,9 @@ public:
             //- Density [kg/m^3]
             virtual tmp<volScalarField> rho() const;
 
+            //- Density for patch [kg/m^3]
+            virtual tmp<scalarField> rho(const label patchi) const;
+
             //- Heat capacity at constant pressure [J/kg/K]
             virtual tmp<volScalarField> Cp() const;
 
@@ -337,10 +340,10 @@ public:
                 const label patchi
             ) const;
 
-            //- gamma = Cp/Cv []
+            //- Gamma = Cp/Cv []
             virtual tmp<volScalarField> gamma() const;
 
-            //- gamma = Cp/Cv for patch []
+            //- Gamma = Cp/Cv for patch []
             virtual tmp<scalarField> gamma
             (
                 const scalarField& p,
@@ -372,6 +375,12 @@ public:
 
 
         // Fields derived from transport state variables
+
+            //- Kinematic viscosity of mixture [m^2/s]
+            virtual tmp<volScalarField> nu() const;
+
+            //- Kinematic viscosity of mixture for patch [m^2/s]
+            virtual tmp<scalarField> nu(const label patchi) const;
 
             //- Thermal diffusivity for temperature of mixture [J/m/s/K]
             virtual tmp<volScalarField> kappa() const;

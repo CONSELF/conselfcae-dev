@@ -8,7 +8,6 @@ EXE_INC = \
 EXE_LIBS = \
     -lmeshTools \
     -lfiniteVolume \
-    -lconselfoam \
     -lmeshTools \
     -ltriSurface \
     -ldistributed \

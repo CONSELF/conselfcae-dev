@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2014 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -32,6 +32,7 @@ Description
 #include "argList.H"
 #include "Time.H"
 #include "dynamicFvMesh.H"
+#include "pimpleControl.H"
 #include "vtkSurfaceWriter.H"
 #include "cyclicAMIPolyPatch.H"
 
@@ -111,16 +112,16 @@ void writeWeights(const polyMesh& mesh)
 
 int main(int argc, char *argv[])
 {
-#   include "addRegionOption.H"
+    #include "addRegionOption.H"
     argList::addBoolOption
     (
         "checkAMI",
         "check AMI weights"
     );
 
-#   include "setRootCase.H"
-#   include "createTime.H"
-#   include "createNamedDynamicFvMesh.H"
+    #include "setRootCase.H"
+    #include "createTime.H"
+    #include "createNamedDynamicFvMesh.H"
 
     const bool checkAMI  = args.optionFound("checkAMI");
 
@@ -129,11 +130,25 @@ int main(int argc, char *argv[])
         Info<< "Writing VTK files with weights of AMI patches." << nl << endl;
     }
 
+    pimpleControl pimple(mesh);
+
+    bool moveMeshOuterCorrectors
+    (
+        pimple.dict().lookupOrDefault<Switch>("moveMeshOuterCorrectors", false)
+    );
+
     while (runTime.loop())
     {
         Info<< "Time = " << runTime.timeName() << endl;
 
-        mesh.update();
+        while (pimple.loop())
+        {
+            if (pimple.firstIter() || moveMeshOuterCorrectors)
+            {
+                mesh.update();
+            }
+        }
+
         mesh.checkMesh(true);
 
         if (checkAMI)

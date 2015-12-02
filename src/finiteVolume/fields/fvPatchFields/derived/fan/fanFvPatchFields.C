@@ -28,7 +28,7 @@ License
 #include "volFields.H"
 #include "surfaceFields.H"
 #include "Tuple2.H"
-#include "polynomial.H"
+#include "PolynomialEntry.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 
@@ -109,7 +109,7 @@ Foam::fanFvPatchField<Foam::scalar>::fanFvPatchField
 
             this->jumpTable_.reset
             (
-                new polynomial("jumpTable", coeffs)
+                new PolynomialEntry<scalar>("jumpTable", coeffs)
             );
         }
         else

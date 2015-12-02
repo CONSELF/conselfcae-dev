@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2013 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2013-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -203,10 +203,10 @@ public:
                 const label patchi
             ) const;
 
-            //- gamma = Cp/Cv []
+            //- Gamma = Cp/Cv []
             virtual tmp<volScalarField> gamma() const;
 
-            //- gamma = Cp/Cv for patch []
+            //- Gamma = Cp/Cv for patch []
             virtual tmp<scalarField> gamma
             (
                 const scalarField& p,
@@ -238,6 +238,12 @@ public:
 
 
         // Fields derived from transport state variables
+
+            //- Kinematic viscosity of mixture [m^2/s]
+            virtual tmp<volScalarField> nu() const;
+
+            //- Kinematic viscosity of mixture for patch [m^2/s]
+            virtual tmp<scalarField> nu(const label patchi) const;
 
             //- Thermal diffusivity for temperature of mixture [J/m/s/K]
             virtual tmp<volScalarField> kappa() const;

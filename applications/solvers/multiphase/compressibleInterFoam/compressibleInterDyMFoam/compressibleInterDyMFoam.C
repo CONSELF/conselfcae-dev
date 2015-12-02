@@ -44,8 +44,9 @@ Description
 #include "interfaceProperties.H"
 #include "twoPhaseMixture.H"
 #include "twoPhaseMixtureThermo.H"
-#include "turbulenceModel.H"
+#include "turbulentFluidThermoModel.H"
 #include "pimpleControl.H"
+#include "CorrectPhi.H"
 #include "fixedFluxPressureFvPatchScalarField.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -55,15 +56,13 @@ int main(int argc, char *argv[])
     #include "setRootCase.H"
     #include "createTime.H"
     #include "createDynamicFvMesh.H"
-    #include "readGravitationalAcceleration.H"
     #include "initContinuityErrs.H"
 
     pimpleControl pimple(mesh);
 
     #include "createFields.H"
     #include "createUf.H"
-    #include "readControls.H"
-    #include "createPrghCorrTypes.H"
+    #include "createControls.H"
     #include "CourantNo.H"
     #include "setInitialDeltaT.H"
 
@@ -98,8 +97,8 @@ int main(int argc, char *argv[])
                     << runTime.elapsedCpuTime() - timeBeforeMeshUpdate
                     << " s" << endl;
 
-                gh = g & mesh.C();
-                ghf = g & mesh.Cf();
+                gh = (g & mesh.C()) - ghRef;
+                ghf = (g & mesh.Cf()) - ghRef;
             }
 
             if (mesh.changing() && correctPhi)

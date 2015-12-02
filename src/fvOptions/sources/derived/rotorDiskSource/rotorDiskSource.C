@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2014 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -334,9 +334,9 @@ void Foam::fv::rotorDiskSource::createCoordinateSystem()
 
             coeffs_.lookup("refDirection") >> refDir;
 
-            localAxesRotation_.reset
+            cylindrical_.reset
             (
-                new localAxesRotation
+                new cylindrical
                 (
                     mesh_,
                     axis,
@@ -357,9 +357,9 @@ void Foam::fv::rotorDiskSource::createCoordinateSystem()
             coeffs_.lookup("axis") >> axis;
             coeffs_.lookup("refDirection") >> refDir;
 
-            localAxesRotation_.reset
+            cylindrical_.reset
             (
-                new localAxesRotation
+                new cylindrical
                 (
                     mesh_,
                     axis,
@@ -478,7 +478,7 @@ Foam::fv::rotorDiskSource::rotorDiskSource
 
 )
 :
-    option(name, modelType, dict, mesh),
+    cellSetOption(name, modelType, dict, mesh),
     rhoRef_(1.0),
     omega_(0.0),
     nBlades_(0),
@@ -491,7 +491,7 @@ Foam::fv::rotorDiskSource::rotorDiskSource
     invR_(cells_.size(), I),
     area_(cells_.size(), 0.0),
     coordSys_(false),
-    localAxesRotation_(),
+    cylindrical_(),
     rMax_(0.0),
     trim_(trimModel::New(*this, coeffs_)),
     blade_(coeffs_.subDict("blade")),
@@ -587,16 +587,9 @@ void Foam::fv::rotorDiskSource::addSup
 }
 
 
-void Foam::fv::rotorDiskSource::writeData(Ostream& os) const
-{
-    os  << indent << name_ << endl;
-    dict_.write(os);
-}
-
-
 bool Foam::fv::rotorDiskSource::read(const dictionary& dict)
 {
-    if (option::read(dict))
+    if (cellSetOption::read(dict))
     {
         coeffs_.lookup("fieldNames") >> fieldNames_;
         applied_.setSize(fieldNames_.size(), false);

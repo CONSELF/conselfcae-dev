@@ -120,9 +120,9 @@ bool Foam::pimpleControl::criteriaSatisfied()
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-Foam::pimpleControl::pimpleControl(fvMesh& mesh)
+Foam::pimpleControl::pimpleControl(fvMesh& mesh, const word& dictName)
 :
-    solutionControl(mesh, "PIMPLE"),
+    solutionControl(mesh, dictName),
     nCorrPIMPLE_(0),
     nCorrPISO_(0),
     corrPISO_(0),

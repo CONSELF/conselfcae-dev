@@ -35,6 +35,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
+#include "pisoControl.H"
 #include "fvIOoptionList.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -75,8 +76,11 @@ int main(int argc, char *argv[])
     #include "setRootCase.H"
     #include "createTime.H"
     #include "createMesh.H"
-    #include "readControls.H"
+
+    pisoControl potentialFlow(mesh, "potentialFlow");
+
     #include "createFields.H"
+    #include "createMRF.H"
     #include "createFvOptions.H"
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -87,12 +91,11 @@ int main(int argc, char *argv[])
     // function objects so do it ourselves
     runTime.functionObjects().start();
 
-    fvOptions.makeRelative(phi);
-
+    MRF.makeRelative(phi);
     adjustPhi(phi, U, p);
 
     // Non-orthogonal velocity potential corrector loop
-    for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++)
+    while (potentialFlow.correctNonOrthogonal())
     {
         fvScalarMatrix PhiEqn
         (
@@ -104,13 +107,13 @@ int main(int argc, char *argv[])
         PhiEqn.setReference(PhiRefCell, PhiRefValue);
         PhiEqn.solve();
 
-        if (nonOrth == nNonOrthCorr)
+        if (potentialFlow.finalNonOrthogonalIter())
         {
             phi -= PhiEqn.flux();
         }
     }
 
-    fvOptions.makeAbsolute(phi);
+    MRF.makeAbsolute(phi);
 
     Info<< "Continuity error = "
         << mag(fvc::div(phi))().weightedAverage(mesh.V()).value()
@@ -144,7 +147,7 @@ int main(int argc, char *argv[])
         setRefCell
         (
             p,
-            potentialFlow,
+            potentialFlow.dict(),
             pRefCell,
             pRefValue
         );
@@ -167,7 +170,7 @@ int main(int argc, char *argv[])
         );
 
         // Solve a Poisson equation for the approximate pressure
-        for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++)
+        while (potentialFlow.correctNonOrthogonal())
         {
             fvScalarMatrix pEqn
             (

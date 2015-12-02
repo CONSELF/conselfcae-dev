@@ -1,3 +1,0 @@
-simpleInviscidFoam.C
-
-EXE = $(FOAM_APPBIN)/simpleInviscidFoam

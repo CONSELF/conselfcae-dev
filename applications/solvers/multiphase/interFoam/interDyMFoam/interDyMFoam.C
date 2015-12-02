@@ -40,10 +40,13 @@ Description
 #include "CrankNicolsonDdtScheme.H"
 #include "subCycle.H"
 #include "immiscibleIncompressibleTwoPhaseMixture.H"
-#include "turbulenceModel.H"
+#include "turbulentTransportModel.H"
 #include "pimpleControl.H"
 #include "fvIOoptionList.H"
+#include "CorrectPhi.H"
 #include "fixedFluxPressureFvPatchScalarField.H"
+#include "localEulerDdtScheme.H"
+#include "fvcSmooth.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -52,13 +55,15 @@ int main(int argc, char *argv[])
     #include "setRootCase.H"
     #include "createTime.H"
     #include "createDynamicFvMesh.H"
+    #include "initContinuityErrs.H"
 
     pimpleControl pimple(mesh);
 
-    #include "initContinuityErrs.H"
+    #include "createControls.H"
+    #include "createRDeltaT.H"
     #include "createFields.H"
-    #include "readTimeControls.H"
-    #include "createPrghCorrTypes.H"
+    #include "createMRF.H"
+    #include "createFvOptions.H"
 
     volScalarField rAU
     (
@@ -76,8 +81,12 @@ int main(int argc, char *argv[])
 
     #include "correctPhi.H"
     #include "createUf.H"
-    #include "CourantNo.H"
-    #include "setInitialDeltaT.H"
+
+    if (!LTS)
+    {
+        #include "CourantNo.H"
+        #include "setInitialDeltaT.H"
+    }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
     Info<< "\nStarting time loop\n" << endl;
@@ -85,10 +94,17 @@ int main(int argc, char *argv[])
     while (runTime.run())
     {
         #include "readControls.H"
-        #include "alphaCourantNo.H"
-        #include "CourantNo.H"
 
-        #include "setDeltaT.H"
+        if (LTS)
+        {
+            #include "setRDeltaT.H"
+        }
+        else
+        {
+            #include "CourantNo.H"
+            #include "alphaCourantNo.H"
+            #include "setDeltaT.H"
+        }
 
         runTime++;
 
@@ -109,8 +125,8 @@ int main(int argc, char *argv[])
                         << runTime.elapsedCpuTime() - timeBeforeMeshUpdate
                         << " s" << endl;
 
-                    gh = g & mesh.C();
-                    ghf = g & mesh.Cf();
+                    gh = (g & mesh.C()) - ghRef;
+                    ghf = (g & mesh.Cf()) - ghRef;
                 }
 
                 if (mesh.changing() && correctPhi)

@@ -47,9 +47,10 @@ Description
 #include "subCycle.H"
 #include "interfaceProperties.H"
 #include "phaseChangeTwoPhaseMixture.H"
-#include "turbulenceModel.H"
+#include "turbulentTransportModel.H"
 #include "pimpleControl.H"
 #include "fvIOoptionList.H"
+#include "CorrectPhi.H"
 #include "fixedFluxPressureFvPatchScalarField.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -59,14 +60,13 @@ int main(int argc, char *argv[])
     #include "setRootCase.H"
     #include "createTime.H"
     #include "createDynamicFvMesh.H"
-    #include "readGravitationalAcceleration.H"
-    #include "initContinuityErrs.H"
 
     pimpleControl pimple(mesh);
 
+    #include "../interFoam/interDyMFoam/createControls.H"
+    #include "initContinuityErrs.H"
     #include "createFields.H"
-    #include "readTimeControls.H"
-    #include "createPcorrTypes.H"
+    #include "createFvOptions.H"
 
     volScalarField rAU
     (
@@ -121,8 +121,8 @@ int main(int argc, char *argv[])
                         << runTime.elapsedCpuTime() - timeBeforeMeshUpdate
                         << " s" << endl;
 
-                    gh = g & mesh.C();
-                    ghf = g & mesh.Cf();
+                    gh = (g & mesh.C()) - ghRef;
+                    ghf = (g & mesh.Cf()) - ghRef;
                 }
 
                 if (mesh.changing() && correctPhi)
@@ -130,8 +130,7 @@ int main(int argc, char *argv[])
                     // Calculate absolute flux from the mapped surface velocity
                     phi = mesh.Sf() & Uf;
 
-                    #define divUCorr -divU
-                    #include "../interFoam/interDyMFoam/correctPhi.H"
+                    #include "correctPhi.H"
 
                     // Make the flux relative to the mesh motion
                     fvc::makeRelative(phi, U);

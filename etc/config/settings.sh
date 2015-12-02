@@ -30,7 +30,7 @@
 #
 #------------------------------------------------------------------------------
 
-# prefix to PATH
+# Prefix to PATH
 _foamAddPath()
 {
     while [ $# -ge 1 ]
@@ -40,7 +40,7 @@ _foamAddPath()
     done
 }
 
-# prefix to LD_LIBRARY_PATH
+# Prefix to LD_LIBRARY_PATH
 _foamAddLib()
 {
     while [ $# -ge 1 ]
@@ -50,7 +50,7 @@ _foamAddLib()
     done
 }
 
-# prefix to MANPATH
+# Prefix to MANPATH
 _foamAddMan()
 {
     while [ $# -ge 1 ]
@@ -70,7 +70,8 @@ Linux)
 
     # compiler specifics
     case `uname -m` in
-    i686)
+        i686)
+            export WM_ARCH_OPTION=32
         ;;
 
     x86_64)
@@ -164,38 +165,39 @@ esac
 
 #------------------------------------------------------------------------------
 
-# location of the jobControl directory
+# Location of the jobControl directory
 export FOAM_JOB_DIR=$WM_PROJECT_INST_DIR/jobControl
 
 # wmake configuration
 export WM_DIR=$WM_PROJECT_DIR/wmake
 export WM_LINK_LANGUAGE=c++
-export WM_OPTIONS=$WM_ARCH$WM_COMPILER$WM_PRECISION_OPTION$WM_COMPILE_OPTION
+export WM_LABEL_OPTION=Int$WM_LABEL_SIZE
+export WM_OPTIONS=$WM_ARCH$WM_COMPILER$WM_PRECISION_OPTION$WM_LABEL_OPTION$WM_COMPILE_OPTION
 
-# base executables/libraries
+# Base executables/libraries
 export FOAM_APPBIN=$WM_PROJECT_DIR/platforms/$WM_OPTIONS/bin
 export FOAM_LIBBIN=$WM_PROJECT_DIR/platforms/$WM_OPTIONS/lib
 
-# external (ThirdParty) libraries
+# External (ThirdParty) libraries
 export FOAM_EXT_LIBBIN=$WM_THIRD_PARTY_DIR/platforms/$WM_OPTIONS/lib
 
-# site-specific directory
+# Site-specific directory
 siteDir="${WM_PROJECT_SITE:-$WM_PROJECT_INST_DIR/site}"
 
-# shared site executables/libraries
-# similar naming convention as ~OpenFOAM expansion
+# Shared site executables/libraries
+# Similar naming convention as ~OpenFOAM expansion
 export FOAM_SITE_APPBIN=$siteDir/$WM_PROJECT_VERSION/platforms/$WM_OPTIONS/bin
 export FOAM_SITE_LIBBIN=$siteDir/$WM_PROJECT_VERSION/platforms/$WM_OPTIONS/lib
 
-# user executables/libraries
+# User executables/libraries
 export FOAM_USER_APPBIN=$WM_PROJECT_USER_DIR/platforms/$WM_OPTIONS/bin
 export FOAM_USER_LIBBIN=$WM_PROJECT_USER_DIR/platforms/$WM_OPTIONS/lib
 
-# dynamicCode templates
+# DynamicCode templates
 # - default location is the "~OpenFOAM/codeTemplates/dynamicCode" expansion
 # export FOAM_CODE_TEMPLATES=$WM_PROJECT_DIR/etc/codeTemplates/dynamicCode
 
-# convenience
+# Convenience
 export FOAM_ETC=$WM_PROJECT_DIR/etc
 export FOAM_APP=$WM_PROJECT_DIR/applications
 export FOAM_SRC=$WM_PROJECT_DIR/src
@@ -204,9 +206,9 @@ export FOAM_UTILITIES=$FOAM_APP/utilities
 export FOAM_SOLVERS=$FOAM_APP/solvers
 export FOAM_RUN=$WM_PROJECT_USER_DIR/run
 
-# add wmake to the path - not required for runtime only environment
+# Add wmake to the path - not required for runtime-only environment
 [ -d "$WM_DIR" ] && PATH=$WM_DIR:$PATH
-# add OpenFOAM scripts to the path
+# Add OpenFOAM scripts to the path
 export PATH=$WM_PROJECT_DIR/bin:$PATH
 
 # add site-specific scripts to path - only if they exist
@@ -241,14 +243,38 @@ fi
 case "${foamCompiler}" in
 OpenFOAM | ThirdParty)
     case "$WM_COMPILER" in
-    Gcc | Gcc++0x | Gcc48 | Gcc48++0x)
-        gcc_version=gcc-4.8.2
+    Gcc | Gcc48)
+        gcc_version=gcc-4.8.4
         gmp_version=gmp-5.1.2
         mpfr_version=mpfr-3.1.2
         mpc_version=mpc-1.0.1
         ;;
-    Gcc49 | Gcc49++0x)
-        gcc_version=gcc-4.9.0
+    Gcc45)
+        gcc_version=gcc-4.5.4
+        gmp_version=gmp-5.1.2
+        mpfr_version=mpfr-3.1.2
+        mpc_version=mpc-1.0.1
+        ;;
+    Gcc46)
+        gcc_version=gcc-4.6.4
+        gmp_version=gmp-5.1.2
+        mpfr_version=mpfr-3.1.2
+        mpc_version=mpc-1.0.1
+        ;;
+    Gcc47)
+        gcc_version=gcc-4.7.4
+        gmp_version=gmp-5.1.2
+        mpfr_version=mpfr-3.1.2
+        mpc_version=mpc-1.0.1
+        ;;
+    Gcc49)
+        gcc_version=gcc-4.9.2
+        gmp_version=gmp-5.1.2
+        mpfr_version=mpfr-3.1.2
+        mpc_version=mpc-1.0.1
+        ;;
+    Gcc51)
+        gcc_version=gcc-5.1.0
         gmp_version=gmp-5.1.2
         mpfr_version=mpfr-3.1.2
         mpc_version=mpc-1.0.1
@@ -257,7 +283,7 @@ OpenFOAM | ThirdParty)
         # using clang - not gcc
         export WM_CC='clang'
         export WM_CXX='clang++'
-        clang_version=llvm-3.4.2
+        clang_version=llvm-3.6.0
         ;;
     *)
         echo 1>&2
@@ -268,7 +294,7 @@ OpenFOAM | ThirdParty)
         ;;
     esac
 
-    # optional configuration tweaks:
+    # Optional configuration tweaks:
     _foamSource `$WM_PROJECT_DIR/bin/foamEtcFile config/compiler.sh`
 
     if [ -n "$gcc_version" ]
@@ -283,7 +309,8 @@ OpenFOAM | ThirdParty)
             echo 1>&2
             echo "Warning in $WM_PROJECT_DIR/etc/config/settings.sh:" 1>&2
             echo "    Cannot find $gccDir installation." 1>&2
-            echo "    Please install this compiler version or if you wish to use the system compiler," 1>&2
+            echo "    Please install this compiler version or if you wish to" \
+                 " use the system compiler," 1>&2
             echo "    change the 'foamCompiler' setting to 'system'" 1>&2
             echo
         }
@@ -291,20 +318,20 @@ OpenFOAM | ThirdParty)
         _foamAddMan     $gccDir/man
         _foamAddPath    $gccDir/bin
 
-        # add compiler libraries to run-time environment
+        # Add compiler libraries to run-time environment
         _foamAddLib     $gccDir/lib$WM_COMPILER_LIB_ARCH
 
-        # add gmp/mpfr libraries to run-time environment
+        # Add gmp/mpfr libraries to run-time environment
         _foamAddLib     $gmpDir/lib
         _foamAddLib     $mpfrDir/lib
 
-        # add mpc libraries (not need for older gcc) to run-time environment
+        # Add mpc libraries (not need for older gcc) to run-time environment
         if [ -n "$mpc_version" ]
         then
             _foamAddLib     $mpcDir/lib
         fi
 
-        # used by boost/CGAL:
+        # Used by boost/CGAL:
         export MPFR_ARCH_PATH=$mpfrDir
         export GMP_ARCH_PATH=$gmpDir
     fi
@@ -332,7 +359,7 @@ OpenFOAM | ThirdParty)
     unset clang_version clangDir
     ;;
 system)
-    # okay, use system compiler
+    # Use system compiler
     ;;
 *)
     echo "Warn: foamCompiler='$foamCompiler' is unsupported" 1>&2
@@ -376,8 +403,8 @@ SYSTEMOPENMPI)
     ;;
 
 OPENMPI)
-    export FOAM_MPI=openmpi-1.6.5
-    # optional configuration tweaks:
+    export FOAM_MPI=openmpi-1.10.0
+    # Optional configuration tweaks:
     _foamSource `$WM_PROJECT_DIR/bin/foamEtcFile config/openmpi.sh`
 
     export MPI_ARCH_PATH=$WM_THIRD_PARTY_DIR/platforms/$WM_ARCH$WM_COMPILER/$FOAM_MPI
@@ -392,6 +419,54 @@ OPENMPI)
     _foamAddLib     $MPI_ARCH_PATH/lib
 
     _foamAddMan     $MPI_ARCH_PATH/share/man
+    ;;
+
+SYSTEMMPI)
+    export FOAM_MPI=mpi-system
+
+    if [ -z "$MPI_ROOT" ]
+    then
+        echo 1>&2
+        echo "Warning in $WM_PROJECT_DIR/etc/config/settings.sh:" 1>&2
+        echo "    Please set the environment variable MPI_ROOT to point to" \
+             " the base folder for the system MPI in use." 1>&2
+        echo "    Example:" 1>&2
+        echo 1>&2
+        echo "        export MPI_ROOT=/opt/mpi" 1>&2
+        echo 1>&2
+    else
+        export MPI_ARCH_PATH=$MPI_ROOT
+
+        if [ -z "$MPI_ARCH_FLAGS" ]
+        then
+            echo 1>&2
+            echo "Warning in $WM_PROJECT_DIR/etc/config/settings.sh:" 1>&2
+            echo "    MPI_ARCH_FLAGS is not set. Example:" 1>&2
+            echo 1>&2
+            echo "        export MPI_ARCH_FLAGS=\"-DOMPI_SKIP_MPICXX\"" 1>&2
+            echo 1>&2
+        fi
+
+        if [ -z "$MPI_ARCH_INC" ]
+        then
+            echo 1>&2
+            echo "Warning in $WM_PROJECT_DIR/etc/config/settings.sh:" 1>&2
+            echo "    MPI_ARCH_INC is not set. Example:" 1>&2
+            echo 1>&2
+            echo "        export MPI_ARCH_INC=\"-isystem \$MPI_ROOT/include\"" 1>&2
+            echo 1>&2
+        fi
+
+        if [ -z "$MPI_ARCH_LIBS" ]
+        then
+            echo 1>&2
+            echo "Warning in $WM_PROJECT_DIR/etc/config/settings.sh:" 1>&2
+            echo "    MPI_ARCH_LIBS is not set. Example:" 1>&2
+            echo 1>&2
+            echo "        export MPI_ARCH_LIBS=\"-L\$MPI_ROOT/lib -lmpi\"" 1>&2
+            echo 1>&2
+        fi
+    fi
     ;;
 
 MPICH)
@@ -447,55 +522,6 @@ HPMPI)
     esac
     ;;
 
-SYSTEMMPI)
-    export FOAM_MPI=mpi-system
-
-    if [ -z "$MPI_ROOT" ]
-    then
-        echo 1>&2
-        echo "Warning in $WM_PROJECT_DIR/etc/config/settings.sh:" 1>&2
-        echo "    Please set the environment variable MPI_ROOT to point to" \
-             " the base folder for the system MPI in use." 1>&2
-        echo "    Example:" 1>&2
-        echo 1>&2
-        echo "        export MPI_ROOT=/opt/mpi" 1>&2
-        echo 1>&2
-    else
-        export MPI_ARCH_PATH=$MPI_ROOT
-
-        if [ -z "$MPI_ARCH_FLAGS" ]
-        then
-            echo 1>&2
-            echo "Warning in $WM_PROJECT_DIR/etc/config/settings.sh:" 1>&2
-            echo "    MPI_ARCH_FLAGS is not set. Example:" 1>&2
-            echo 1>&2
-            echo "        export MPI_ARCH_FLAGS=\"-DOMPI_SKIP_MPICXX\"" 1>&2
-            echo 1>&2
-        fi
-
-        if [ -z "$MPI_ARCH_INC" ]
-        then
-            echo 1>&2
-            echo "Warning in $WM_PROJECT_DIR/etc/config/settings.sh:" 1>&2
-            echo "    MPI_ARCH_INC is not set. Example:" 1>&2
-            echo 1>&2
-            echo "        export MPI_ARCH_INC=\"-I\$MPI_ROOT/include\"" 1>&2
-            echo 1>&2
-        fi
-
-        if [ -z "$MPI_ARCH_LIBS" ]
-        then
-            echo 1>&2
-            echo "Warning in $WM_PROJECT_DIR/etc/config/settings.sh:" 1>&2
-            echo "    MPI_ARCH_LIBS is not set. Example:" 1>&2
-            echo 1>&2
-            echo "        export MPI_ARCH_LIBS=\"-L\$MPI_ROOT/lib -lmpi\"" 1>&2
-            echo 1>&2
-        fi
-    fi
-
-    ;;
-
 MPI)
     export FOAM_MPI=mpi
     export MPI_ARCH_PATH=/opt/mpi
@@ -520,7 +546,7 @@ QSMPI)
     ;;
 
 SGIMPI)
-    # no trailing slash
+    # No trailing slash
     [ "${MPI_ROOT%/}" = "${MPI_ROOT}" ] || MPI_ROOT="${MPI_ROOT%/}"
 
     export FOAM_MPI="${MPI_ROOT##*/}"
@@ -547,7 +573,7 @@ SGIMPI)
     ;;
 
 INTELMPI)
-    # no trailing slash
+    # No trailing slash
     [ "${MPI_ROOT%/}" = "${MPI_ROOT}" ] || MPI_ROOT="${MPI_ROOT%/}"
 
     export FOAM_MPI="${MPI_ROOT##*/}"
@@ -577,8 +603,8 @@ INTELMPI)
     ;;
 esac
 
-# add (non-dummy) MPI implementation
-# dummy MPI already added to LD_LIBRARY_PATH and has no external libraries
+# Add (non-dummy) MPI implementation
+# Dummy MPI already added to LD_LIBRARY_PATH and has no external libraries
 if [ "$FOAM_MPI" != dummy ]
 then
     _foamAddLib $FOAM_LIBBIN/$FOAM_MPI:$FOAM_EXT_LIBBIN/$FOAM_MPI
@@ -597,7 +623,7 @@ fi
 export MPI_BUFFER_SIZE
 
 
-# cleanup environment:
+# Cleanup environment:
 # ~~~~~~~~~~~~~~~~~~~~
 #keep _foamAddPath _foamAddLib _foamAddMan
 unset foamCompiler minBufferSize

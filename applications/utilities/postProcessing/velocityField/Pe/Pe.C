@@ -37,12 +37,9 @@ Description
 #include "surfaceInterpolate.H"
 #include "fvcAverage.H"
 
-#include "incompressible/singlePhaseTransportModel/singlePhaseTransportModel.H"
-#include "incompressible/RAS/RASModel/RASModel.H"
-#include "incompressible/LES/LESModel/LESModel.H"
-#include "fluidThermo.H"
-#include "compressible/RAS/RASModel/RASModel.H"
-#include "compressible/LES/LESModel/LESModel.H"
+#include "singlePhaseTransportModel.H"
+#include "turbulentTransportModel.H"
+#include "turbulentFluidThermoModel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -77,18 +74,9 @@ void Foam::calc(const argList& args, const Time& runTime, const fvMesh& mesh)
             mesh
         );
 
-        IOobject RASPropertiesHeader
+        IOobject turbulencePropertiesHeader
         (
-            "RASProperties",
-            runTime.constant(),
-            mesh,
-            IOobject::MUST_READ_IF_MODIFIED,
-            IOobject::NO_WRITE
-        );
-
-        IOobject LESPropertiesHeader
-        (
-            "LESProperties",
+            "turbulenceProperties",
             runTime.constant(),
             mesh,
             IOobject::MUST_READ_IF_MODIFIED,
@@ -99,15 +87,13 @@ void Foam::calc(const argList& args, const Time& runTime, const fvMesh& mesh)
 
         if (phi.dimensions() == dimensionSet(0, 3, -1, 0, 0))
         {
-            if (RASPropertiesHeader.headerOk())
+            if (turbulencePropertiesHeader.headerOk())
             {
-                IOdictionary RASProperties(RASPropertiesHeader);
-
                 singlePhaseTransportModel laminarTransport(U, phi);
 
-                autoPtr<incompressible::RASModel> RASModel
+                autoPtr<incompressible::turbulenceModel> turbulenceModel
                 (
-                    incompressible::RASModel::New
+                    incompressible::turbulenceModel::New
                     (
                         U,
                         phi,
@@ -129,37 +115,7 @@ void Foam::calc(const argList& args, const Time& runTime, const fvMesh& mesh)
                        /(
                             mesh.magSf()
                           * mesh.surfaceInterpolation::deltaCoeffs()
-                          * fvc::interpolate(RASModel->nuEff())
-                        )
-                    )
-                );
-            }
-            else if (LESPropertiesHeader.headerOk())
-            {
-                IOdictionary LESProperties(LESPropertiesHeader);
-
-                singlePhaseTransportModel laminarTransport(U, phi);
-
-                autoPtr<incompressible::LESModel> sgsModel
-                (
-                    incompressible::LESModel::New(U, phi, laminarTransport)
-                );
-
-                PePtr.set
-                (
-                    new surfaceScalarField
-                    (
-                        IOobject
-                        (
-                            "Pef",
-                            runTime.timeName(),
-                            mesh
-                        ),
-                        mag(phi)
-                       /(
-                            mesh.magSf()
-                          * mesh.surfaceInterpolation::deltaCoeffs()
-                          * fvc::interpolate(sgsModel->nuEff())
+                          * fvc::interpolate(turbulenceModel->nuEff())
                         )
                     )
                 );
@@ -202,10 +158,8 @@ void Foam::calc(const argList& args, const Time& runTime, const fvMesh& mesh)
         }
         else if (phi.dimensions() == dimensionSet(1, 0, -1, 0, 0))
         {
-            if (RASPropertiesHeader.headerOk())
+            if (turbulencePropertiesHeader.headerOk())
             {
-                IOdictionary RASProperties(RASPropertiesHeader);
-
                 autoPtr<fluidThermo> thermo(fluidThermo::New(mesh));
 
                 volScalarField rho
@@ -219,9 +173,9 @@ void Foam::calc(const argList& args, const Time& runTime, const fvMesh& mesh)
                     thermo->rho()
                 );
 
-                autoPtr<compressible::RASModel> RASModel
+                autoPtr<compressible::turbulenceModel> turbulenceModel
                 (
-                    compressible::RASModel::New
+                    compressible::turbulenceModel::New
                     (
                         rho,
                         U,
@@ -244,48 +198,7 @@ void Foam::calc(const argList& args, const Time& runTime, const fvMesh& mesh)
                        /(
                             mesh.magSf()
                           * mesh.surfaceInterpolation::deltaCoeffs()
-                          * fvc::interpolate(RASModel->muEff())
-                        )
-                    )
-                );
-            }
-            else if (LESPropertiesHeader.headerOk())
-            {
-                IOdictionary LESProperties(LESPropertiesHeader);
-
-                autoPtr<fluidThermo> thermo(fluidThermo::New(mesh));
-
-                volScalarField rho
-                (
-                    IOobject
-                    (
-                        "rho",
-                        runTime.timeName(),
-                        mesh
-                    ),
-                    thermo->rho()
-                );
-
-                autoPtr<compressible::LESModel> sgsModel
-                (
-                    compressible::LESModel::New(rho, U, phi, thermo())
-                );
-
-                PePtr.set
-                (
-                    new surfaceScalarField
-                    (
-                        IOobject
-                        (
-                            "Pef",
-                            runTime.timeName(),
-                            mesh
-                        ),
-                        mag(phi)
-                       /(
-                            mesh.magSf()
-                          * mesh.surfaceInterpolation::deltaCoeffs()
-                          * fvc::interpolate(sgsModel->muEff())
+                          * fvc::interpolate(turbulenceModel->muEff())
                         )
                     )
                 );
