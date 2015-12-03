@@ -1,0 +1,3 @@
+simpleFoamCO.C
+
+EXE = $(FOAM_APPBIN)/simpleFoamCO
