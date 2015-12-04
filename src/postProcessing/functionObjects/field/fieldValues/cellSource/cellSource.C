@@ -41,7 +41,7 @@ namespace Foam
 
 
     template<>
-    const char* NamedEnum<fieldValues::cellSource::operationType, 10>::names[] =
+    const char* NamedEnum<fieldValues::cellSource::operationType, 11>::names[] =
     {
         "none",
         "sum",
@@ -49,6 +49,7 @@ namespace Foam
         "average",
         "weightedAverage",
         "volAverage",
+        "weightedVolAverage",
         "volIntegrate",
         "min",
         "max",
@@ -66,7 +67,7 @@ namespace Foam
 const Foam::NamedEnum<Foam::fieldValues::cellSource::sourceType, 2>
     Foam::fieldValues::cellSource::sourceTypeNames_;
 
-const Foam::NamedEnum<Foam::fieldValues::cellSource::operationType, 10>
+const Foam::NamedEnum<Foam::fieldValues::cellSource::operationType, 11>
     Foam::fieldValues::cellSource::operationTypeNames_;
 
 
@@ -245,7 +246,7 @@ void Foam::fieldValues::cellSource::write()
             {
                 file() << tab << volume_;
             }
-            Info(log_)<< "    total volume = " << volume_ << endl;
+            if (log_) Info<< "    total volume = " << volume_ << endl;
         }
 
         forAll(fields_, i)
@@ -273,7 +274,7 @@ void Foam::fieldValues::cellSource::write()
             file()<< endl;
         }
 
-        Info(log_)<< endl;
+        if (log_) Info<< endl;
     }
 }
 

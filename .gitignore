@@ -52,7 +52,6 @@ doc/Doxygen/DTAGS
 
 # Generated files in the main directory (e.g. ReleaseNotes-?.?.html)
 # and in the doc directory
-/*.html
 /doc/*.html
 
 # Untracked configuration files
@@ -84,14 +83,7 @@ doc/Doxygen/DTAGS
 # Ignore the test directory
 /tutorialsTest
 
-# Ignore test data
-*processor[0-9]*
-*polyMesh
-*[0-9]
-*log.*
-*.foam
-*.pvsm
-*.avi
-*.gz
-
 # end-of-file
+
+#CONSELFoam extra ignores
+tutorials*

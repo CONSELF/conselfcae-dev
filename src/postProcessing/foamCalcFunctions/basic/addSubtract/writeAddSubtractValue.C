@@ -42,13 +42,9 @@ void Foam::calcTypes::addSubtract::writeAddSubtractValue
             {
                 resultName_ = baseHeader.name() + "_add_value";
             }
-            else if (calcMode_ == SUBTRACT)
+            else
             {
                 resultName_ = baseHeader.name() + "_subtract_value";
-            }
-            else if (calcMode_ == MULT)
-            {
-                resultName_ = baseHeader.name() + "_mult_value";
             }
         }
 
@@ -76,16 +72,10 @@ void Foam::calcTypes::addSubtract::writeAddSubtractValue
             newField == baseField
                 + dimensioned<Type>("value", baseField.dimensions(), value);
         }
-        else if (calcMode_ == SUBTRACT)
+        else
         {
             newField == baseField
                 - dimensioned<Type>("value", baseField.dimensions(), value);
-        }
-        else if (calcMode_ == MULT)
-        {
-            // TODO find an alternative to this
-            //newField == baseField * value;
-            //newField == baseField;
         }
 
         newField.write();

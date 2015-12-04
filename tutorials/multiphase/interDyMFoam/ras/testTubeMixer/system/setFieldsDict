@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                                 |
+|  \\    /   O peration     | Version:  3.0.x                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -24,7 +24,7 @@ regions
 (
     boxToCell
     {
-        box ( -100 -100 -100 ) ( 100 100 -0.0025);
+        box (-100 -100 -100) ( 100 100 -0.0025);
         fieldValues ( volScalarFieldValue alpha.water 1 );
     }
 );

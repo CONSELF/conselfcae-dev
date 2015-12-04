@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                                 |
+|  \\    /   O peration     | Version:  3.0.x                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -23,7 +23,7 @@ solvers
         nAlphaSubCycles 2;
     }
 
-    p
+    p_rgh
     {
         solver          GAMG;
         smoother        DIC;
@@ -35,12 +35,12 @@ solvers
         agglomerator    faceAreaPair;
         mergeLevels     1;
         tolerance       1e-8;
-        relTol          0.01;
+        relTol          0;
     }
 
-    pFinal
+    p_rghFinal
     {
-        $p;
+        $p_rgh;
         relTol          0;
     }
 

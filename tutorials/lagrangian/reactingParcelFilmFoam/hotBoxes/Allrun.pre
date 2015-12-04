@@ -1,5 +1,5 @@
 #!/bin/sh
-cd ${0%/*} || exit 1    # run from this directory
+cd ${0%/*} || exit 1    # Run from this directory
 
 # Source tutorial run functions
 . $WM_PROJECT_DIR/bin/tools/RunFunctions
@@ -30,7 +30,7 @@ rm -rf system/wallFilmRegion
 cp -r system/wallFilmRegion.org system/wallFilmRegion
 
 find ./0 -maxdepth 1 -type f -exec \
-    sed -i "s/wallFilm/\"(region0_to.*)\"/g" {} \;
+    sed -i -e "s/wallFilm/\"(region0_to.*)\"/g" {} \;
 
 paraFoam -touch
 paraFoam -touch -region wallFilmRegion

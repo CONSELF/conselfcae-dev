@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2013-2014 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2013-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -23,6 +23,9 @@ License
 
 Class
     Foam::turbulenceModel
+
+Group
+    grpTurbulence
 
 Description
     Abstract base class for turbulence models (RAS, LES and laminar).
@@ -204,12 +207,6 @@ public:
 
         //- Solve the turbulence equations and correct the turbulence viscosity
         virtual void correct() = 0;
-
-        //- Default dummy write function
-        virtual bool writeData(Ostream&) const
-        {
-            return true;
-        }
 };
 
 

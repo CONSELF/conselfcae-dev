@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                                 |
+|  \\    /   O peration     | Version:  3.0.x                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -34,6 +34,8 @@ sortCoupledFaceCells false;
 // Optional entry: sort points into internal and boundary points
 //orderPoints false;
 
+// Optional: suppress renumbering cellSets,faceSets,pointSets
+//renumberSets false;
 
 
 method          CuthillMcKee;

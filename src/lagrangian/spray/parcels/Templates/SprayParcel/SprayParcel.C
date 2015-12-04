@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2014 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -76,8 +76,7 @@ void Foam::SprayParcel<ParcelType>::calc
     }
 
     // Get old mixture composition
-    const scalarField& Y0(this->Y());
-    scalarField X0(composition.liquids().X(Y0));
+    scalarField X0(composition.liquids().X(this->Y()));
 
     // Check if we have critical or boiling conditions
     scalar TMax = composition.liquids().Tc(X0);
@@ -111,8 +110,7 @@ void Foam::SprayParcel<ParcelType>::calc
         // Update Cp, sigma, density and diameter due to change in temperature
         // and/or composition
         scalar T1 = this->T();
-        const scalarField& Y1(this->Y());
-        scalarField X1(composition.liquids().X(Y1));
+        scalarField X1(composition.liquids().X(this->Y()));
 
         this->Cp() = composition.liquids().Cp(this->pc_, T1, X1);
 
@@ -164,8 +162,8 @@ void Foam::SprayParcel<ParcelType>::calcAtomization
         td.cloud().atomization();
 
     // Average molecular weight of carrier mix - assumes perfect gas
-    scalar Wc = this->rhoc_*specie::RR*this->Tc()/this->pc();
-    scalar R = specie::RR/Wc;
+    scalar Wc = this->rhoc_*RR*this->Tc()/this->pc();
+    scalar R = RR/Wc;
     scalar Tav = atomization.Taverage(this->T(), this->Tc());
 
     // Calculate average gas density based on average temperature
@@ -235,8 +233,8 @@ void Foam::SprayParcel<ParcelType>::calcBreakup
     }
 
     // Average molecular weight of carrier mix - assumes perfect gas
-    scalar Wc = this->rhoc()*specie::RR*this->Tc()/this->pc();
-    scalar R = specie::RR/Wc;
+    scalar Wc = this->rhoc()*RR*this->Tc()/this->pc();
+    scalar R = RR/Wc;
     scalar Tav = td.cloud().atomization().Taverage(this->T(), this->Tc());
 
     // Calculate average gas density based on average temperature
@@ -368,7 +366,7 @@ void Foam::SprayParcel<ParcelType>::solveTABEq
 )
 {
     const scalar& TABCmu = td.cloud().breakup().TABCmu();
-    const scalar& TABWeCrit = td.cloud().breakup().TABWeCrit();
+    const scalar& TABtwoWeCrit = td.cloud().breakup().TABtwoWeCrit();
     const scalar& TABComega = td.cloud().breakup().TABComega();
 
     scalar r = 0.5*this->d();
@@ -385,27 +383,19 @@ void Foam::SprayParcel<ParcelType>::solveTABEq
     {
         scalar omega = sqrt(omega2);
         scalar rhoc = this->rhoc();
-        scalar We = this->We(this->U(), r, rhoc, sigma_)/TABWeCrit;
+        scalar We = this->We(this->U(), r, rhoc, sigma_)/TABtwoWeCrit;
 
-        scalar y1 = this->y() - We;
-        scalar y2 = this->yDot()/omega;
+        // Initial values for y and yDot
+        scalar y0 = this->y() - We;
+        scalar yDot0 = this->yDot() + y0*rtd;
 
         // Update distortion parameters
         scalar c = cos(omega*dt);
         scalar s = sin(omega*dt);
         scalar e = exp(-rtd*dt);
-        y2 = (this->yDot() + y1*rtd)/omega;
 
-        this->y() = We + e*(y1*c + y2*s);
-        if (this->y() < 0)
-        {
-            this->y() = 0.0;
-            this->yDot() = 0.0;
-        }
-        else
-        {
-            this->yDot() = (We - this->y())*rtd + e*omega*(y2*c - y1*s);
-        }
+        this->y() = We + e*(y0*c + (yDot0/omega)*s);
+        this->yDot() = (We - this->y())*rtd + e*(yDot0*c - omega*y0*s);
     }
     else
     {

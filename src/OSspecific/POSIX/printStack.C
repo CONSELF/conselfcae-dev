@@ -27,7 +27,6 @@ License
 #include "OStringStream.H"
 #include "OSspecific.H"
 #include "IFstream.H"
-#include "ulong.H"
 
 #include <inttypes.h>
 #include <cxxabi.h>

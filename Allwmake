@@ -1,47 +1,56 @@
 #!/bin/sh
-cd ${0%/*} || exit 1    # run from this directory
+cd ${0%/*} || exit 1    # Run from this directory
 
 # CONSELFoam for UBUNTU 14.04
 # official package list: http://www.openfoam.org/download/source.php
 echo "CONSELFoam runs on UBUNTU only!"
-sudo apt-get install build-essential flex bison cmake zlib1g-dev libopenmpi-dev openmpi-bin gnuplot libreadline-dev libncurses-dev libxt-dev qt4-dev-tools libqt4-dev libqt4-opengl-dev freeglut3-dev libqtwebkit-dev libscotch-dev libcgal-dev lam4-dev libmpich-dev libopenmpi-dev
+sudo apt-get install build-essential flex bison cmake zlib1g-dev libopenmpi-dev openmpi-bin gnuplot libreadline-dev libncurses-dev libxt-dev qt4-dev-tools libqt4-dev libqt4-opengl-dev freeglut3-dev libqtwebkit-dev libscotch-dev libcgal-dev lam4-dev libmpich-dev libopenmpi-dev libptscotch-dev
+
+# Parse arguments for library compilation without documentation by default
+genDoc=0
+targetType=libso
+. $WM_PROJECT_DIR/wmake/scripts/AllwmakeParseArguments
 
 wmakeCheckPwd "$WM_PROJECT_DIR" || {
-    echo "Error: Current directory is not \$WM_PROJECT_DIR"
+    echo "Allwmake error: Current directory is not \$WM_PROJECT_DIR"
     echo "    The environment variables are inconsistent with the installation."
     echo "    Check the OpenFOAM entries in your dot-files and source them."
     exit 1
 }
 
 [ -n "$FOAM_EXT_LIBBIN" ] || {
-    echo "Error: FOAM_EXT_LIBBIN not set"
+    echo "Allwmake error: FOAM_EXT_LIBBIN not set"
     echo "    Check the OpenFOAM entries in your dot-files and source them."
     exit 1
 }
 
-# wmake is required for subsequent targets
-( cd wmake/src && make )
+# Compile wmake support applications
+(cd wmake/src && make)
 
-# build ThirdParty sources
+# Compile ThirdParty libraries and applications
 if [ -d "$WM_THIRD_PARTY_DIR" ]
 then
     $WM_THIRD_PARTY_DIR/Allwmake
 else
-    echo "no ThirdParty sources found - skipping"
+    echo "Allwmake: no ThirdParty directory found - skipping"
 fi
 
-# build OpenFOAM libraries and applications
-src/Allwmake $*
-applications/Allwmake $*
+# Compile OpenFOAM libraries and applications
+src/Allwmake $targetType $*
+
+# Compile OpenFOAM libraries and applications
+applications/Allwmake $targetType $*
 
 # extra CONSELF libraries
 cd $WM_PROJECT_DIR/extra/foamcalcex
 ./Allwmake
 cd $WM_PROJECT_DIR
 
-if [ "$1" = doc ]
+# Optionally build OpenFOAM Doxygen documentation
+if [ $genDoc -eq 1 ]
 then
-    doc/Allwmake $*
+    doc/Allwmake
 fi
+
 
 # ----------------------------------------------------------------- end-of-file

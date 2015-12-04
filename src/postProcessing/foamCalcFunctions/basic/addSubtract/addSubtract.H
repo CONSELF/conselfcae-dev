@@ -76,8 +76,7 @@ public:
     enum calcModes
     {
         ADD,
-        SUBTRACT,
-        MULT
+        SUBTRACT
     };
 
 

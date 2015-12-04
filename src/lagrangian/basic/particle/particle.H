@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2013 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -80,6 +80,15 @@ class particle
 :
     public IDLList<particle>::link
 {
+    // Private member data
+
+        //- Size in bytes of the position data
+        static const std::size_t sizeofPosition_;
+
+        //- Size in bytes of the fields
+        static const std::size_t sizeofFields_;
+
+
 public:
 
     template<class CloudType>
@@ -213,7 +222,7 @@ protected:
 
         //- Hit wall faces in the current cell if the
         //- wallImpactDistance is non-zero.  They may not be in
-        //- different tets to the current.
+        //- Different tets to the current.
         template<class CloudType>
         inline void hitWallFaces
         (
@@ -357,7 +366,6 @@ public:
         {
             return autoPtr<particle>(new particle(*this));
         }
-
 
         //- Factory class to read-construct particles used for
         //  parallel transfer
@@ -556,8 +564,8 @@ public:
         template<class CloudType>
         static void writeFields(const CloudType& c);
 
-        //- Write the particle data
-        void write(Ostream& os, bool writeFields) const;
+        //- Write the particle position and cell
+        void writePosition(Ostream&) const;
 
 
     // Friend Operators

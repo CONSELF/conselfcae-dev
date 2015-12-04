@@ -37,6 +37,8 @@ Foam::GeometricField
 >&
 Foam::calcFvcGrad::gradField(const word& gradName, const dimensionSet& dims)
 {
+    Info<< "gradField" << endl;
+
     typedef typename outerProduct<vector, Type>::type gradType;
     typedef GeometricField<gradType, fvPatchField, volMesh> vfGradType;
 

@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2013 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -28,18 +28,16 @@ Description
     Calculates and reports wall shear stress for all patches, for the
     specified times when using RAS turbulence models.
 
-    Default behaviour assumes operating in incompressible mode.
-    Use the -compressible option for compressible RAS cases.
+    Compressible modes is automatically selected based on the existence of the
+    "thermophysicalProperties" dictionary required to construct the
+    thermodynamics package.
 
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
-
+#include "turbulentTransportModel.H"
+#include "turbulentFluidThermoModel.H"
 #include "incompressible/singlePhaseTransportModel/singlePhaseTransportModel.H"
-#include "incompressible/RAS/RASModel/RASModel.H"
-
-#include "fluidThermo.H"
-#include "compressible/RAS/RASModel/RASModel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -57,7 +55,7 @@ void calcIncompressible
 
     autoPtr<incompressible::RASModel> model
     (
-        incompressible::RASModel::New(U, phi, laminarTransport)
+        incompressible::New<incompressible::RASModel>(U, phi, laminarTransport)
     );
 
     const volSymmTensorField Reff(model->devReff());
@@ -106,7 +104,7 @@ void calcCompressible
 
     autoPtr<compressible::RASModel> model
     (
-        compressible::RASModel::New
+        compressible::New<compressible::RASModel>
         (
             rho,
             U,
@@ -131,21 +129,11 @@ void calcCompressible
 int main(int argc, char *argv[])
 {
     timeSelector::addOptions();
-
     #include "addRegionOption.H"
-
-    argList::addBoolOption
-    (
-        "compressible",
-        "calculate compressible wall shear stress"
-    );
-
     #include "setRootCase.H"
     #include "createTime.H"
     instantList timeDirs = timeSelector::select0(runTime, args);
     #include "createNamedMesh.H"
-
-    const bool compressible = args.optionFound("compressible");
 
     forAll(timeDirs, timeI)
     {
@@ -186,7 +174,15 @@ int main(int argc, char *argv[])
             Info<< "Reading field U\n" << endl;
             volVectorField U(UHeader, mesh);
 
-            if (compressible)
+            if
+            (
+                IOobject
+                (
+                    basicThermo::dictName,
+                    runTime.constant(),
+                    mesh
+                ).headerOk()
+            )
             {
                 calcCompressible(mesh, runTime, U, wallShearStress);
             }

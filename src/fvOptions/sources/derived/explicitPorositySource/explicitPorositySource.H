@@ -66,7 +66,7 @@ SourceFiles
 #ifndef explicitPorositySource_H
 #define explicitPorositySource_H
 
-#include "fvOption.H"
+#include "cellSetOption.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -85,7 +85,7 @@ namespace fv
 
 class explicitPorositySource
 :
-    public option
+    public cellSetOption
 {
 
 protected:
@@ -159,10 +159,7 @@ public:
             );
 
 
-        // I-O
-
-            //- Write data
-            virtual void writeData(Ostream&) const;
+        // IO
 
             //- Read dictionary
             virtual bool read(const dictionary& dict);

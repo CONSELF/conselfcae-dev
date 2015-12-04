@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2012-2014 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2012-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -57,8 +57,6 @@ class porosityModel
 :
     public regIOobject
 {
-private:
-
     // Private Member Functions
 
         //- Disallow default bitwise copy construct
@@ -261,9 +259,13 @@ public:
         //- Write
         virtual bool writeData(Ostream& os) const;
 
+        //- Inherit read from regIOobject
+        using regIOobject::read;
+
         //- Read porosity dictionary
         virtual bool read(const dictionary& dict);
 };
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

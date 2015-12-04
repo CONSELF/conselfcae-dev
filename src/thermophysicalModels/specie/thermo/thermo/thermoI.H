@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2012 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -63,17 +63,8 @@ inline Foam::scalar Foam::species::thermo<Thermo, Type>::T
 
         if (iter++ > maxIter_)
         {
-            FatalErrorIn
-            (
-                "thermo<Thermo, Type>::T(scalar f, scalar T0, "
-                "scalar (thermo<Thermo, Type>::*F)"
-                "(const scalar) const, "
-                "scalar (thermo<Thermo, Type>::*dFdT)"
-                "(const scalar) const, "
-                "scalar (thermo<Thermo, Type>::*limit)"
-                "(const scalar) const"
-                ") const"
-            )   << "Maximum number of iterations exceeded"
+            FatalErrorInFunction
+                << "Maximum number of iterations exceeded"
                 << abort(FatalError);
         }
 
@@ -290,7 +281,7 @@ template<class Thermo, template<class> class Type>
 inline Foam::scalar
 Foam::species::thermo<Thermo, Type>::K(const scalar p, const scalar T) const
 {
-    scalar arg = -this->nMoles()*this->g(p, T)/(this->RR*T);
+    scalar arg = -this->nMoles()*this->g(Pstd, T)/(RR*T);
 
     if (arg < 600.0)
     {
@@ -321,7 +312,7 @@ Foam::species::thermo<Thermo, Type>::Kc(const scalar p, const scalar T) const
     }
     else
     {
-        return Kp(p, T)*pow(this->Pstd/(this->RR*T), this->nMoles());
+        return Kp(p, T)*pow(Pstd/(RR*T), this->nMoles());
     }
 }
 
@@ -339,7 +330,7 @@ inline Foam::scalar Foam::species::thermo<Thermo, Type>::Kx
     }
     else
     {
-        return Kp(p, T)*pow(this->Pstd/p, this->nMoles());
+        return Kp(p, T)*pow(Pstd/p, this->nMoles());
     }
 }
 
@@ -358,7 +349,7 @@ inline Foam::scalar Foam::species::thermo<Thermo, Type>::Kn
     }
     else
     {
-        return Kp(p, T)*pow(n*this->Pstd/p, this->nMoles());
+        return Kp(p, T)*pow(n*Pstd/p, this->nMoles());
     }
 }
 

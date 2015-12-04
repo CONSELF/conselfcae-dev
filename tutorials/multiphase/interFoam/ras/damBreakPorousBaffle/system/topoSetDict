@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                                 |
+|  \\    /   O peration     | Version:  3.0.x                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -18,7 +18,7 @@ FoamFile
 actions
 (
     {
-        name    cyclicFaces;
+        name    cyclicFacesFaceSet;
         type    faceSet;
         action  new;
         source  boxToFace;
@@ -46,7 +46,7 @@ actions
         source  setsToFaceZone;
         sourceInfo
         {
-            faceSet cyclicFaces;
+            faceSet cyclicFacesFaceSet;
             cellSet cyclicFacesSlaveCells;
         }
     }

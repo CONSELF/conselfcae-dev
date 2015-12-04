@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                                 |
+|  \\    /   O peration     | Version:  3.0.x                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -61,8 +61,8 @@ functions
         outputInterval  1;
         probeLocations
         (
-            ( 0 9.95 19.77 )
-            ( 0 -9.95 19.77 )
+            (0 9.95 19.77)
+            (0 -9.95 19.77)
         );
         fixedLocations  false;
         fields

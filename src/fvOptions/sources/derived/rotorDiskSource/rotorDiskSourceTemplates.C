@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2014 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -25,6 +25,7 @@ License
 
 #include "rotorDiskSource.H"
 #include "volFields.H"
+#include "unitConversion.H"
 
 using namespace Foam::constant;
 
@@ -58,7 +59,7 @@ void Foam::fv::rotorDiskSource::calculate
             const scalar radius = x_[i].x();
 
             // Transform velocity into local cylindrical reference frame
-            vector Uc = localAxesRotation_->invTransform(U[cellI], i);
+            vector Uc = cylindrical_->invTransform(U[cellI], i);
 
             // Transform velocity into local coning system
             Uc = R_[i] & Uc;
@@ -131,7 +132,7 @@ void Foam::fv::rotorDiskSource::calculate
             localForce = invR_[i] & localForce;
 
             // Transform force into global Cartesian co-ordinate system
-            force[cellI] = localAxesRotation_->transform(localForce, i);
+            force[cellI] = cylindrical_->transform(localForce, i);
 
             if (divideVolume)
             {
@@ -168,7 +169,7 @@ void Foam::fv::rotorDiskSource::writeField
 
     if (mesh_.time().outputTime() || writeNow)
     {
-        tmp<fieldType> tfld
+        tmp<fieldType> tfield
         (
             new fieldType
             (
@@ -185,7 +186,7 @@ void Foam::fv::rotorDiskSource::writeField
             )
         );
 
-        Field<Type>& fld = tfld().internalField();
+        Field<Type>& field = tfield().internalField();
 
         if (cells_.size() != values.size())
         {
@@ -196,10 +197,10 @@ void Foam::fv::rotorDiskSource::writeField
         forAll(cells_, i)
         {
             const label cellI = cells_[i];
-            fld[cellI] = values[i];
+            field[cellI] = values[i];
         }
 
-        tfld().write();
+        tfield().write();
     }
 }
 
