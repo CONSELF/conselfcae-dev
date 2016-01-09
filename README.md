@@ -30,6 +30,8 @@ CONSELFoam
 
 ```
 
+Precompiled version can be found at: [sharing.conself.com/conselfoam](http://sharing.conself.com/conselfoam/)
+
 ### Usefull applications ###
 
 *foamResiduals* -> plot of residuals of current simulation
