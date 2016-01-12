@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2015-2016 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -22,24 +22,42 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::constantAlphaContactAngleFvPatchScalarField
+    Foam::temperatureDependentAlphaContactAngleFvPatchScalarField
 
 Description
-    A constant alphaContactAngle scalar boundary condition.
+    Temperature-dependent constant alphaContactAngle scalar boundary condition.
+
+    \heading Patch usage
+
+    \table
+        Property     | Description             | Required    | Default value
+        TName        | Temperature field name  | no          | T
+        theta0       | Contact angle data      | yes         |
+    \endtable
+
+    Example of the boundary condition specification:
+    \verbatim
+    myPatch
+    {
+        type            temperatureDependentAlphaContactAngle;
+        theta0          constant 60;
+    }
+    \endverbatim
 
 SeeAlso
     Foam::alphaContactAngleFvPatchScalarField
-    Foam::temperatureDependentAlphaContactAngleFvPatchScalarField
+    Foam::constantAlphaContactAngleFvPatchScalarField
 
 SourceFiles
-    constantAlphaContactAngleFvPatchScalarField.C
+    temperatureDependentAlphaContactAngleFvPatchScalarField.C
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef constantAlphaContactAngleFvPatchScalarField_H
-#define constantAlphaContactAngleFvPatchScalarField_H
+#ifndef temperatureDependentAlphaContactAngleFvPatchScalarField_H
+#define temperatureDependentAlphaContactAngleFvPatchScalarField_H
 
 #include "alphaContactAngleFvPatchScalarField.H"
+#include "DataEntry.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -47,36 +65,39 @@ namespace Foam
 {
 
 /*---------------------------------------------------------------------------*\
-                           Class constantAlphaContactAngleFvPatch Declaration
+       Class temperatureDependentAlphaContactAngleFvPatch Declaration
 \*---------------------------------------------------------------------------*/
 
-class constantAlphaContactAngleFvPatchScalarField
+class temperatureDependentAlphaContactAngleFvPatchScalarField
 :
     public alphaContactAngleFvPatchScalarField
 {
     // Private data
 
-        //- Equilibrium contact angle
-        scalar theta0_;
+        //- Name of temperature field, default = "T"
+        word TName_;
+
+        //- Equilibrium contact angle table
+        autoPtr<DataEntry<scalar> > theta0_;
 
 
 public:
 
     //- Runtime type information
-    TypeName("constantAlphaContactAngle");
+    TypeName("temperatureDependentAlphaContactAngle");
 
 
     // Constructors
 
         //- Construct from patch and internal field
-        constantAlphaContactAngleFvPatchScalarField
+        temperatureDependentAlphaContactAngleFvPatchScalarField
         (
             const fvPatch&,
             const DimensionedField<scalar, volMesh>&
         );
 
         //- Construct from patch, internal field and dictionary
-        constantAlphaContactAngleFvPatchScalarField
+        temperatureDependentAlphaContactAngleFvPatchScalarField
         (
             const fvPatch&,
             const DimensionedField<scalar, volMesh>&,
@@ -84,20 +105,20 @@ public:
         );
 
         //- Construct by mapping given
-        //  constantAlphaContactAngleFvPatchScalarField
+        //  temperatureDependentAlphaContactAngleFvPatchScalarField
         //  onto a new patch
-        constantAlphaContactAngleFvPatchScalarField
+        temperatureDependentAlphaContactAngleFvPatchScalarField
         (
-            const constantAlphaContactAngleFvPatchScalarField&,
+            const temperatureDependentAlphaContactAngleFvPatchScalarField&,
             const fvPatch&,
             const DimensionedField<scalar, volMesh>&,
             const fvPatchFieldMapper&
         );
 
         //- Construct as copy
-        constantAlphaContactAngleFvPatchScalarField
+        temperatureDependentAlphaContactAngleFvPatchScalarField
         (
-            const constantAlphaContactAngleFvPatchScalarField&
+            const temperatureDependentAlphaContactAngleFvPatchScalarField&
         );
 
         //- Construct and return a clone
@@ -105,14 +126,17 @@ public:
         {
             return tmp<fvPatchScalarField>
             (
-                new constantAlphaContactAngleFvPatchScalarField(*this)
+                new temperatureDependentAlphaContactAngleFvPatchScalarField
+                (
+                    *this
+                )
             );
         }
 
         //- Construct as copy setting internal field reference
-        constantAlphaContactAngleFvPatchScalarField
+        temperatureDependentAlphaContactAngleFvPatchScalarField
         (
-            const constantAlphaContactAngleFvPatchScalarField&,
+            const temperatureDependentAlphaContactAngleFvPatchScalarField&,
             const DimensionedField<scalar, volMesh>&
         );
 
@@ -124,7 +148,11 @@ public:
         {
             return tmp<fvPatchScalarField>
             (
-                new constantAlphaContactAngleFvPatchScalarField(*this, iF)
+                new temperatureDependentAlphaContactAngleFvPatchScalarField
+                (
+                    *this,
+                    iF
+                )
             );
         }
 

@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2015-2016 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -23,27 +23,28 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "constantAlphaContactAngleFvPatchScalarField.H"
-#include "volMesh.H"
+#include "temperatureDependentAlphaContactAngleFvPatchScalarField.H"
 #include "fvPatchFieldMapper.H"
+#include "volFields.H"
 #include "addToRunTimeSelectionTable.H"
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-Foam::constantAlphaContactAngleFvPatchScalarField::
-constantAlphaContactAngleFvPatchScalarField
+Foam::temperatureDependentAlphaContactAngleFvPatchScalarField::
+temperatureDependentAlphaContactAngleFvPatchScalarField
 (
     const fvPatch& p,
     const DimensionedField<scalar, volMesh>& iF
 )
 :
     alphaContactAngleFvPatchScalarField(p, iF),
-    theta0_(0.0)
+    TName_("T"),
+    theta0_()
 {}
 
 
-Foam::constantAlphaContactAngleFvPatchScalarField::
-constantAlphaContactAngleFvPatchScalarField
+Foam::temperatureDependentAlphaContactAngleFvPatchScalarField::
+temperatureDependentAlphaContactAngleFvPatchScalarField
 (
     const fvPatch& p,
     const DimensionedField<scalar, volMesh>& iF,
@@ -51,69 +52,77 @@ constantAlphaContactAngleFvPatchScalarField
 )
 :
     alphaContactAngleFvPatchScalarField(p, iF, dict),
-    theta0_(readScalar(dict.lookup("theta0")))
+    TName_(dict.lookupOrDefault<word>("T", "T")),
+    theta0_(DataEntry<scalar>::New("theta0", dict))
 {
     evaluate();
 }
 
 
-Foam::constantAlphaContactAngleFvPatchScalarField::
-constantAlphaContactAngleFvPatchScalarField
+Foam::temperatureDependentAlphaContactAngleFvPatchScalarField::
+temperatureDependentAlphaContactAngleFvPatchScalarField
 (
-    const constantAlphaContactAngleFvPatchScalarField& gcpsf,
+    const temperatureDependentAlphaContactAngleFvPatchScalarField& psf,
     const fvPatch& p,
     const DimensionedField<scalar, volMesh>& iF,
     const fvPatchFieldMapper& mapper
 )
 :
-    alphaContactAngleFvPatchScalarField(gcpsf, p, iF, mapper),
-    theta0_(gcpsf.theta0_)
+    alphaContactAngleFvPatchScalarField(psf, p, iF, mapper),
+    TName_(psf.TName_),
+    theta0_(psf.theta0_, false)
 {}
 
 
-Foam::constantAlphaContactAngleFvPatchScalarField::
-constantAlphaContactAngleFvPatchScalarField
+Foam::temperatureDependentAlphaContactAngleFvPatchScalarField::
+temperatureDependentAlphaContactAngleFvPatchScalarField
 (
-    const constantAlphaContactAngleFvPatchScalarField& gcpsf
+    const temperatureDependentAlphaContactAngleFvPatchScalarField& psf
 )
 :
-    alphaContactAngleFvPatchScalarField(gcpsf),
-    theta0_(gcpsf.theta0_)
+    alphaContactAngleFvPatchScalarField(psf),
+    TName_(psf.TName_),
+    theta0_(psf.theta0_, false)
 {}
 
 
-Foam::constantAlphaContactAngleFvPatchScalarField::
-constantAlphaContactAngleFvPatchScalarField
+Foam::temperatureDependentAlphaContactAngleFvPatchScalarField::
+temperatureDependentAlphaContactAngleFvPatchScalarField
 (
-    const constantAlphaContactAngleFvPatchScalarField& gcpsf,
+    const temperatureDependentAlphaContactAngleFvPatchScalarField& psf,
     const DimensionedField<scalar, volMesh>& iF
 )
 :
-    alphaContactAngleFvPatchScalarField(gcpsf, iF),
-    theta0_(gcpsf.theta0_)
+    alphaContactAngleFvPatchScalarField(psf, iF),
+    TName_(psf.TName_),
+    theta0_(psf.theta0_, false)
 {}
 
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
 Foam::tmp<Foam::scalarField>
-Foam::constantAlphaContactAngleFvPatchScalarField::theta
+Foam::temperatureDependentAlphaContactAngleFvPatchScalarField::theta
 (
     const fvPatchVectorField&,
     const fvsPatchVectorField&
 ) const
 {
-    return tmp<scalarField>(new scalarField(size(), theta0_));
+    return theta0_->value
+    (
+        patch().lookupPatchField<volScalarField, scalar>(TName_)
+    );
 }
 
 
-void Foam::constantAlphaContactAngleFvPatchScalarField::write
+void Foam::temperatureDependentAlphaContactAngleFvPatchScalarField::write
 (
     Ostream& os
 ) const
 {
     alphaContactAngleFvPatchScalarField::write(os);
-    os.writeKeyword("theta0") << theta0_ << token::END_STATEMENT << nl;
+    writeEntryIfDifferent<word>(os, "T", "T", TName_);
+    theta0_->writeData(os);
     writeEntry("value", os);
 }
 
@@ -125,7 +134,7 @@ namespace Foam
     makePatchTypeField
     (
         fvPatchScalarField,
-        constantAlphaContactAngleFvPatchScalarField
+        temperatureDependentAlphaContactAngleFvPatchScalarField
     );
 }
 
