@@ -1,42 +1,42 @@
-# CONSELFoam #
+# CONSELFcloud #
 
-CONSELFoam represent a customization made by CONSELF of OpenFOAM.
+CONSELFcloud represent a customization made by CONSELF of OpenFOAM in order to adapt it to CLOUD environment.
 
 ### How can I install it? ###
 
 Clone it to any local directory you want. After this, follow the instructions below and modify the path with your local system
 
 ```
-sed -i "/CONSELFoam/d" ~/.bashrc
+sed -i "/CONSELFcloud/d" ~/.bashrc
 
-echo "export CONSELFoamSRC=/path/to/CONSELFoam/directory" >> ~/.bashrc
-echo "alias CONSELFoam='source \$CONSELFoamSRC/etc/bashrc; . \$CONSELFoamSRC/bin/tools/RunFunctions'" >> ~/.bashrc
+echo "export CONSELFcloudSRC=/path/to/CONSELFcloud/directory" >> ~/.bashrc
+echo "alias CONSELFcloud='source \$CONSELFcloudSRC/etc/bashrc; . \$CONSELFcloudSRC/bin/tools/RunFunctions'" >> ~/.bashrc
 
 bash
-cd $CONSELFoamSRC
-CONSELFoam
+cd $CONSELFcloudSRC
+CONSELFcloud
 ./Allwmake
 
 ```
 
 The installation process takes between 1 and 2 hours depending on your system ... so do it at night!
 
-### Using CONSELFoam ###
+### Using CONSELFcloud ###
 
-Before using CONSELFoam you must load its environment on the shell by typing in a shell:
-
-```
-CONSELFoam
+Before using CONSELFcloud you must load its environment on the shell by typing in a shell:
 
 ```
+CONSELFcloud
 
-Precompiled version can be found at: [sharing.conself.com/conselfoam](http://sharing.conself.com/conselfoam/)
+```
+
+Precompiled version can be found at: [sharing.conself.com/conselfcloud](http://sharing.conself.com/conselfcloud/)
 
 ### Usefull applications ###
 
 *foamResiduals* -> plot of residuals of current simulation
 
-*foamInstallationTest* -> Installation test of CONSELFoam
+*foamInstallationTest* -> Installation test of CONSELFcloud
 
 *patchSummary* -> Summary of boundary conditions applied to the current case
 

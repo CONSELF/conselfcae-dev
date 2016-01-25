@@ -3,7 +3,7 @@
 # \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
 #  \\    /   O peration     |
 #   \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-#    \\/     M anipulation  |
+#    \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
 #------------------------------------------------------------------------------
 # License
 #     This file is part of OpenFOAM.
@@ -31,11 +31,11 @@
 #
 #------------------------------------------------------------------------------
 
-export WM_PROJECT=conselfoam
+export WM_PROJECT=conselfcloud
 export WM_PROJECT_VERSION=dev
 
 #Add to your bash the following line
-#export CONSELFoamSRC=/path/to/this/file
+#export CONSELFcloudSRC=/path/to/this/file
 
 ################################################################################
 # USER EDITABLE PART: Changes made here may be lost with the next upgrade
@@ -46,10 +46,10 @@ export WM_PROJECT_VERSION=dev
 # Location of the OpenFOAM installation
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# TODO add export CONSELFoamSRC=/path/to/conselfoam
+# TODO add export CONSELFcloudSRC=/path/to/conselfcloud
 # in your bashrc
 
-foamInstall=$CONSELFoamSRC
+foamInstall=$CONSELFcloudSRC
 
 # Parallel run
 export WM_NCOMPPROCS=4

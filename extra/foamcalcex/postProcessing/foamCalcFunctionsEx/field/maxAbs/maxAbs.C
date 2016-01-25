@@ -1,9 +1,9 @@
 /*---------------------------------------------------------------------------*\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-   \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenCFD Ltd.
-     \\/     M anipulation  | A.Kidess@tudelft.nl
+   \\    /   O peration     | Copyright (C) 2011 OpenCFD Ltd.
+    \\  /    A nd           | A.Kidess@tudelft.nl
+     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.

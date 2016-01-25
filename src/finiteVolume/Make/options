@@ -3,6 +3,6 @@ EXE_INC = \
     -I$(LIB_SRC)/meshTools/lnInclude \
 
 LIB_LIBS = \
-    -lconselfoam \
+    -lconselfcloud \
     -ltriSurface \
     -lmeshTools

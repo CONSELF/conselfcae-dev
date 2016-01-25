@@ -4,7 +4,7 @@
 # \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
 #  \\    /   O peration     |
 #   \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-#    \\/     M anipulation  |
+#    \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
 #-------------------------------------------------------------------------------
 # License
 #     This file is part of OpenFOAM.
@@ -99,12 +99,12 @@ unset versionNum
 # handle standard and debian naming convention
 #
 case "$projectDirName" in
-conselfoam-*)         # standard naming convention OpenFOAM-<VERSION>
-    version="${projectDirName##conselfoam-}"
+conselfcloud-*)         # standard naming convention OpenFOAM-<VERSION>
+    version="${projectDirName##conselfcloud-}"
     ;;
 
-conselfoam[0-9]*)     # debian naming convention 'openfoam<VERSION>'
-    versionNum="${projectDirName##conselfoam}"
+conselfcloud[0-9]*)     # debian naming convention 'openfoam<VERSION>'
+    versionNum="${projectDirName##conselfcloud}"
     case "$versionNum" in
     ??)         # convert 2 digit version number to decimal delineated
         version=$(echo "$versionNum" | sed -e 's@\(.\)\(.\)@\1.\2@')

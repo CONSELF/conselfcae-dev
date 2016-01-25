@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright held by original author
-     \\/     M anipulation  |
+     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.

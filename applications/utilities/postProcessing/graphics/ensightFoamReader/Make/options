@@ -6,7 +6,7 @@ EXE_INC = \
     -I$(LIB_SRC)/lagrangian/basic/lnInclude
 
 LIB_LIBS = \
-    -lconselfoam \
+    -lconselfcloud \
     -lfiniteVolume \
     -lmeshTools \
     -lgenericPatchFields \

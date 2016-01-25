@@ -1,1 +1,1 @@
-LIB_LIBS = -lconselfoam
+LIB_LIBS = -lconselfcloud
