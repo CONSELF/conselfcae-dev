@@ -52,7 +52,7 @@ autoPtr<incompressible::turbulenceModel> turbulence
     incompressible::turbulenceModel::New(U, phi, laminarTransport)
 );
 
-// CONSELFOAM CO field input data
+// CONSELFcloud CO field input data
 
     Info<< "Reading field CO\n" << endl;
     volScalarField CO

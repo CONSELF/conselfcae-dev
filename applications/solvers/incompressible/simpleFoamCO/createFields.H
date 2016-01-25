@@ -26,7 +26,7 @@ volVectorField U
     mesh
 );
 
-//   CONSELFOAM CO field input data ---------------------
+//   CONSELFcloud CO field input data ---------------------
     Info<< "Reading field CO\n" << endl;
     volScalarField CO
     (
