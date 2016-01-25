@@ -41,11 +41,6 @@ src/Allwmake $targetType $*
 # Compile OpenFOAM libraries and applications
 applications/Allwmake $targetType $*
 
-# extra CONSELF libraries
-cd $WM_PROJECT_DIR/extra/foamcalcex
-./Allwmake
-cd $WM_PROJECT_DIR
-
 # Optionally build OpenFOAM Doxygen documentation
 if [ $genDoc -eq 1 ]
 then

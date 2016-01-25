@@ -40,5 +40,9 @@ Precompiled version can be found at: [sharing.conself.com/conselfcloud](http://s
 
 *patchSummary* -> Summary of boundary conditions applied to the current case
 
+### SYNC WITH OpenFOAM (R) official repository
+
+It is CONSELF interest to keep the current repository aligned with [OpenFOAM](https://github.com/OpenFOAM/OpenFOAM-dev) official one.
+
 
 ENJOY!
