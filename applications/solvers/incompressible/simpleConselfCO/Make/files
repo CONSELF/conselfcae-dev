@@ -1,0 +1,3 @@
+simpleConselfCO.C
+
+EXE = $(FOAM_APPBIN)/simpleConselfCO

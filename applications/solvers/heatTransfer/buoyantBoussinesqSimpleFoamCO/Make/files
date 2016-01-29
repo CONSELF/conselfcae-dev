@@ -1,3 +1,0 @@
-buoyantBoussinesqSimpleFoamCO.C
-
-EXE = $(FOAM_APPBIN)/buoyantBoussinesqSimpleFoamCO
