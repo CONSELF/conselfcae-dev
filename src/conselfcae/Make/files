@@ -654,4 +654,4 @@ $(writers)/jplotGraph/jplotGraph.C
 
 meshes/data/data.C
 
-LIB = $(FOAM_LIBBIN)/libconselfcloud
+LIB = $(FOAM_LIBBIN)/libconselfcae

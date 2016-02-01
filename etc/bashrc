@@ -31,11 +31,11 @@
 #
 #------------------------------------------------------------------------------
 
-export WM_PROJECT=conselfcloud
+export WM_PROJECT=conselfcae
 export WM_PROJECT_VERSION=dev
 
 #Add to your bash the following line
-#export CONSELFcloudSRC=/path/to/this/file
+#export CONSELFcaeSRC=/path/to/this/file
 
 ################################################################################
 # USER EDITABLE PART: Changes made here may be lost with the next upgrade
@@ -46,10 +46,10 @@ export WM_PROJECT_VERSION=dev
 # Location of the OpenFOAM installation
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# TODO add export CONSELFcloudSRC=/path/to/conselfcloud
+# TODO add export CONSELFcaeSRC=/path/to/conselfcae
 # in your bashrc
 
-foamInstall=$CONSELFcloudSRC
+foamInstall=$CONSELFcaeSRC
 
 # Parallel run
 export WM_NCOMPPROCS=4

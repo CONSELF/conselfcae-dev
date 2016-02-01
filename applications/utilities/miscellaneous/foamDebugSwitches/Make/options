@@ -38,7 +38,7 @@ EXE_LIBS = \
     -lmolecularMeasurements \
     -lmolecule \
     -lODE \
-    -lconselfcloud \
+    -lconselfcae \
     -lpotential \
     -lradiationModels \
     -lrandomProcesses \

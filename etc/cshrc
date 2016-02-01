@@ -30,7 +30,7 @@
 #
 #------------------------------------------------------------------------------
 
-setenv WM_PROJECT conselcloud
+setenv WM_PROJECT conselcae
 setenv WM_PROJECT_VERSION dev
 
 ################################################################################
@@ -41,7 +41,7 @@ setenv WM_PROJECT_VERSION dev
 #
 # Location of the OpenFOAM installation
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-set foamInstall = $CONSELFcloudSRC
+set foamInstall = $CONSELFcaeSRC
 # set foamInstall = ~$WM_PROJECT
 # set foamInstall = /opt/$WM_PROJECT
 # set foamInstall = /usr/local/$WM_PROJECT
