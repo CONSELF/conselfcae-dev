@@ -45,7 +45,7 @@ Precompiled version can be found at: [sharing.conself.com/conselfcae](http://sha
 It is CONSELF interest to keep the current repository aligned with [OpenFOAM](https://github.com/OpenFOAM/OpenFOAM-dev)® official one.
 
 
-## Disclaimer ## 
+### Disclaimer
 This offering is not approved or endorsed by OpenCFD Limited, producer and distributor of the OpenFOAM software and owner of the OPENFOAM® and OpenCFD® trade marks. OPENFOAM® is a registered trade mark of OpenCFD Limited, producer and distributor of the OpenFOAM software.
 
 
