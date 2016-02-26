@@ -8,7 +8,7 @@
 
 #!/bin/sh
 
-. $CONSELFoamSRC/bin/tools/RunFunctions
+. $CONSELFcaeSRC/bin/tools/RunFunctions
 
 grep "sum of moments" log.`getApplication` -A 2 > log.Moments
 
