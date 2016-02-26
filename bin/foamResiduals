@@ -8,7 +8,7 @@
 
 #!/bin/sh
 
-. $CONSELFoamSRC/bin/tools/RunFunctions
+. $CONSELFcaeSRC/bin/tools/RunFunctions
 
 foamLog log.`getApplication` > log.foamLog
 
