@@ -1,0 +1,17 @@
+#---------------------------------*- sh -*-------------------------------------
+# =========                 |
+# \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+#  \\    /   O peration     |
+#   \\  /    A nd           | Copyright (C) 2016 CONSELF srl
+#    \\/     M anipulation  |
+#------------------------------------------------------------------------------
+
+#!/bin/sh
+
+. $CONSELFcaeSRC/bin/tools/RunFunctions
+
+rm -rf 0.* 1* 2* 3* 4* 5* 6* 7* 8* 9*
+
+rm -rf log.*
+
+rm -rf logs
