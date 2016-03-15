@@ -23,6 +23,7 @@ gnuplot -persist > /dev/null 2>&1 << EOF
              "logs/Urelx_0" with lines,\
              "logs/Urely_0" with lines,\
              "logs/Urelz_0" with lines,\
+             "logs/p_rgh_0" with lines,\
              "logs/p_0" with lines
 
         set term png

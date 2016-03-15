@@ -84,9 +84,9 @@ inline Stream& Foam::IOobject::writeBanner(Stream& os, bool noHint)
         "|  \\\\    /   O peration     |"
         " Version:  " << FOAMversion << spaces << "|\n"
         "|   \\\\  /    A nd           |"
-        " Web:      www.OpenFOAM.org                      |\n"
-        "|    \\\\/     M anipulation  | Copyright (C) 2016 CONSELF srl"
-        "                                                 |\n"
+        " Web:      https://conself.com                   |\n"
+        "|    \\\\/     M anipulation  |"
+        "           Copyright (C) 2016 CONSELF srl        |\n"
         "\\*-----------------------------------------"
         "----------------------------------*/\n";
 
