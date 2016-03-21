@@ -72,10 +72,10 @@ runParallel()
     APP_NAME=${1##*/}
     shift
 
-    if [ -f log.$APP_NAME ]
-    then
-        echo "$APP_NAME already run on $PWD: remove log file to re-run"
-    else
+    #if [ -f log.$APP_NAME ]
+    #then
+    #    echo "$APP_NAME already run on $PWD: remove log file to re-run"
+    #else
         nProcs=$1
         shift
         #echo "Running $APP_RUN in parallel on $PWD using $nProcs processes"
@@ -85,9 +85,9 @@ runParallel()
         #    echo "$PWD: $WM_SCHEDULER -np $nProcs" 1>&2
         #    $WM_SCHEDULER -np $nProcs "( mpirun -np $nProcs $APP_RUN -parallel "$@" < /dev/null > log.$APP_NAME 2>&1 )"
         #else
-            ( mpirun -np $nProcs $APP_RUN -parallel "$@" < /dev/null > log.$APP_NAME 2>&1 )
+            mpirun -np $nProcs $APP_RUN -parallel "$@" &> log.$APP_NAME
         #fi
-    fi
+    #fi
 }
 
 compileApplication()
