@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  3.0.x                                 |
+|  \\    /   O peration     | Version:  dev                                   |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -10,15 +10,34 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      cylindrical;
+    object      topoSetDict;
 }
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-type      cartesian;
-coordinateRotation
-{
-    type  cylindrical;
-    e3    $axis;
-}
+actions
+(
+    // porousBlockage
+    {
+        name    porousBlockageCellSet;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        sourceInfo
+        {
+            box (-0.5 -0.5 -1) (0.5 0.5 1);
+        }
+    }
+    {
+        name    porousBlockage;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set porousBlockageCellSet;
+        }
+    }
+);
 
-//************************************************************************* //
+// ************************************************************************* //
