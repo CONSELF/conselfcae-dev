@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
     while (runTime.loop())
     {
-        Info<< "Iteration: " << runTime.value() << nl << endl;
+        Info<< "Time = " << runTime.value() << nl << endl;
 
         #include "readSolidDisplacementFoamControls.H"
 
