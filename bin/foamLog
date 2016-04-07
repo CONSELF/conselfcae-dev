@@ -169,7 +169,7 @@ myEcho()
 # Prints names of all 'solved for' variables in the log file.
 getSolvedVars()
 {
-    fgrep ' Solving for ' $1 | fgrep ',' | sed -e 's/.* Solving for \([^,]*\)[,:].*/\1/' | sed -e 's/\./_/g' | sort -u
+    fgrep ' Solving for ' $1 | fgrep ',' | sed -e 's/.* Solving for \([^,]*\)[,:].*/\1/' | sed -e 's/\./_/g' | sed '/kinematicCloud/d' | sort -u
 }
 
 
