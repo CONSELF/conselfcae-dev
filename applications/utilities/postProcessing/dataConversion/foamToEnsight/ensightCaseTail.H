@@ -1,3 +1,4 @@
+
 if (Pstream::master())
 {
     ensightCaseFile << nl << "TIME" << nl
@@ -11,7 +12,7 @@ if (Pstream::master())
     ensightCaseFile.setf(ios_base::scientific, ios_base::floatfield);
     ensightCaseFile.precision(5);
 
-    label count = 0;
+    //label count = 0;
     scalar Tcorr = 0.0;
     if (Times[0].value() < 0)
     {
@@ -21,12 +22,14 @@ if (Pstream::master())
 
     forAll(Times, n)
     {
-        ensightCaseFile << setw(12) << Times[n].value() + Tcorr << " ";
+        double current_time = Times[n].value() + Tcorr;
 
-        if (++count % 6 == 0)
-        {
-            ensightCaseFile << nl;
-        }
+        std::ostringstream sstream;
+        sstream << current_time;
+        std::string Tmp = sstream.str();
+
+        //ensightCaseFile << std::fixed << setw(12) << Times[n].value() + Tcorr << nl;
+        ensightCaseFile << Tmp.c_str() << nl;
     }
 
     ensightCaseFile << nl;
