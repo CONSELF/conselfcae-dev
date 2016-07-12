@@ -99,7 +99,6 @@ runApplication()
         echo "$APP_NAME already run on $PWD:" \
              "remove log file 'log.$LOG_SUFFIX' to re-run"
     else
-        echo "Running $APP_RUN on $PWD"
         if [ "$LOG_APPEND" = "true" ]; then
             $APP_RUN "$@" >> log.$LOG_SUFFIX 2>&1
         else
@@ -150,7 +149,6 @@ runParallel()
         echo "$APP_NAME already run on $PWD:" \
              "remove log file 'log.$LOG_SUFFIX' to re-run"
     else
-        echo "Running $APP_RUN in parallel on $PWD using $nProcs processes"
         if [ "$LOG_APPEND" = "true" ]; then
             ( mpirun -np $nProcs $APP_RUN -parallel "$@" < /dev/null >> log.$LOG_SUFFIX 2>&1 )
         else
