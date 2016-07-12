@@ -44,8 +44,6 @@ void newError()
         "by e.g. bad use of pointers or an out of date shared library"
         << std::endl;
 
-    std::cerr<< "ERROR-CONSELF# Volume mesh failed. Use smaller elements in both meshing phase";
-
     //::abort();
     exit( EXIT_FAILURE);
 }
