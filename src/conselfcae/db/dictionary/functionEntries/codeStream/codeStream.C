@@ -152,7 +152,7 @@ Foam::functionEntries::codeStream::getFunction
                     "EXE_INC = -g \\\n"
                   + context.options()
                   + "\n\nLIB_LIBS = \\\n"
-                  + "    -lOpenFOAM \\\n"
+                  + "    -lconselfcae \\\n"
                   + context.libs()
                 );
 

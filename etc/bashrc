@@ -44,34 +44,19 @@ export WM_PROJECT_VERSION=dev
 # FOAM_INST_DIR is the location of the OpenFOAM installation which defaults to
 # the directory containing this file if sourced by a bash shell.
 #
-<<<<<<< HEAD
 # Location of the OpenFOAM installation
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # TODO add export CONSELFcaeSRC=/path/to/conselfcae
 # in your bashrc
 
-foamInstall=$CONSELFcaeSRC
+[ $BASH_SOURCE ] && \
+export FOAM_INST_DIR=$CONSELFcaeSRC
+export FOAMY_HEX_MESH=yes
 
 # Parallel run
 export WM_NCOMPPROCS=4
 
-# foamInstall=$HOME/$WM_PROJECT
-# foamInstall=~$WM_PROJECT
-# foamInstall=/usr/local/$WM_PROJECT
-=======
-# Please set to the appropriate path if the default is not correct.
-#
-[ $BASH_SOURCE ] && \
-export FOAM_INST_DIR=${BASH_SOURCE%/*/*/*} || \
-export FOAM_INST_DIR=$HOME/$WM_PROJECT
-# export FOAM_INST_DIR=~$WM_PROJECT
-# export FOAM_INST_DIR=/opt/$WM_PROJECT
-# export FOAM_INST_DIR=/usr/local/$WM_PROJECT
-#
-# Build foamyHexMesh
-export FOAMY_HEX_MESH=yes
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 #
 # END OF (NORMAL) USER EDITABLE PART
 ################################################################################
