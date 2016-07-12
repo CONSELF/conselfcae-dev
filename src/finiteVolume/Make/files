@@ -197,7 +197,6 @@ $(derivedFvPatchFields)/uniformTotalPressure/uniformTotalPressureFvPatchScalarFi
 $(derivedFvPatchFields)/variableHeightFlowRate/variableHeightFlowRateFvPatchField.C
 $(derivedFvPatchFields)/variableHeightFlowRateInletVelocity/variableHeightFlowRateInletVelocityFvPatchVectorField.C
 $(derivedFvPatchFields)/outletPhaseMeanVelocity/outletPhaseMeanVelocityFvPatchVectorField.C
-$(derivedFvPatchFields)/wallHeatFlux/wallHeatFluxFvPatchScalarField.C
 $(derivedFvPatchFields)/waveTransmissive/waveTransmissiveFvPatchFields.C
 $(derivedFvPatchFields)/waveSurfacePressure/waveSurfacePressureFvPatchScalarField.C
 $(derivedFvPatchFields)/interstitialInletVelocity/interstitialInletVelocityFvPatchVectorField.C

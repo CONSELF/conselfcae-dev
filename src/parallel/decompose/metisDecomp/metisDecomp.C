@@ -2,11 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-<<<<<<< HEAD
-    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-=======
     \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -159,44 +155,6 @@ Foam::label Foam::metisDecomp::decompose
                     << exit(FatalError);
             }
         }
-<<<<<<< HEAD
-
-        //if (metisCoeffs.readIfPresent("cellWeightsFile", weightsFile))
-        //{
-        //    Info<< "metisDecomp : Using cell-based weights." << endl;
-        //
-        //    IOList<label> cellIOWeights
-        //    (
-        //        IOobject
-        //        (
-        //            weightsFile,
-        //            mesh_.time().timeName(),
-        //            mesh_,
-        //            IOobject::MUST_READ,
-        //            IOobject::AUTO_WRITE
-        //        )
-        //    );
-        //    cellWeights.transfer(cellIOWeights);
-        //
-        //    if (cellWeights.size() != xadj.size()-1)
-        //    {
-        //        FatalErrorInFunction
-        //            << "Number of cell weights " << cellWeights.size()
-        //            << " does not equal number of cells " << xadj.size()-1
-        //            << exit(FatalError);
-        //    }
-        //}
-    }
-
-    label ncon = 1;
-
-    label nProcs = nProcessors_;
-
-    // output: cell -> processor addressing
-    finalDecomp.setSize(numCells);
-
-    // output: number of cut edges
-=======
     }
 
     label ncon = 1;
@@ -206,7 +164,6 @@ Foam::label Foam::metisDecomp::decompose
     finalDecomp.setSize(numCells);
 
     // Output: number of cut edges
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     label edgeCut = 0;
 
     if (method == "recursive")

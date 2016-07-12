@@ -2,11 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-<<<<<<< HEAD
-    \\  /    A nd           | Copyright (C) 2013-2015 OpenFOAM Foundation
-=======
     \\  /    A nd           | Copyright (C) 2013-2016 OpenFOAM Foundation
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -57,11 +53,7 @@ Foam::uniformInletOutletFvPatchField<Type>::uniformInletOutletFvPatchField
 :
     mixedFvPatchField<Type>(p, iF),
     phiName_(dict.lookupOrDefault<word>("phi", "phi")),
-<<<<<<< HEAD
-    uniformInletValue_(DataEntry<Type>::New("uniformInletValue", dict))
-=======
     uniformInletValue_(Function1<Type>::New("uniformInletValue", dict))
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 {
     this->refValue() =
         uniformInletValue_->value(this->db().time().timeOutputValue());
@@ -78,11 +70,7 @@ Foam::uniformInletOutletFvPatchField<Type>::uniformInletOutletFvPatchField
         fvPatchField<Type>::operator=(this->refValue());
     }
 
-<<<<<<< HEAD
-    this->refGrad() = pTraits<Type>::zero;
-=======
     this->refGrad() = Zero;
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     this->valueFraction() = 0.0;
 }
 

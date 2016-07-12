@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -76,11 +76,8 @@ bool Foam::functionEntry::execute
 
     if (mfIter == executedictionaryIstreamMemberFunctionTablePtr_->end())
     {
-        FatalErrorIn
-        (
-            "functionEntry::execute"
-            "(const word& functionName, dictionary& parentDict, Istream&)"
-        )   << "Unknown functionEntry '" << functionName
+        FatalErrorInFunction
+            << "Unknown functionEntry '" << functionName
             << "' in " << is.name() << " near line " << is.lineNumber()
             << nl << nl
             << "Valid functionEntries are :" << endl
@@ -122,11 +119,8 @@ bool Foam::functionEntry::execute
 
     if (mfIter == executeprimitiveEntryIstreamMemberFunctionTablePtr_->end())
     {
-        FatalErrorIn
-        (
-            "functionEntry::execute"
-            "(const word&, const dictionary&, primitiveEntry&, Istream&)"
-        )   << "Unknown functionEntry '" << functionName
+        FatalErrorInFunction
+            << "Unknown functionEntry '" << functionName
             << "' in " << is.name() << " near line " << is.lineNumber()
             << nl << nl
             << "Valid functionEntries are :" << endl

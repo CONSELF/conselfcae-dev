@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2012 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2012-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -58,7 +58,7 @@ Foam::Pair<Foam::scalar> linearInterpolationWeights::integrationWeights
 
     if (s < -SMALL || s > 1+SMALL)
     {
-        FatalErrorIn("linearInterpolationWeights::integrationWeights(..)")
+        FatalErrorInFunction
             << "Value " << t << " outside range " << samples_[i]
             << " .. " << samples_[i+1]
             << exit(FatalError);
@@ -161,7 +161,7 @@ bool linearInterpolationWeights::integrationWeights
 {
     if (t2 < t1-VSMALL)
     {
-        FatalErrorIn("linearInterpolationWeights::integrationWeights(..)")
+        FatalErrorInFunction
             << "Integration should be in positive direction."
             <<  " t1:" << t1 << " t2:" << t2
             << exit(FatalError);
@@ -177,7 +177,7 @@ bool linearInterpolationWeights::integrationWeights
     // For now just fail if any outside table
     if (i1 == -1 || i2 == samples_.size()-1)
     {
-        FatalErrorIn("linearInterpolationWeights::integrationWeights(..)")
+        FatalErrorInFunction
             << "Integrating outside table " << samples_[0] << ".."
             << samples_.last() << " not implemented."
             << " t1:" << t1 << " t2:" << t2 << exit(FatalError);

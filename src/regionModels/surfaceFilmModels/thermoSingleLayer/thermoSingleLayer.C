@@ -112,14 +112,6 @@ void thermoSingleLayer::correctHsForMappedT()
 {
     T_.correctBoundaryConditions();
 
-<<<<<<< HEAD
-    forAll(T_.boundaryField(), patchi)
-    {
-        const fvPatchField<scalar>& Tp = T_.boundaryField()[patchi];
-        if (isA<mappedFieldFvPatchField<scalar> >(Tp))
-        {
-            hs_.boundaryField()[patchi] == hs(Tp, patchi);
-=======
     volScalarField::Boundary& hsBf = hs_.boundaryFieldRef();
 
     forAll(hsBf, patchi)
@@ -128,7 +120,6 @@ void thermoSingleLayer::correctHsForMappedT()
         if (isA<mappedFieldFvPatchField<scalar>>(Tp))
         {
             hsBf[patchi] == hs(Tp, patchi);
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
         }
     }
 }
@@ -187,20 +178,12 @@ void thermoSingleLayer::transferPrimaryRegionSourceFields()
 
     // Convert accummulated source terms into per unit area per unit time
     const scalar deltaT = time_.deltaTValue();
-<<<<<<< HEAD
-    forAll(hsSpPrimary_.boundaryField(), patchi)
-=======
     forAll(hsSpPrimaryBf, patchi)
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     {
         const scalarField& priMagSf =
             primaryMesh().magSf().boundaryField()[patchi];
 
-<<<<<<< HEAD
-        hsSpPrimary_.boundaryField()[patchi] /= priMagSf*deltaT;
-=======
         hsSpPrimaryBf[patchi] /= priMagSf*deltaT;
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     }
 
     // Retrieve the source fields from the primary region via direct mapped
@@ -624,11 +607,7 @@ void thermoSingleLayer::addSources
         Info<< "    energy   = " << energySource << nl << endl;
     }
 
-<<<<<<< HEAD
-    hsSpPrimary_.boundaryField()[patchi][facei] -= energySource;
-=======
     hsSpPrimary_.boundaryFieldRef()[patchi][facei] -= energySource;
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 }
 
 

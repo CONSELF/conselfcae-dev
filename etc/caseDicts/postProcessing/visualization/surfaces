@@ -1,26 +1,4 @@
 /*--------------------------------*- C++ -*----------------------------------*\
-<<<<<<< HEAD
-| =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  3.0.x                                 |  
-|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
-|    \\/     M anipulation  |                                                 |
-\*---------------------------------------------------------------------------*/
-FoamFile
-{
-    version     2.0;
-    format      ascii;
-    class       dictionary;
-    object      surfaces.cfg;
-}
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-
-surfaces
-{
-    #includeEtc "caseDicts/postProcessing/visualization/surfaces.cfg"
-
-    fields       ( p U );
-=======
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
@@ -33,7 +11,6 @@ Description
 
     This file includes a selection of example surfaces, each of which the user
     should configure and/or remove.
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 \*---------------------------------------------------------------------------*/
 

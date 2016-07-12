@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2012 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -74,7 +74,7 @@ Foam::UniformDimensionedField<Type>::UniformDimensionedField
 )
 :
     regIOobject(io),
-    dimensioned<Type>(regIOobject::name(), dimless, pTraits<Type>::zero)
+    dimensioned<Type>(regIOobject::name(), dimless, Zero)
 {
     dictionary dict(readStream(typeName));
     scalar multiplier;

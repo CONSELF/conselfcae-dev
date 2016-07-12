@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2012 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2012-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -34,6 +34,14 @@ namespace Foam
     makeSolverPerformance(symmTensor);
     makeSolverPerformance(tensor);
 };
+
+
+template<>
+Foam::SolverPerformance<Foam::scalar>
+Foam::SolverPerformance<Foam::scalar>::max()
+{
+    return *this;
+}
 
 
 // ************************************************************************* //

@@ -47,29 +47,17 @@ Description
     The normal component of \f$ U_p \f$ is removed to ensure 0 wall-flux even
     if the wall patch faces are irregular.
 
-<<<<<<< HEAD
-    \heading Patch usage
-
-    Example of the boundary condition specification:
-    \verbatim
-    myPatch
-=======
 Usage
     Example of the boundary condition specification:
     \verbatim
     <patchName>
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     {
         type            SRFWallVelocity;
         value           uniform (0 0 0);    // Initial value
     }
     \endverbatim
 
-<<<<<<< HEAD
-SeeAlso
-=======
 See also
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     Foam::SRFModel
     Foam::SRFVelocityFvPatchVectorField
     Foam::fixedValueFvPatchField

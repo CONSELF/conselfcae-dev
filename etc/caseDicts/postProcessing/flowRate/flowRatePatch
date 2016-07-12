@@ -1,20 +1,4 @@
 /*--------------------------------*- C++ -*----------------------------------*\
-<<<<<<< HEAD
-| =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  3.0.x                                 |  
-|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
-|    \\/     M anipulation  |                                                 |
-\*---------------------------------------------------------------------------*/
-FoamFile
-{
-    version     2.0;
-    format      ascii;
-    class       dictionary;
-    object      flowRatePatch;
-}
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-=======
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
@@ -25,7 +9,6 @@ Description
     Calculates the flow rate through a specified patch by summing the flux on
     patch faces.  For solvers where the flux is volumetric, the flow rate is
     volumetric; where flux is mass flux, the flow rate is mass flow rate.
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 \*---------------------------------------------------------------------------*/
 

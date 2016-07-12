@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -66,7 +66,7 @@ Foam::PBiCICG<Type, DType, LUType>::solve(Field<Type>& psi) const
     Field<Type> pA(nCells);
     Type* __restrict__ pAPtr = pA.begin();
 
-    Field<Type> pT(nCells, pTraits<Type>::zero);
+    Field<Type> pT(nCells, Zero);
     Type* __restrict__ pTPtr = pT.begin();
 
     Field<Type> wA(nCells);

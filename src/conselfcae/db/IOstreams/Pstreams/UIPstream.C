@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -317,7 +317,7 @@ Foam::Istream& Foam::UIPstream::read(char* data, std::streamsize count)
 {
     if (format() != BINARY)
     {
-        FatalErrorIn("UIPstream::read(char*, std::streamsize)")
+        FatalErrorInFunction
             << "stream format not binary"
             << Foam::abort(FatalError);
     }

@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -64,6 +64,8 @@ class IOdictionary
     // Private Member Functions
 
         //- Read dictionary from file
+        //  Parallel aware reading, using non-virtual type information
+        //  (typeName instead of type()) because of use in constructor.
         void readFile(const bool);
 
 

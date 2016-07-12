@@ -20,11 +20,7 @@ runApplication simpleFoam
 # mesh motion case, then solve transient.
 cd ../wingMotion2D_pimpleDyMFoam
 cp -r ../wingMotion2D_simpleFoam/constant/polyMesh constant
-<<<<<<< HEAD
-cp -r 0.org 0
-=======
 cp -r 0.orig 0
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 runApplication mapFields ../wingMotion2D_simpleFoam -sourceTime latestTime -consistent
 mv 0/pointDisplacement.unmapped 0/pointDisplacement
 runApplication decomposePar

@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -73,7 +73,7 @@ public:
         (
             const UList<T>& posList,
             const UList<T>& negList,
-            const Xfer<List<label> >&
+            const Xfer<List<label>>&
         );
 
 
@@ -101,7 +101,7 @@ public:
 
             //- Reset addressing
             inline void resetAddressing(const labelUList&);
-            inline void resetAddressing(const Xfer<List<label> >&);
+            inline void resetAddressing(const Xfer<List<label>>&);
 
 
         // Member Operators

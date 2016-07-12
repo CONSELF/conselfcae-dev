@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2012-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -171,11 +171,8 @@ void Foam::Circulator<ContainerType>::operator=
     // Check for assignment to self
     if (this == &rhs)
     {
-        FatalErrorIn
-        (
-            "Foam::Circulator<ContainerType>::operator="
-            "(const Foam::Circulator<ContainerType>&)"
-        )   << "Attempted assignment to self"
+        FatalErrorInFunction
+            << "Attempted assignment to self"
             << abort(FatalError);
     }
 

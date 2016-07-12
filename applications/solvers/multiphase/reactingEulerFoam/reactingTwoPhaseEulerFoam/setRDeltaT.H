@@ -13,18 +13,6 @@
         pimpleDict.lookupOrDefault<scalar>("maxDeltaT", GREAT)
     );
 
-    const dictionary& pimpleDict = pimple.dict();
-
-    scalar maxCo
-    (
-        pimpleDict.lookupOrDefault<scalar>("maxCo", 0.2)
-    );
-
-    scalar maxDeltaT
-    (
-        pimpleDict.lookupOrDefault<scalar>("maxDeltaT", GREAT)
-    );
-
     scalar rDeltaTSmoothingCoeff
     (
         pimpleDict.lookupOrDefault<scalar>("rDeltaTSmoothingCoeff", 0.02)

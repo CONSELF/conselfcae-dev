@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -34,7 +34,6 @@ SourceFiles
 #ifndef mapSubsetMesh_H
 #define mapSubsetMesh_H
 
-#include "refCount.H"
 #include "labelList.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -47,8 +46,6 @@ namespace Foam
 \*---------------------------------------------------------------------------*/
 
 class mapSubsetMesh
-:
-    public refCount
 {
     // Private data
 
@@ -112,7 +109,7 @@ public:
             const label exposedPatchID,
             labelList& oldPatchStarts,
             labelList& oldPatchNMeshPoints,
-            const bool reUse
+            const bool reuse
         );
 
 

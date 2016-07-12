@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -362,10 +362,8 @@ public:
             }
             else
             {
-                FatalErrorIn
-                (
-                    "cyclicPolyPatch::transformGlobalFace(const label) const"
-                )   << "Face " << facei << " not in patch " << name()
+                FatalErrorInFunction
+                    << "Face " << facei << " not in patch " << name()
                     << exit(FatalError);
                 return -1;
             }

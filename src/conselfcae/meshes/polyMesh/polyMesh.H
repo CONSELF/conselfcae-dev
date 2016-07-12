@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -153,7 +153,7 @@ private:
             mutable autoPtr<labelList> tetBasePtIsPtr_;
 
             //- Search tree to allow spatial cell searching
-            mutable autoPtr<indexedOctree<treeDataCell> > cellTreePtr_;
+            mutable autoPtr<indexedOctree<treeDataCell>> cellTreePtr_;
 
 
         // Zoning information
@@ -685,7 +685,7 @@ public:
             ) const;
 
             //- Find the tetFacei and tetPti for point p in celli.
-            //  tetFaceI and tetPtI are set to -1 if not found
+            //  tetFacei and tetPtI are set to -1 if not found
             void findTetFacePt
             (
                 const label celli,

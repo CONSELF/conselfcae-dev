@@ -1,11 +1,4 @@
 /*--------------------------------*- C++ -*----------------------------------*\
-<<<<<<< HEAD
-| =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  3.0.x                                 |  
-|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
-|    \\/     M anipulation  |                                                 |
-=======
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
@@ -17,7 +10,6 @@ Description
     specified patches for a case where the solver is compressible (pressure is
     in units M/(LT^2), e.g. Pa).
 
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 \*---------------------------------------------------------------------------*/
 
 patches     (patch1 patch2);

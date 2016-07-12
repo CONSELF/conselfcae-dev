@@ -295,11 +295,7 @@ steadyStateDdtScheme<Type>::fvcDdtUfCorr
             (
                 "0",
                 Uf.dimensions()*dimArea/dimTime,
-<<<<<<< HEAD
-                pTraits<typename flux<Type>::type>::zero
-=======
                 Zero
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
             )
         )
     );

@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -62,7 +62,7 @@ inline Foam::label Foam::SVD::nZeros() const
 inline Foam::scalar Foam::SVD::minNonZeroS() const
 {
     scalar minS = S_[0];
-    for (label i = 1; i < S_.size(); i++)
+    for (label i=1; i<S_.size(); i++)
     {
         scalar s = S_[i];
         if (s > VSMALL && s < minS) minS = s;

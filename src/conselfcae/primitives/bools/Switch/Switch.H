@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -188,17 +188,15 @@ public:
         }
 
         //- Assignment from enumerated value
-        const Switch& operator=(const switchType sw)
+        void operator=(const switchType sw)
         {
             switch_ = sw;
-            return *this;
         }
 
         //- Assignment from bool
-        const Switch& operator=(const bool b)
+        void operator=(const bool b)
         {
             switch_ = (b ? Switch::TRUE : Switch::FALSE);
-            return *this;
         }
 
 

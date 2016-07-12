@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -47,7 +47,7 @@ namespace Foam
 template<class T>
 class EdgeMap
 :
-    public HashTable<T, edge, Hash<edge> >
+    public HashTable<T, edge, Hash<edge>>
 {
 
 public:
@@ -57,19 +57,19 @@ public:
         //- Construct given initial map size
         EdgeMap(const label size = 128)
         :
-            HashTable<T, edge, Hash<edge> >(size)
+            HashTable<T, edge, Hash<edge>>(size)
         {}
 
         //- Construct from Istream
         EdgeMap(Istream& is)
         :
-            HashTable<T, edge, Hash<edge> >(is)
+            HashTable<T, edge, Hash<edge>>(is)
         {}
 
         //- Construct as copy
         EdgeMap(const EdgeMap<T>& map)
         :
-            HashTable<T, edge, Hash<edge> >(map)
+            HashTable<T, edge, Hash<edge>>(map)
         {}
 };
 

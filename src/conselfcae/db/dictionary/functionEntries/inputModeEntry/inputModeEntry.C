@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -85,7 +85,7 @@ void Foam::functionEntries::inputModeEntry::setMode(Istream& is)
     }
     else
     {
-        WarningIn("Foam::functionEntries::inputModeEntry::setMode(Istream&)")
+        WarningInFunction
             << "unsupported input mode '" << mode
             << "' ... defaulting to 'merge'"
             << endl;

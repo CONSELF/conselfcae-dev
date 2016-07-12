@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2012 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -73,8 +73,8 @@ template
 Foam::PrimitivePatch<Face, FaceList, PointField, PointType>::
 PrimitivePatch
 (
-    const Xfer<FaceList<Face> >& faces,
-    const Xfer<List<PointType> >& points
+    const Xfer<FaceList<Face>>& faces,
+    const Xfer<List<PointType>>& points
 )
 :
     FaceList<Face>(faces),
@@ -111,11 +111,11 @@ PrimitivePatch
 (
     FaceList<Face>& faces,
     Field<PointType>& points,
-    const bool reUse
+    const bool reuse
 )
 :
-    FaceList<Face>(faces, reUse),
-    points_(points, reUse),
+    FaceList<Face>(faces, reuse),
+    points_(points, reuse),
     edgesPtr_(NULL),
     nInternalEdges_(-1),
     boundaryPointsPtr_(NULL),
@@ -582,7 +582,7 @@ operator=
 {
     clearOut();
 
-    FaceList<Face>::operator=(pp);
+    FaceList<Face>::shallowCopy(pp);
 }
 
 

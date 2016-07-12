@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2014 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2014-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -34,7 +34,7 @@ const int32_t Foam::pTraits<int32_t>::max = INT32_MAX;
 const int32_t Foam::pTraits<int32_t>::rootMin = pTraits<int32_t>::min;
 const int32_t Foam::pTraits<int32_t>::rootMax = pTraits<int32_t>::max;
 
-const char* Foam::pTraits<int32_t>::componentNames[] = { "x" };
+const char* const Foam::pTraits<int32_t>::componentNames[] = { "" };
 
 Foam::pTraits<int32_t>::pTraits(const int32_t& p)
 :

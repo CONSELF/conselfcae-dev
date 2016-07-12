@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -97,10 +97,8 @@ Foam::cachedRandom::cachedRandom(const cachedRandom& cr, const bool reset)
     }
     if (sampleI_ == -1)
     {
-        WarningIn
-        (
-            "Foam::cachedRandom::cachedRandom(const cachedRandom& cr)"
-        )   << "Copy constructor called, but samples not being cached. "
+        WarningInFunction
+            << "Copy constructor called, but samples not being cached. "
             << "This may lead to non-repeatable behaviour" << endl;
 
         osRandomSeed(seed_);

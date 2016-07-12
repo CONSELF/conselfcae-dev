@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2012 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -45,10 +45,8 @@ Foam::LduMatrix<Type, DType, LUType>::smoother::New
 
         if (constructorIter == symMatrixConstructorTablePtr_->end())
         {
-            FatalIOErrorIn
-            (
-                "LduMatrix<Type, DType, LUType>::smoother::New", smootherDict
-            )   << "Unknown symmetric matrix smoother " << smootherName
+            FatalIOErrorInFunction(smootherDict)
+                << "Unknown symmetric matrix smoother " << smootherName
                 << endl << endl
                 << "Valid symmetric matrix smoothers are :" << endl
                 << symMatrixConstructorTablePtr_->toc()
@@ -71,10 +69,8 @@ Foam::LduMatrix<Type, DType, LUType>::smoother::New
 
         if (constructorIter == asymMatrixConstructorTablePtr_->end())
         {
-            FatalIOErrorIn
-            (
-                "LduMatrix<Type, DType, LUType>::smoother::New", smootherDict
-            )   << "Unknown asymmetric matrix smoother " << smootherName
+            FatalIOErrorInFunction(smootherDict)
+                << "Unknown asymmetric matrix smoother " << smootherName
                 << endl << endl
                 << "Valid asymmetric matrix smoothers are :" << endl
                 << asymMatrixConstructorTablePtr_->toc()
@@ -92,10 +88,8 @@ Foam::LduMatrix<Type, DType, LUType>::smoother::New
     }
     else
     {
-        FatalIOErrorIn
-        (
-            "LduMatrix<Type, DType, LUType>::smoother::New", smootherDict
-        )   << "cannot solve incomplete matrix, no off-diagonal coefficients"
+        FatalIOErrorInFunction(smootherDict)
+            << "cannot solve incomplete matrix, no off-diagonal coefficients"
             << exit(FatalIOError);
 
         return autoPtr<typename LduMatrix<Type, DType, LUType>::smoother>(NULL);

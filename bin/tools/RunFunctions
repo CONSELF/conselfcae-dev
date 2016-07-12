@@ -157,7 +157,6 @@ runParallel()
             ( mpirun -np $nProcs $APP_RUN -parallel "$@" < /dev/null > log.$LOG_SUFFIX 2>&1 )
         fi
     fi
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 }
 
 compileApplication()

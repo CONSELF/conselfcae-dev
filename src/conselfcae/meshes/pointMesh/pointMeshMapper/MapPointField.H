@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -28,7 +28,7 @@ Description
     Map point field on topology change. This is a partial template
     specialisation for GeoMesh=pointMesh
 
-See Also
+See also
     MapGeometricFields
 
 \*---------------------------------------------------------------------------*/
@@ -69,14 +69,8 @@ void MapInternalField<Type, MeshMapper, pointMesh>::operator()
 {
     if (field.size() != mapper.pointMap().sizeBeforeMapping())
     {
-        FatalErrorIn
-        (
-            "void MapInternalField<Type, MeshMapper, pointMesh>::operator()\n"
-            "(\n"
-            "    Field<Type>& field,\n"
-            "    const MeshMapper& mapper\n"
-            ") const"
-        )  << "Incompatible size before mapping.  Field size: " << field.size()
+        FatalErrorInFunction
+           << "Incompatible size before mapping.  Field size: " << field.size()
            << " map size: " << mapper.pointMap().sizeBeforeMapping()
            << abort(FatalError);
     }

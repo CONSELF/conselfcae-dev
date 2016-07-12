@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -204,7 +204,7 @@ void Foam::lduMatrix::operator+=(const lduMatrix& A)
     {
         if (debug > 1)
         {
-            WarningIn("lduMatrix::operator+=(const lduMatrix& A)")
+            WarningInFunction
                 << "Unknown matrix type combination" << nl
                 << "    this :"
                 << " diagonal:" << diagonal()
@@ -283,7 +283,7 @@ void Foam::lduMatrix::operator-=(const lduMatrix& A)
     {
         if (debug > 1)
         {
-            WarningIn("lduMatrix::operator-=(const lduMatrix& A)")
+            WarningInFunction
                 << "Unknown matrix type combination" << nl
                 << "    this :"
                 << " diagonal:" << diagonal()

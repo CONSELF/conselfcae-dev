@@ -50,6 +50,7 @@ doc/Doxygen/DTAGS
 
 # Generated files in the main directory (e.g. ReleaseNotes-?.?.html)
 # and in the doc directory
+/*.html
 /doc/*.html
 
 # Untracked configuration files
@@ -83,5 +84,5 @@ doc/Doxygen/DTAGS
 
 # end-of-file
 
-#CONSELFoam extra ignores
+#CONSELFcae extra ignores
 tutorials*

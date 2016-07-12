@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2012 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -177,7 +177,7 @@ void Foam::globalMeshData::syncPointData
 {
     if (pointData.size() != mesh_.nPoints())
     {
-        FatalErrorIn("globalMeshData::syncPointData(..)")
+        FatalErrorInFunction
             << "Number of elements in data:" << pointData.size()
             << " differs from number of points in mesh:" << mesh_.nPoints()
             << abort(FatalError);

@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -81,7 +81,7 @@ Foam::SLListBase::link* Foam::SLListBase::removeHead()
 
     if (last_ == 0)
     {
-        FatalErrorIn("SLListBase::remove()")
+        FatalErrorInFunction
             << "remove from empty list"
             << abort(FatalError);
     }

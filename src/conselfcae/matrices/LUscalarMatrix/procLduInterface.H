@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2013 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -45,6 +45,14 @@ namespace Foam
 
 class lduInterfaceField;
 
+
+// Forward declaration of friend functions and operators
+
+class procLduInterface;
+
+Ostream& operator<<(Ostream&, const procLduInterface&);
+
+
 /*---------------------------------------------------------------------------*\
                            Class procLduInterface Declaration
 \*---------------------------------------------------------------------------*/
@@ -84,7 +92,7 @@ public:
 
         autoPtr<procLduInterface> clone()
         {
-            notImplemented("procLduInterface::clone()");
+            NotImplemented;
             return autoPtr<procLduInterface>(NULL);
         }
 

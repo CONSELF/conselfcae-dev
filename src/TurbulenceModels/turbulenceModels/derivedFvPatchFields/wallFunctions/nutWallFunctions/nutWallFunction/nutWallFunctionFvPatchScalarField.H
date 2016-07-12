@@ -40,16 +40,6 @@ Usage
         E         | E coefficient       | no         | 9.8
     \endtable
 
-<<<<<<< HEAD
-    \table
-        Property  | Description         | Required   | Default value
-        Cmu       | Cmu coefficient     | no         | 0.09
-        kappa     | Von Karman constant | no         | 0.41
-        E         | E coefficient       | no         | 9.8
-    \endtable
-
-=======
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     Examples of the boundary condition specification:
     \verbatim
     <patchName>
@@ -66,11 +56,7 @@ Usage
         Method, subsection "3.5.2 k-epsilon model"
     \endverbatim
 
-<<<<<<< HEAD
-SeeAlso
-=======
 See also
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     Foam::fixedValueFvPatchField
 
 SourceFiles

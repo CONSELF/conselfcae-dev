@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -105,7 +105,6 @@ void PatchToPatchInterpolation<FromPatch, ToPatch>::clearOut()
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-// Construct from components
 template<class FromPatch, class ToPatch>
 PatchToPatchInterpolation<FromPatch, ToPatch>::PatchToPatchInterpolation
 (
@@ -182,7 +181,7 @@ bool PatchToPatchInterpolation<FromPatch, ToPatch>::movePoints()
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-#   include "CalcPatchToPatchWeights.C"
-#   include "PatchToPatchInterpolate.C"
+    #include "CalcPatchToPatchWeights.C"
+    #include "PatchToPatchInterpolate.C"
 
 // ************************************************************************* //

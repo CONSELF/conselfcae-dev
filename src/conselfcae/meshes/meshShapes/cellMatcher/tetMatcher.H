@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -27,7 +27,7 @@ Class
 Description
     A cellMatcher for tet cells
 
-See Also
+See also
     cellMatcher
 
 SourceFiles
@@ -107,18 +107,18 @@ public:
             const bool checkOnly,
             const faceList& faces,
             const labelList& faceOwner,
-            const label cellI,
+            const label celli,
             const labelList& myFaces
         );
 
-        virtual bool isA(const primitiveMesh& mesh, const label cellI);
+        virtual bool isA(const primitiveMesh& mesh, const label celli);
 
         virtual bool isA(const faceList&);
 
         virtual bool matches
         (
             const primitiveMesh& mesh,
-            const label cellI,
+            const label celli,
             cellShape& shape
         );
 };

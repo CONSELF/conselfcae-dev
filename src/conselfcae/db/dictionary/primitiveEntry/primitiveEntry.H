@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -113,7 +113,7 @@ public:
         primitiveEntry(const keyType&, const UList<token>&);
 
         //- Construct from keyword and by transferring a list of tokens
-        primitiveEntry(const keyType&, const Xfer<List<token> >&);
+        primitiveEntry(const keyType&, const Xfer<List<token>>&);
 
         //- Construct from keyword and a T
         template<class T>
@@ -194,7 +194,7 @@ Ostream& operator<<(Ostream&, const InfoProxy<primitiveEntry>&);
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #ifdef NoRepository
-#   include "primitiveEntryTemplates.C"
+    #include "primitiveEntryTemplates.C"
 #endif
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

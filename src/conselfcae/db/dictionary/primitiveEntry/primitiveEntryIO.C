@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2012 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -182,9 +182,8 @@ void Foam::primitiveEntry::readEntry(const dictionary& dict, Istream& is)
             << " on line " << keywordLineNumber
             << " and ending at line " << is.lineNumber();
 
-        SafeFatalIOErrorIn
+        SafeFatalIOErrorInFunction
         (
-            "primitiveEntry::readEntry(const dictionary&, Istream&)",
             is,
             os.str()
         );

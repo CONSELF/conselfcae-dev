@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2014 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2014-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -23,39 +23,39 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-template <class T>
+template<class T>
 inline const T& Foam::NullObjectRef()
 {
     return *reinterpret_cast<const T*>(nullObjectPtr);
 }
 
-template <class T>
+template<class T>
 inline const T* Foam::NullObjectPtr()
 {
     return reinterpret_cast<const T*>(nullObjectPtr);
 }
 
 
-template <class T>
+template<class T>
 inline bool Foam::isNull(const T& t)
 {
     return &t == NullObjectPtr<T>();
 }
 
-template <class T>
+template<class T>
 inline bool Foam::notNull(const T& t)
 {
     return &t != NullObjectPtr<T>();
 }
 
 
-template <class T>
+template<class T>
 inline bool Foam::isNull(const T* t)
 {
     return t == NullObjectPtr<T>();
 }
 
-template <class T>
+template<class T>
 inline bool Foam::notNull(const T* t)
 {
     return t != NullObjectPtr<T>();

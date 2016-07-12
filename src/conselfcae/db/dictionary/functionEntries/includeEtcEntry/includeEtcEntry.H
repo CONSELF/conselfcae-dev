@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2015-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -51,7 +51,7 @@ Description
     The usual expansion of environment variables and other constructs is
     retained.
 
-See Also
+See also
     findEtcFile, fileName, string::expand()
 
 SourceFiles
@@ -100,7 +100,7 @@ public:
     // Static data members
 
         //- Report which file is included to stdout
-        static bool report;
+        static bool log;
 
 
     //- Runtime type information

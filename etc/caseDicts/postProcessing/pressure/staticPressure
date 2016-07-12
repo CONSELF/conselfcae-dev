@@ -1,11 +1,4 @@
 /*--------------------------------*- C++ -*----------------------------------*\
-<<<<<<< HEAD
-| =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  3.0.x                                 |  
-|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
-|    \\/     M anipulation  |                                                 |
-=======
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
@@ -16,7 +9,6 @@ Description
     Calculates the pressure field in units M/(LT^2) (e.g. Pa) from kinematic
     pressure by scaling by a specified density.
 
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 \*---------------------------------------------------------------------------*/
 
 #includeEtc "caseDicts/postProcessing/pressure/staticPressure.cfg"

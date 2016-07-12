@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -247,20 +247,20 @@ public:
             //- Does this side own the patch ?
             virtual bool owner() const
             {
-                notImplemented("oldCyclicPolyPatch::owner()");
+                NotImplemented;
                 return true;
             }
 
             //- Transform a patch-based position from other side to this side
             virtual void transformPosition(pointField& l) const
             {
-                notImplemented("transformPosition(pointField&)");
+                NotImplemented;
             }
 
             //- Transform a patch-based position from other side to this side
             virtual void transformPosition(point&, const label facei) const
             {
-                notImplemented("transformPosition(point&, const label)");
+                NotImplemented;
             }
 
         //- Calculate the patch geometry

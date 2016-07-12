@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2013 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -45,12 +45,12 @@ Foam::pointBoundaryMesh::pointBoundaryMesh
     // Set boundary patches
     pointPatchList& Patches = *this;
 
-    forAll(Patches, patchI)
+    forAll(Patches, patchi)
     {
         Patches.set
         (
-            patchI,
-            facePointPatch::New(basicBdry[patchI], *this).ptr()
+            patchi,
+            facePointPatch::New(basicBdry[patchi], *this).ptr()
         );
     }
 }

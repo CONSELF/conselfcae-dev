@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2013 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2013-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -35,11 +35,11 @@ Foam::scalar Foam::detDecomposed
     const label sign
 )
 {
-    scalar diagProduct = 1.0;
+    Type diagProduct = pTraits<Type>::one;
 
-    for (label i = 0; i < matrix.n(); ++i)
+    for (label i=0; i<matrix.m(); i++)
     {
-        diagProduct *= matrix[i][i];
+        diagProduct *= matrix(i, i);
     }
 
     return sign*diagProduct;
@@ -51,7 +51,7 @@ Foam::scalar Foam::det(const SquareMatrix<Type>& matrix)
 {
     SquareMatrix<Type> matrixTmp = matrix;
 
-    labelList pivotIndices(matrix.n());
+    labelList pivotIndices(matrix.m());
     label sign;
     LUDecompose(matrixTmp, pivotIndices, sign);
 
@@ -62,7 +62,7 @@ Foam::scalar Foam::det(const SquareMatrix<Type>& matrix)
 template<class Type>
 Foam::scalar Foam::det(SquareMatrix<Type>& matrix)
 {
-    labelList pivotIndices(matrix.n());
+    labelList pivotIndices(matrix.m());
     label sign;
     LUDecompose(matrix, pivotIndices, sign);
 

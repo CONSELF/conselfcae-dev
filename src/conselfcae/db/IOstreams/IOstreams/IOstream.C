@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -48,7 +48,7 @@ Foam::IOstream::formatEnum(const word& format)
     }
     else
     {
-        WarningIn("IOstream::formatEnum(const word&)")
+        WarningInFunction
             << "bad format specifier '" << format << "', using 'ascii'"
             << endl;
 
@@ -77,7 +77,7 @@ Foam::IOstream::compressionEnum(const word& compression)
     }
     else
     {
-        WarningIn("IOstream::compressionEnum(const word&)")
+        WarningInFunction
             << "bad compression specifier '" << compression
             << "', using 'uncompressed'"
             << endl;
@@ -93,10 +93,8 @@ bool Foam::IOstream::check(const char* operation) const
 {
     if (bad())
     {
-        FatalIOErrorIn
-        (
-            "IOstream::check(const char*) const", *this
-        )   << "error in IOstream " << name() << " for operation " << operation
+        FatalIOErrorInFunction(*this)
+            << "error in IOstream " << name() << " for operation " << operation
             << exit(FatalIOError);
     }
 
@@ -108,10 +106,8 @@ void Foam::IOstream::fatalCheck(const char* operation) const
 {
     if (bad())
     {
-        FatalIOErrorIn
-        (
-            "IOstream::fatalCheck(const char*) const", *this
-        )   << "error in IOstream " << name() << " for operation " << operation
+        FatalIOErrorInFunction(*this)
+            << "error in IOstream " << name() << " for operation " << operation
             << exit(FatalIOError);
     }
 }

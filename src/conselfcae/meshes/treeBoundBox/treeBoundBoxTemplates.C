@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -42,11 +42,8 @@ Foam::treeBoundBox::treeBoundBox
     // points may be empty, but a FixedList is never empty
     if (points.empty())
     {
-        WarningIn
-        (
-            "treeBoundBox::treeBoundBox"
-            "(const UList<point>&, const FixedList<label, Size>&)"
-        )   << "cannot find bounding box for zero-sized pointField, "
+        WarningInFunction
+            << "cannot find bounding box for zero-sized pointField, "
             << "returning zero" << endl;
 
         return;

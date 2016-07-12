@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -49,7 +49,7 @@ Foam::labelList Foam::invert
         {
             if (inverse[newPos] >= 0)
             {
-                FatalErrorIn("invert(const label, const labelUList&)")
+                FatalErrorInFunction
                     << "Map is not one-to-one. At index " << i
                     << " element " << newPos << " has already occurred before"
                     << nl << "Please use invertOneToMany instead"

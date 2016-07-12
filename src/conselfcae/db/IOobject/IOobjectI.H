@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -84,9 +84,9 @@ inline Stream& Foam::IOobject::writeBanner(Stream& os, bool noHint)
         "|  \\\\    /   O peration     |"
         " Version:  " << FOAMversion << spaces << "|\n"
         "|   \\\\  /    A nd           |"
-        " Web:      https://conself.com                   |\n"
+        " Web:      www.OpenFOAM.org                      |\n"
         "|    \\\\/     M anipulation  |"
-        "           Copyright (C) 2016 CONSELF srl        |\n"
+        "                                                 |\n"
         "\\*-----------------------------------------"
         "----------------------------------*/\n";
 

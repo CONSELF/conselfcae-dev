@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -37,17 +37,14 @@ namespace Foam
 
 void newError()
 {
-    std::cout<<
+    std::cerr<<
         "new cannot satisfy memory request.\n"
         "This does not necessarily mean you have run out of virtual memory.\n"
         "It could be due to a stack violation caused "
         "by e.g. bad use of pointers or an out of date shared library"
         << std::endl;
 
-    std::cerr<< "ERROR-CONSELF# Volume mesh failed. Use smaller elements in both meshing phase";
-
-    //::abort();
-    exit( EXIT_FAILURE);
+    ::abort();
 }
 
 void (*old_new_handler)() = std::set_new_handler(newError);

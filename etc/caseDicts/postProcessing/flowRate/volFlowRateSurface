@@ -1,20 +1,4 @@
 /*--------------------------------*- C++ -*----------------------------------*\
-<<<<<<< HEAD
-| =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  3.0.x                                 |  
-|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
-|    \\/     M anipulation  |                                                 |
-\*---------------------------------------------------------------------------*/
-FoamFile
-{
-    version     2.0;
-    format      ascii;
-    class       dictionary;
-    object      volFlowRateSurface;
-}
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-=======
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
@@ -26,7 +10,6 @@ Description
     by interpolating velocity onto the triangles and integrating over the
     surface area.  Triangles need to be small (<= cell size) for an accurate
     result.
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 \*---------------------------------------------------------------------------*/
 

@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2012 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2012-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -29,7 +29,7 @@ License
 template<class GeoField>
 Foam::tmp<GeoField> Foam::uniformInterpolate
 (
-    const HashPtrTable<GeoField, label, Hash<label> >& fields,
+    const HashPtrTable<GeoField, label, Hash<label>>& fields,
     const labelList& indices,
     const scalarField& weights
 )
@@ -92,7 +92,7 @@ Foam::tmp<GeoField> Foam::uniformInterpolate
 
     // Interpolate
     tmp<GeoField> tfld(new GeoField(fieldIO, weights[0]*field0));
-    GeoField& fld = tfld();
+    GeoField& fld = tfld.ref();
 
     for (label i = 1; i < times.size(); ++i)
     {
@@ -103,7 +103,7 @@ Foam::tmp<GeoField> Foam::uniformInterpolate
         (
             times[i]
         );
-        const GeoField& fieldI = timeIFields.lookupObject
+        const GeoField& fieldi = timeIFields.lookupObject
         <
             const GeoField
         >
@@ -111,7 +111,7 @@ Foam::tmp<GeoField> Foam::uniformInterpolate
             fieldName
         );
 
-        fld += weights[i]*fieldI;
+        fld += weights[i]*fieldi;
     }
 
     return tfld;

@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -145,9 +145,8 @@ Foam::Istream& Foam::operator>>
             }
             else
             {
-                FatalIOErrorIn
+                FatalIOErrorInFunction
                 (
-                    "operator>>(Istream&, HashTable<T, Key, Hash>&)",
                     is
                 )   << "incorrect first token, '(', found " << firstToken.info()
                     << exit(FatalIOError);
@@ -161,9 +160,8 @@ Foam::Istream& Foam::operator>>
     {
         if (firstToken.pToken() != token::BEGIN_LIST)
         {
-            FatalIOErrorIn
+            FatalIOErrorInFunction
             (
-                "operator>>(Istream&, HashTable<T, Key, Hash>&)",
                 is
             )   << "incorrect first token, '(', found " << firstToken.info()
                 << exit(FatalIOError);
@@ -199,9 +197,8 @@ Foam::Istream& Foam::operator>>
     }
     else
     {
-        FatalIOErrorIn
+        FatalIOErrorInFunction
         (
-            "operator>>(Istream&, HashTable<T, Key, Hash>&)",
             is
         )   << "incorrect first token, expected <int> or '(', found "
             << firstToken.info()

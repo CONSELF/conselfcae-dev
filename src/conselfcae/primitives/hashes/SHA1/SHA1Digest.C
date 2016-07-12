@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -57,7 +57,7 @@ unsigned char Foam::SHA1Digest::readHexDigit(Istream& is)
 
     if (!isxdigit(c))
     {
-        FatalIOErrorIn("SHA1Digest::readHexDigit(Istream&)", is)
+        FatalIOErrorInFunction(is)
             << "Illegal hex digit: '" << c << "'"
             << exit(FatalIOError);
     }

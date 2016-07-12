@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -62,7 +62,7 @@ Foam::Istream& Foam::operator>>(Istream& is, Switch& s)
         else
         {
             is.setBad();
-            FatalIOErrorIn("operator>>(Istream&, bool/Switch&)", is)
+            FatalIOErrorInFunction(is)
                 << "expected 'true/false', 'on/off' ... found " << t.wordToken()
                 << exit(FatalIOError);
 
@@ -72,7 +72,7 @@ Foam::Istream& Foam::operator>>(Istream& is, Switch& s)
     else
     {
         is.setBad();
-        FatalIOErrorIn("operator>>(Istream&, bool/Switch&)", is)
+        FatalIOErrorInFunction(is)
             << "wrong token type - expected bool, found " << t
             << exit(FatalIOError);
 

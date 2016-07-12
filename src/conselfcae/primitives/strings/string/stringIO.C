@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -53,7 +53,7 @@ Foam::Istream& Foam::operator>>(Istream& is, string& s)
     else
     {
         is.setBad();
-        FatalIOErrorIn("operator>>(Istream&, string&)", is)
+        FatalIOErrorInFunction(is)
             << "wrong token type - expected string, found " << t.info()
             << exit(FatalIOError);
 

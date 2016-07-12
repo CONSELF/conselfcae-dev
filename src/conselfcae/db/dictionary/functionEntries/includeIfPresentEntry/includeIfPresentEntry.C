@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2012 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -74,7 +74,7 @@ bool Foam::functionEntries::includeIfPresentEntry::execute
 
     if (ifs)
     {
-        if (Foam::functionEntries::includeEntry::report)
+        if (Foam::functionEntries::includeEntry::log)
         {
             Info<< fName << endl;
         }
@@ -97,7 +97,7 @@ bool Foam::functionEntries::includeIfPresentEntry::execute
 
     if (ifs)
     {
-        if (Foam::functionEntries::includeEntry::report)
+        if (Foam::functionEntries::includeEntry::log)
         {
             Info<< fName << endl;
         }

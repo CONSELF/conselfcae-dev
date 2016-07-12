@@ -75,11 +75,7 @@ namespace Foam
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #ifdef NoRepository
-<<<<<<< HEAD
-#   include "turbulentTransportModel.C"
-=======
     #include "turbulentTransportModel.C"
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 #endif
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

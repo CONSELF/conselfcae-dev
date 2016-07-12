@@ -59,13 +59,8 @@ namespace Foam
         typedef ThermalDiffusivity<CompressibleTurbulenceModel<fluidThermo>>
             turbulenceModel;
 
-<<<<<<< HEAD
-        typedef RASModel<EddyDiffusivity<turbulenceModel> > RASModel;
-        typedef LESModel<EddyDiffusivity<turbulenceModel> > LESModel;
-=======
         typedef RASModel<EddyDiffusivity<turbulenceModel>> RASModel;
         typedef LESModel<EddyDiffusivity<turbulenceModel>> LESModel;
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
         template<class BasicCompressibleTurbulenceModel>
         autoPtr<BasicCompressibleTurbulenceModel> New
@@ -84,11 +79,7 @@ namespace Foam
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #ifdef NoRepository
-<<<<<<< HEAD
-#   include "turbulentFluidThermoModel.C"
-=======
     #include "turbulentFluidThermoModel.C"
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 #endif
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

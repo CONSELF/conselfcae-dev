@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -89,10 +89,8 @@ Foam::polynomialFunction::polynomialFunction(const label order)
 {
     if (this->empty())
     {
-        FatalErrorIn
-        (
-            "polynomialFunction::polynomialFunction(const label order)"
-        )   << "polynomialFunction coefficients are invalid (empty)"
+        FatalErrorInFunction
+            << "polynomialFunction coefficients are invalid (empty)"
             << nl << exit(FatalError);
     }
 }
@@ -114,10 +112,8 @@ Foam::polynomialFunction::polynomialFunction(const UList<scalar>& coeffs)
 {
     if (this->empty())
     {
-        FatalErrorIn
-        (
-            "polynomialFunction::polynomialFunction(const UList<scalar>&)"
-        )   << "polynomialFunction coefficients are invalid (empty)"
+        FatalErrorInFunction
+            << "polynomialFunction coefficients are invalid (empty)"
             << nl << exit(FatalError);
     }
 }
@@ -131,10 +127,8 @@ Foam::polynomialFunction::polynomialFunction(Istream& is)
 {
     if (this->empty())
     {
-        FatalErrorIn
-        (
-            "polynomialFunction::polynomialFunction(Istream&)"
-        )   << "polynomialFunction coefficients are invalid (empty)"
+        FatalErrorInFunction
+            << "polynomialFunction coefficients are invalid (empty)"
             << nl << exit(FatalError);
     }
 }
@@ -192,14 +186,8 @@ Foam::scalar Foam::polynomialFunction::integrate
 
     if (logActive_)
     {
-        FatalErrorIn
-        (
-            "scalar polynomialFunction::integrate"
-            "("
-                "const scalar, "
-                "const scalar"
-            ") const"
-        )   << "Cannot integrate polynomial with logarithmic coefficients"
+        FatalErrorInFunction
+            << "Cannot integrate polynomial with logarithmic coefficients"
             << nl << abort(FatalError);
     }
 

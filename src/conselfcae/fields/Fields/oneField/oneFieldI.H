@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -27,15 +27,35 @@ License
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-inline Foam::scalar Foam::oneField::operator[](const label) const
+inline Foam::one Foam::oneField::operator[](const label) const
 {
-    return scalar(1);
+    return one();
 }
 
 
 inline Foam::oneField Foam::oneField::field() const
 {
     return oneField();
+}
+
+
+inline const Foam::oneField& Foam::operator*
+(
+    const oneField& of,
+    const oneField&
+)
+{
+    return of;
+}
+
+
+inline const Foam::oneField& Foam::operator/
+(
+    const oneField& of,
+    const oneField&
+)
+{
+    return of;
 }
 
 

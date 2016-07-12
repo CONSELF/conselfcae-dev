@@ -2249,17 +2249,6 @@ void Foam::cellCuts::setFromCellCutter
                     << " origin of the problem."
                     << nl << endl;
 
-                WarningIn("Foam::cellCuts::setFromCellCutter")
-                    << "Found loop on cell " << cellI
-                    << " that resulted in an unexpected bad cut."
-                    << "    Suggestions:" << nl
-                    << "      - Turn on the debug switch for 'cellCuts' to get"
-                    << " geometry files that identify this cell." << nl
-                    << "      - Also keep in mind to check the defined"
-                    << " reference directions, as these are most likely the"
-                    << " origin of the problem."
-                    << nl << endl;
-
                 // Discarded by validLoop
                 if (debug)
                 {
@@ -2966,11 +2955,7 @@ Foam::pointField Foam::cellCuts::loopPoints(const label celli) const
 }
 
 
-<<<<<<< HEAD
-void Foam::cellCuts::flip(const label cellI)
-=======
 void Foam::cellCuts::flip(const label celli)
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 {
     labelList& loop = cellLoops_[celli];
 
@@ -2987,11 +2972,7 @@ void Foam::cellCuts::flip(const label celli)
 }
 
 
-<<<<<<< HEAD
-void Foam::cellCuts::flipLoopOnly(const label cellI)
-=======
 void Foam::cellCuts::flipLoopOnly(const label celli)
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 {
     labelList& loop = cellLoops_[celli];
 

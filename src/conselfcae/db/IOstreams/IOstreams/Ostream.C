@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -31,7 +31,6 @@ License
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
-// Decrement the indent level
 void Foam::Ostream::decrIndent()
 {
     if (indentLevel_ == 0)
@@ -46,16 +45,12 @@ void Foam::Ostream::decrIndent()
 }
 
 
-// Write keyType
-// write regular expression as quoted string
-// write plain word as word (unquoted)
 Foam::Ostream& Foam::Ostream::write(const keyType& kw)
 {
     return writeQuoted(kw, kw.isPattern());
 }
 
 
-// Write the keyword followed by appropriate indentation
 Foam::Ostream& Foam::Ostream::writeKeyword(const keyType& kw)
 {
     indent();

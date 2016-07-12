@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2013-2014 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2013-2015 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -61,7 +61,7 @@ void Foam::symmetryPlanePolyPatch::calcGeometry(PstreamBuffers&)
             {
                 if (magSqr(n_ - nf[facei]) > SMALL)
                 {
-                    FatalErrorIn("symmetryPlanePolyPatch::n()")
+                    FatalErrorInFunction
                         << "Symmetry plane '" << name() << "' is not planar."
                         << endl
                         << "At local face at "

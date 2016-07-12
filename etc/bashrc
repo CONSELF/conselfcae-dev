@@ -3,11 +3,8 @@
 # \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
 #  \\    /   O peration     |
 #   \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
-<<<<<<< HEAD
 #    \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
-=======
 #    \\/     M anipulation  |
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 #------------------------------------------------------------------------------
 # License
 #     This file is part of OpenFOAM.
@@ -35,13 +32,8 @@
 #
 #------------------------------------------------------------------------------
 
-<<<<<<< HEAD
 export WM_PROJECT=conselfcae
 export WM_PROJECT_VERSION=dev
-=======
-export WM_PROJECT=OpenFOAM
-export WM_PROJECT_VERSION=4.x
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 #Add to your bash the following line
 #export CONSELFcaeSRC=/path/to/this/file
@@ -84,20 +76,9 @@ export FOAMY_HEX_MESH=yes
 # END OF (NORMAL) USER EDITABLE PART
 ################################################################################
 
-<<<<<<< HEAD
-#
-# These are the defaults for this version which should generally be
-# overridden from the prefs.sh file or from command-line specification
-#
-#- note the location for later use (eg, in job scripts)
-#: ${FOAM_INST_DIR:=$foamInstall}; export FOAM_INST_DIR
-FOAM_INST_DIR=$foamInstall
-export FOAM_INST_DIR
-=======
 # The default environment variables below can be overridden in a prefs.sh file
 # located in ~/.OpenFOAM/$WM_PROJECT_VERSION, ~/.OpenFOAM,
 # $FOAM_INST_DIR/site/$WM_PROJECT_VERSION or $FOAM_INST_DIR/site
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 #- Compiler location:
 #    WM_COMPILER_TYPE= system | ThirdParty (OpenFOAM)
@@ -152,9 +133,8 @@ foamOldDirs="$WM_PROJECT_DIR $WM_THIRD_PARTY_DIR $HOME/$WM_PROJECT/$USER \
 
 # Location of installation
 # ~~~~~~~~~~~~~~~~~~~~~~~~
-# export WM_PROJECT_DIR=$WM_PROJECT_INST_DIR/$WM_PROJECT-$WM_PROJECT_VERSION
-export WM_PROJECT_INST_DIR=$foamInstall
-export WM_PROJECT_DIR=$foamInstall
+export WM_PROJECT_INST_DIR=$FOAM_INST_DIR
+export WM_PROJECT_DIR=$FOAM_INST_DIR
 
 # Location of third-party software
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -172,62 +152,11 @@ fi
 
 # Location of user files
 # ~~~~~~~~~~~~~~~~~~~~~~
-<<<<<<< HEAD
-#export WM_PROJECT_USER_DIR=$HOME/$WM_PROJECT/$USER-$WM_PROJECT_VERSION
-export WM_PROJECT_USER_DIR=$foamInstall
-
-# Source files, possibly with some verbosity
-_foamSource()
-{
-    while [ $# -ge 1 ]
-    do
-        [ "$FOAM_VERBOSE" -a "$PS1" ] && echo "Sourcing: $1" 1>&2
-        . $1
-       shift
-    done
-}
-
-# Evaluate command-line parameters
-_foamEval()
-{
-    while [ $# -gt 0 ]
-    do
-        case "$1" in
-        -*)
-            # stray option (not meant for us here) -> get out
-            break
-            ;;
-        *=)
-            # name=       -> unset name
-            [ "$FOAM_VERBOSE" -a "$PS1" ] && echo "unset ${1%=}" 1>&2
-            eval "unset ${1%=}"
-            ;;
-        *=*)
-            # name=value  -> export name=value
-            [ "$FOAM_VERBOSE" -a "$PS1" ] && echo "export $1" 1>&2
-            eval "export $1"
-            ;;
-        *)
-            # filename: source it
-            if [ -f "$1" ]
-            then
-                _foamSource "$1"
-            else
-                _foamSource `$WM_PROJECT_DIR/bin/foamEtcFile -silent "$1"`
-            fi
-            ;;
-        esac
-        shift
-    done
-}
-
-=======
 export WM_PROJECT_USER_DIR=$HOME/$WM_PROJECT/$USER-$WM_PROJECT_VERSION
 
 # Source initialization functions
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 . $WM_PROJECT_DIR/etc/config.sh/functions
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 # Add in preset user or site preferences:
 _foamSource `$WM_PROJECT_DIR/bin/foamEtcFile prefs.sh`
@@ -262,15 +191,6 @@ _foamSource $WM_PROJECT_DIR/etc/config.sh/aliases
 
 # Source user setup files for optional packages
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<<<<<<< HEAD
-_foamSource `$WM_PROJECT_DIR/bin/foamEtcFile config/paraview.sh`
-_foamSource `$WM_PROJECT_DIR/bin/foamEtcFile config/ensight.sh`
-_foamSource `$WM_PROJECT_DIR/bin/foamEtcFile config/gperftools.sh`
-
-if [ ! -z "$FOAMY_HEX_MESH" ]
-then
-    _foamSource `$WM_PROJECT_DIR/bin/foamEtcFile config/CGAL.sh`
-=======
 _foamSource `$WM_PROJECT_DIR/bin/foamEtcFile config.sh/mpi`
 _foamSource `$WM_PROJECT_DIR/bin/foamEtcFile config.sh/paraview`
 _foamSource `$WM_PROJECT_DIR/bin/foamEtcFile config.sh/ensight`
@@ -279,7 +199,6 @@ _foamSource `$WM_PROJECT_DIR/bin/foamEtcFile config.sh/gperftools`
 if [ ! -z "$FOAMY_HEX_MESH" ]
 then
     _foamSource `$WM_PROJECT_DIR/bin/foamEtcFile config.sh/CGAL`
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 fi
 
 

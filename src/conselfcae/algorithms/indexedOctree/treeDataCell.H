@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -74,7 +74,7 @@ class treeDataCell
     // Private Member Functions
 
         //- Calculate cell bounding box
-        treeBoundBox calcCellBb(const label cellI) const;
+        treeBoundBox calcCellBb(const label celli) const;
 
         //- Initialise all member data
         void update();
@@ -203,11 +203,7 @@ public:
                 const point&
             ) const
             {
-                notImplemented
-                (
-                    "treeDataCell::getVolumeType"
-                    "(const indexedOctree<treeDataCell>&, const point&)"
-                );
+                NotImplemented;
                 return volumeType::UNKNOWN;
             }
 

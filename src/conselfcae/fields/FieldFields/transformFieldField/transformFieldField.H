@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -55,31 +55,31 @@ void transform
 );
 
 template<template<class> class Field, class Type>
-tmp<FieldField<Field, Type> > transform
+tmp<FieldField<Field, Type>> transform
 (
     const FieldField<Field, tensor>&,
     const FieldField<Field, Type>&
 );
 
 template<template<class> class Field, class Type>
-tmp<FieldField<Field, Type> > transform
+tmp<FieldField<Field, Type>> transform
 (
     const FieldField<Field, tensor>&,
-    const tmp<FieldField<Field, Type> >&
+    const tmp<FieldField<Field, Type>>&
 );
 
 template<template<class> class Field, class Type>
-tmp<FieldField<Field, Type> > transform
+tmp<FieldField<Field, Type>> transform
 (
-    const tmp<FieldField<Field, tensor> >&,
+    const tmp<FieldField<Field, tensor>>&,
     const FieldField<Field, Type>&
 );
 
 template<template<class> class Field, class Type>
-tmp<FieldField<Field, Type> > transform
+tmp<FieldField<Field, Type>> transform
 (
-    const tmp<FieldField<Field, tensor> >&,
-    const tmp<FieldField<Field, Type> >&
+    const tmp<FieldField<Field, tensor>>&,
+    const tmp<FieldField<Field, Type>>&
 );
 
 
@@ -92,17 +92,17 @@ void transform
 );
 
 template<template<class> class Field, class Type>
-tmp<FieldField<Field, Type> > transform
+tmp<FieldField<Field, Type>> transform
 (
     const tensor&,
     const FieldField<Field, Type>&
 );
 
 template<template<class> class Field, class Type>
-tmp<FieldField<Field, Type> > transform
+tmp<FieldField<Field, Type>> transform
 (
     const tensor&,
-    const tmp<FieldField<Field, Type> >&
+    const tmp<FieldField<Field, Type>>&
 );
 
 
@@ -113,7 +113,7 @@ tmp<FieldField<Field, Type> > transform
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #ifdef NoRepository
-#   include "transformFieldField.C"
+    #include "transformFieldField.C"
 #endif
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

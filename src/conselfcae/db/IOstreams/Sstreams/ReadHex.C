@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2013-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -52,7 +52,7 @@ T Foam::ReadHex(ISstream& is)
 
         if (!isxdigit(c))
         {
-            FatalIOErrorIn("ReadHex(ISstream&)", is)
+            FatalIOErrorInFunction(is)
                 << "Illegal hex digit: '" << c << "'"
                 << exit(FatalIOError);
         }

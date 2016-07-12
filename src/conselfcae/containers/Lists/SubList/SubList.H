@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -86,6 +86,12 @@ public:
 
         //- Allow cast to a const List<T>&
         inline operator const Foam::List<T>&() const;
+
+        //- Assignment of all entries to the given sub-list
+        inline void operator=(const SubList<T>&);
+
+        //- Assignment of all entries to the given list
+        inline void operator=(const UList<T>&);
 
         //- Assignment of all entries to the given value
         inline void operator=(const T&);

@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -42,7 +42,7 @@ inline Foam::labelRanges::labelRanges(const label nElem)
 
 inline Foam::labelRanges::const_iterator::const_iterator()
 :
-   list_(*reinterpret_cast< Foam::labelRanges* >(0)),
+   list_(*reinterpret_cast<Foam::labelRanges* >(0)),
    index_(-1),
    subIndex_(-1)
 {}

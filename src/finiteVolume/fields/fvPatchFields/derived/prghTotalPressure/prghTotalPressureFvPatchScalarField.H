@@ -32,11 +32,7 @@ Description
     calculated as:
 
         \f[
-<<<<<<< HEAD
-            p_rgh = p - \rho g (h - hRef)
-=======
             p_rgh = p - \rho g.(h - hRef)
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
             p = p0 - 0.5 \rho |U|^2
         \f]
 
@@ -54,17 +50,10 @@ Description
 Usage
     \table
         Property     | Description             | Required    | Default value
-<<<<<<< HEAD
-        U            | velocity field name     | no          | U
-        phi          | flux field name         | no          | phi
-        rho          | density field name      | no          | rho
-        p0           | total pressure          | yes         |
-=======
         U            | Velocity field name     | no          | U
         phi          | Flux field name         | no          | phi
         rho          | Density field name      | no          | rho
         p0           | Total pressure          | yes         |
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     \endtable
 
     Example of the boundary condition specification:
@@ -72,15 +61,7 @@ Usage
     <patchName>
     {
         type            prghTotalPressure;
-<<<<<<< HEAD
-        U               U;
-        phi             phi;
-        rho             rho;
         p0              uniform 0;
-        value           uniform 0; // optional initial value
-=======
-        p0              uniform 0;
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     }
     \endverbatim
 

@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -86,11 +86,11 @@ void Foam::fixedNormalSlipPointPatchField<Type>::evaluate
     const Pstream::commsTypes
 )
 {
-    tmp<Field<Type> > tvalues =
+    tmp<Field<Type>> tvalues =
         transform(I - n_*n_, this->patchInternalField());
 
     // Get internal field to insert values into
-    Field<Type>& iF = const_cast<Field<Type>&>(this->internalField());
+    Field<Type>& iF = const_cast<Field<Type>&>(this->primitiveField());
 
     this->setInInternalField(iF, tvalues());
 }

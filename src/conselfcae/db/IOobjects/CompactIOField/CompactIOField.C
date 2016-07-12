@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -45,9 +45,8 @@ void Foam::CompactIOField<T, BaseType>::readFromStream()
     }
     else
     {
-        FatalIOErrorIn
+        FatalIOErrorInFunction
         (
-            "CompactIOField<T, BaseType>::readFromStream()",
             is
         )   << "unexpected class name " << headerClassName()
             << " expected " << typeName << " or " << IOField<T>::typeName
@@ -128,7 +127,7 @@ template<class T, class BaseType>
 Foam::CompactIOField<T, BaseType>::CompactIOField
 (
     const IOobject& io,
-    const Xfer<Field<T> >& list
+    const Xfer<Field<T>>& list
 )
 :
     regIOobject(io)

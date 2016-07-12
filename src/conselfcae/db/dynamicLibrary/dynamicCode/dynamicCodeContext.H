@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2012 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -54,7 +54,7 @@ class dynamicCodeContext
         //- The parent dictionary context
         const dictionary& dict_;
 
-        //- Mandatory "code" entry
+        //- Optional "code" entry
         string code_;
 
         //- Optional "localCode" entry
@@ -72,12 +72,14 @@ class dynamicCodeContext
         //- Calculated SHA1Digest
         SHA1Digest sha1_;
 
+
 public:
 
     // Constructors
 
         //- Construct from a dictionary
         dynamicCodeContext(const dictionary&);
+
 
     // Member functions
 
@@ -130,7 +132,6 @@ public:
             const label lineNum,
             const fileName& name
         );
-
 };
 
 

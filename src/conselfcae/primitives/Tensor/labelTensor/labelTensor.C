@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -28,35 +28,52 @@ License
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 
-namespace Foam
+template<>
+const char* const Foam::labelTensor::vsType::typeName = "labelTensor";
+
+template<>
+const char* const Foam::labelTensor::vsType::componentNames[] =
 {
-    template<>
-    const char* const Foam::labelTensor::typeName = "labelTensor";
+    "xx", "xy", "xz",
+    "yx", "yy", "yz",
+    "zx", "zy", "zz"
+};
 
-    template<>
-    const char* Foam::labelTensor::componentNames[] =
-    {
-        "xx", "xy", "xz",
-        "yx", "yy", "yz",
-        "zx", "zy", "zz"
-    };
+template<>
+const Foam::labelTensor Foam::labelTensor::vsType::zero
+(
+    labelTensor::uniform(0)
+);
 
-    template<>
-    const Foam::labelTensor Foam::labelTensor::zero
-    (
-        0, 0, 0,
-        0, 0, 0,
-        0, 0, 0
-    );
+template<>
+const Foam::labelTensor Foam::labelTensor::vsType::one
+(
+    labelTensor::uniform(1)
+);
 
-    template<>
-    const Foam::labelTensor Foam::labelTensor::one
-    (
-        1, 1, 1,
-        1, 1, 1,
-        1, 1, 1
-    );
-}
+template<>
+const Foam::labelTensor Foam::labelTensor::vsType::max
+(
+    labelTensor::uniform(labelMax)
+);
+
+template<>
+const Foam::labelTensor Foam::labelTensor::vsType::min
+(
+    labelTensor::uniform(-labelMax)
+);
+
+template<>
+const Foam::labelTensor Foam::labelTensor::vsType::rootMax
+(
+    labelTensor::uniform(sqrt(scalar(labelMax)))
+);
+
+template<>
+const Foam::labelTensor Foam::labelTensor::vsType::rootMin
+(
+    labelTensor::uniform(-sqrt(scalar(labelMax)))
+);
 
 
 // ************************************************************************* //

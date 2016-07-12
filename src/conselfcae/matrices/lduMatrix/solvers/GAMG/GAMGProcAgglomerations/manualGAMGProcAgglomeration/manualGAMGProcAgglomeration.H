@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2013 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2013-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -81,7 +81,7 @@ class manualGAMGProcAgglomeration
     // Private data
 
         //- Per level the agglomeration map
-        const List<Tuple2<label, List<labelList> > > procAgglomMaps_;
+        const List<Tuple2<label, List<labelList>>> procAgglomMaps_;
 
         //- Any allocated communicators
         DynamicList<label> comms_;

@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2012 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -100,6 +100,13 @@ Foam::IOOutputFilter<OutputFilter>::~IOOutputFilter()
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
 template<class OutputFilter>
+const Foam::word& Foam::IOOutputFilter<OutputFilter>::name() const
+{
+    return IOdictionary::name();
+}
+
+
+template<class OutputFilter>
 bool Foam::IOOutputFilter<OutputFilter>::read()
 {
     if (regIOobject::read())
@@ -115,9 +122,25 @@ bool Foam::IOOutputFilter<OutputFilter>::read()
 
 
 template<class OutputFilter>
-void Foam::IOOutputFilter<OutputFilter>::write()
+bool Foam::IOOutputFilter<OutputFilter>::write()
 {
-    OutputFilter::write();
+    return OutputFilter::write();
+}
+
+
+template<class OutputFilter>
+void Foam::IOOutputFilter<OutputFilter>::updateMesh(const mapPolyMesh& mpm)
+{
+    read();
+    OutputFilter::updateMesh(mpm);
+}
+
+
+template<class OutputFilter>
+void Foam::IOOutputFilter<OutputFilter>::movePoints(const polyMesh& mesh)
+{
+    read();
+    OutputFilter::movePoints(mesh);
 }
 
 

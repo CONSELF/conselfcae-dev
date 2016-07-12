@@ -1,11 +1,4 @@
 /*--------------------------------*- C++ -*----------------------------------*\
-<<<<<<< HEAD
-| =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  3.0.x                                 |  
-|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
-|    \\/     M anipulation  |                                                 |
-=======
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
@@ -16,7 +9,6 @@ Description
     Writes out values of fields at a cloud of points, interpolated to
     specified boundary patches.
 
->>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 \*---------------------------------------------------------------------------*/
 
 fields (p U);

@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -81,7 +81,7 @@ public:
         tableReader(const dictionary& dict);
 
         //- Construct and return a clone
-        virtual autoPtr<tableReader<Type> > clone() const = 0;
+        virtual autoPtr<tableReader<Type>> clone() const = 0;
 
 
     // Selectors
@@ -100,14 +100,14 @@ public:
         virtual void operator()
         (
             const fileName&,
-            List<Tuple2<scalar, Type> >&
+            List<Tuple2<scalar, Type>>&
         ) = 0;
 
         //- Read the 2D table
         virtual void operator()
         (
             const fileName&,
-            List<Tuple2<scalar, List<Tuple2<scalar, Type> > > >&
+            List<Tuple2<scalar, List<Tuple2<scalar, Type>>>>&
         ) = 0;
 
         //- Write additional information
@@ -122,7 +122,7 @@ public:
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #ifdef NoRepository
-#   include "tableReader.C"
+    #include "tableReader.C"
 #endif
 
 

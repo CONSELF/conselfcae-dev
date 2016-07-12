@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011-2012 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -26,10 +26,10 @@ License
 #include "TGaussSeidelSmoother.H"
 #include "fieldTypes.H"
 
-#define makeLduSmoothers(Type, DType, LUType)                                 \
-                                                                              \
-    makeLduSmoother(TGaussSeidelSmoother, Type, DType, LUType);               \
-    makeLduSymSmoother(TGaussSeidelSmoother, Type, DType, LUType);            \
+#define makeLduSmoothers(Type, DType, LUType)                                  \
+                                                                               \
+    makeLduSmoother(TGaussSeidelSmoother, Type, DType, LUType);                \
+    makeLduSymSmoother(TGaussSeidelSmoother, Type, DType, LUType);             \
     makeLduAsymSmoother(TGaussSeidelSmoother, Type, DType, LUType);
 
 namespace Foam

@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -90,9 +90,8 @@ Foam::Istream& Foam::operator>>(Istream& is, LList<LListBase, T>& L)
     {
         if (firstToken.pToken() != token::BEGIN_LIST)
         {
-            FatalIOErrorIn
+            FatalIOErrorInFunction
             (
-                " operator>>(Istream&, LList<LListBase, T>&)",
                 is
             )   << "incorrect first token, '(', found " << firstToken.info()
                 << exit(FatalIOError);
@@ -120,7 +119,7 @@ Foam::Istream& Foam::operator>>(Istream& is, LList<LListBase, T>& L)
     }
     else
     {
-        FatalIOErrorIn(" operator>>(Istream&, LList<LListBase, T>&)", is)
+        FatalIOErrorInFunction(is)
             << "incorrect first token, expected <int> or '(', found "
             << firstToken.info()
             << exit(FatalIOError);

@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -95,7 +95,7 @@ Foam::IOMap<T>::IOMap(const IOobject& io, const Map<T>& map)
 
 
 template<class T>
-Foam::IOMap<T>::IOMap(const IOobject& io, const Xfer<Map<T> >& map)
+Foam::IOMap<T>::IOMap(const IOobject& io, const Xfer<Map<T>>& map)
 :
     regIOobject(io)
 {

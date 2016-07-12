@@ -2,8 +2,8 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-     \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -48,7 +48,7 @@ template<class Type>
 void Foam::openFoamTableReader<Type>::operator()
 (
     const fileName& fName,
-    List<Tuple2<scalar, Type> >& data
+    List<Tuple2<scalar, Type>>& data
 )
 {
     // Read data from file
@@ -60,7 +60,7 @@ template<class Type>
 void Foam::openFoamTableReader<Type>::operator()
 (
     const fileName& fName,
-    List<Tuple2<scalar, List<Tuple2<scalar, Type> > > >& data
+    List<Tuple2<scalar, List<Tuple2<scalar, Type>>>>& data
 )
 {
     // Read data from file

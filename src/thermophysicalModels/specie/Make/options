@@ -1,1 +1,1 @@
-LIB_LIBS = -lconselfcae
+LIB_LIBS = -lOpenFOAM
