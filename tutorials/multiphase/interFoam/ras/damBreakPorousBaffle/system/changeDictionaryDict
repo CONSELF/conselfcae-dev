@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -14,32 +18,29 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dictionaryReplacement
+p_rgh
 {
-    p_rgh
+    boundaryField
     {
-        boundaryField
+        porous_half0
         {
-            porous_half0
-            {
-                type            porousBafflePressure;
-                patchType       cyclic;
-                D               700;
-                I               500;
-                length          1.05;
-                jump            uniform 0;
-                value           uniform 0;
-            }
-            porous_half1
-            {
-                type            porousBafflePressure;
-                patchType       cyclic;
-                D               700;
-                I               500;
-                length          1.05;
-                jump            uniform 0;
-                value           uniform 0;
-            }
+            type            porousBafflePressure;
+            patchType       cyclic;
+            D               700;
+            I               500;
+            length          1.05;
+            jump            uniform 0;
+            value           uniform 0;
+        }
+        porous_half1
+        {
+            type            porousBafflePressure;
+            patchType       cyclic;
+            D               700;
+            I               500;
+            length          1.05;
+            jump            uniform 0;
+            value           uniform 0;
         }
     }
 }

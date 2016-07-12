@@ -1,27 +1,29 @@
 /*--------------------------------*- C++ -*----------------------------------*\
+<<<<<<< HEAD
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
 |  \\    /   O peration     | Version:  3.0.x                                 |  
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
+=======
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Web:      www.OpenFOAM.org
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Description
+    Calculates pressure and viscous forces over specified patches for a case
+    where the solver is compressible (pressure is in units M/(LT^2), e.g. Pa).
+
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 \*---------------------------------------------------------------------------*/
-FoamFile
-{
-    version     2.0;
-    format      ascii;
-    class       dictionary;
-    object      forcesCompressible;
-}
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-forces
-{
-    patches     ( patch1 patch2 );
+patches     (patch1 patch2);
 
-    CofR        (0 0 0);
-    pitchAxis   (0 1 0);
+CofR        (0 0 0);
+pitchAxis   (0 1 0);
 
-    #includeEtc "caseDicts/postProcessing/forces/forcesCompressible.cfg"
-}
+#includeEtc "caseDicts/postProcessing/forces/forcesCompressible.cfg"
 
 // ************************************************************************* //

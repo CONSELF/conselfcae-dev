@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -14,182 +18,179 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dictionaryReplacement
+alphat
 {
-    alphat
+    boundaryField
     {
-        boundaryField
+        cycLeft
         {
-            cycLeft
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
-            cycRight
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
+            type            cyclic;
+            value           uniform 0;
+        }
+        cycRight
+        {
+            type            cyclic;
+            value           uniform 0;
         }
     }
-    epsilon
+}
+epsilon
+{
+    boundaryField
     {
-        boundaryField
+        cycLeft
         {
-            cycLeft
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
-            cycRight
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
+            type            cyclic;
+            value           uniform 0;
+        }
+        cycRight
+        {
+            type            cyclic;
+            value           uniform 0;
         }
     }
-    G
+}
+G
+{
+    boundaryField
     {
-        boundaryField
+        cycLeft
         {
-            cycLeft
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
-            cycRight
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
+            type            cyclic;
+            value           uniform 0;
+        }
+        cycRight
+        {
+            type            cyclic;
+            value           uniform 0;
         }
     }
-    H2O
+}
+H2O
+{
+    boundaryField
     {
-        boundaryField
+        cycLeft
         {
-            cycLeft
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
-            cycRight
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
+            type            cyclic;
+            value           uniform 0;
+        }
+        cycRight
+        {
+            type            cyclic;
+            value           uniform 0;
         }
     }
-    k
+}
+k
+{
+    boundaryField
     {
-        boundaryField
+        cycLeft
         {
-            cycLeft
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
-            cycRight
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
+            type            cyclic;
+            value           uniform 0;
+        }
+        cycRight
+        {
+            type            cyclic;
+            value           uniform 0;
         }
     }
-    nut
+}
+nut
+{
+    boundaryField
     {
-        boundaryField
+        cycLeft
         {
-            cycLeft
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
-            cycRight
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
+            type            cyclic;
+            value           uniform 0;
+        }
+        cycRight
+        {
+            type            cyclic;
+            value           uniform 0;
         }
     }
-    N2
+}
+N2
+{
+    boundaryField
     {
-        boundaryField
+        cycLeft
         {
-            cycLeft
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
-            cycRight
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
+            type            cyclic;
+            value           uniform 0;
+        }
+        cycRight
+        {
+            type            cyclic;
+            value           uniform 0;
         }
     }
-    O2
+}
+O2
+{
+    boundaryField
     {
-        boundaryField
+        cycLeft
         {
-            cycLeft
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
-            cycRight
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
+            type            cyclic;
+            value           uniform 0;
+        }
+        cycRight
+        {
+            type            cyclic;
+            value           uniform 0;
         }
     }
-    p
+}
+p
+{
+    boundaryField
     {
-        boundaryField
+        cycLeft
         {
-            cycLeft
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
-            cycRight
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
+            type            cyclic;
+            value           uniform 0;
+        }
+        cycRight
+        {
+            type            cyclic;
+            value           uniform 0;
         }
     }
-    T
+}
+T
+{
+    boundaryField
     {
-        boundaryField
+        cycLeft
         {
-            cycLeft
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
-            cycRight
-            {
-                type            cyclic;
-                value           uniform 0;
-            }
+            type            cyclic;
+            value           uniform 0;
+        }
+        cycRight
+        {
+            type            cyclic;
+            value           uniform 0;
         }
     }
-    U
+}
+U
+{
+    boundaryField
     {
-        boundaryField
+        cycLeft
         {
-            cycLeft
-            {
-                type            cyclic;
-                value           uniform (0 0 0);
-            }
-            cycRight
-            {
-                type            cyclic;
-                value           uniform (0 0 0);
-            }
+            type            cyclic;
+            value           uniform (0 0 0);
+        }
+        cycRight
+        {
+            type            cyclic;
+            value           uniform (0 0 0);
         }
     }
 }

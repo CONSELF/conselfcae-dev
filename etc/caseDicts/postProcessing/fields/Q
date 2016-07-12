@@ -1,22 +1,29 @@
 /*--------------------------------*- C++ -*----------------------------------*\
+<<<<<<< HEAD
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
 |  \\    /   O peration     | Version:  3.0.x                                 |  
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
-\*---------------------------------------------------------------------------*/
-FoamFile
-{
-    version     2.0;
-    format      ascii;
-    class       dictionary;
-    object      Q.cfg;
-}
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+=======
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Web:      www.OpenFOAM.org
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Description
+    Calculates the second invariant of the velocity gradient tensor.
 
-Q
-{
-    #includeEtc "caseDicts/postProcessing/fields/Q.cfg"
-}
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
+\*---------------------------------------------------------------------------*/
+
+type            Q;
+libs            ("libfieldFunctionObjects.so");
+
+field           U;
+
+executeControl  writeTime;
+writeControl    writeTime;
 
 // ************************************************************************* //

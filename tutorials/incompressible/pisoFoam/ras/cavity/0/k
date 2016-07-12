@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -17,19 +21,19 @@ FoamFile
 
 dimensions      [0 2 -2 0 0 0 0];
 
-internalField   uniform 0.00325;
+internalField   uniform 0.00375;
 
 boundaryField
 {
     movingWall
     {
         type            kqRWallFunction;
-        value           uniform 0.00325;
+        value           uniform 0.00375;
     }
     fixedWalls
     {
         type            kqRWallFunction;
-        value           uniform 0.00325;
+        value           uniform 0.00375;
     }
     frontAndBack
     {

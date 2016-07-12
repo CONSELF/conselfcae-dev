@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -14,15 +18,13 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dictionaryReplacement
+mirrorMeshDict
 {
-    mirrorMeshDict
+    pointAndNormalDict
     {
-        pointAndNormalDict
-        {
-            basePoint       (0 0 0);
-            normalVector    (-1 0 0);
-        }
+        basePoint       (0 0 0);
+        normalVector    (-1 0 0);
     }
 }
+
 // ************************************************************************* //

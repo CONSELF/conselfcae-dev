@@ -22,7 +22,11 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
+<<<<<<< HEAD
     Foam::FUNCTIONOBJECT
+=======
+    Foam::functionObjects::FUNCTIONOBJECT
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 Group
 
@@ -34,7 +38,11 @@ Description
     FUNCTIONOBJECT1
     {
         type           FUNCTIONOBJECT;
+<<<<<<< HEAD
         functionObjectLibs ("libFUNCTIONOBJECTFunctionObject.so");
+=======
+        libs ("libFUNCTIONOBJECTFunctionObject.so");
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
         ...
         wordData       someWord;
         scalarData     1.0;
@@ -42,7 +50,11 @@ Description
     }
     \endverbatim
 
+<<<<<<< HEAD
     \heading Function object usage
+=======
+Usage
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     \table
         Property     | Description               | Required | Default value
         type         | type name: FUNCTIONOBJECT | yes      |
@@ -53,31 +65,44 @@ Description
 
 SourceFiles
     FUNCTIONOBJECT.C
+<<<<<<< HEAD
     IOFUNCTIONOBJECT.H
+=======
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 \*---------------------------------------------------------------------------*/
 
 #ifndef FUNCTIONOBJECT_H
 #define FUNCTIONOBJECT_H
 
+<<<<<<< HEAD
 #include "runTimeSelectionTables.H"
+=======
+#include "fvMeshFunctionObject.H"
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 namespace Foam
 {
+<<<<<<< HEAD
 
 // Forward declaration of classes
 class objectRegistry;
 class dictionary;
 class polyMesh;
 class mapPolyMesh;
+=======
+namespace functionObjects
+{
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 /*---------------------------------------------------------------------------*\
                    Class FUNCTIONOBJECT Declaration
 \*---------------------------------------------------------------------------*/
 
 class FUNCTIONOBJECT
+<<<<<<< HEAD
 {
     // Private data
 
@@ -97,6 +122,21 @@ class FUNCTIONOBJECT
 
             //- label
             label labelData_;
+=======
+:
+    public fvMeshFunctionObject
+{
+    // Private data
+
+        //- word
+        word wordData_;
+
+        //- scalar
+        scalar scalarData_;
+
+        //- label
+        label labelData_;
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 
     // Private Member Functions
@@ -117,6 +157,7 @@ public:
 
     // Constructors
 
+<<<<<<< HEAD
         //- Construct for given objectRegistry and dictionary.
         //  Allow the possibility to load fields from files
         FUNCTIONOBJECT
@@ -125,6 +166,14 @@ public:
             const objectRegistry&,
             const dictionary&,
             const bool loadFromFiles = false
+=======
+        //- Construct from Time and dictionary
+        FUNCTIONOBJECT
+        (
+            const word& name,
+            const Time& runTime,
+            const dictionary& dict
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
         );
 
 
@@ -134,6 +183,7 @@ public:
 
     // Member Functions
 
+<<<<<<< HEAD
         //- Return name of the FUNCTIONOBJECT
         virtual const word& name() const
         {
@@ -162,11 +212,28 @@ public:
         //- Update for changes of mesh
         virtual void movePoints(const polyMesh&)
         {}
+=======
+        //- Read the FUNCTIONOBJECT data
+        virtual bool read(const dictionary&);
+
+        //- Execute, currently does nothing
+        virtual bool execute();
+
+        //- Execute at the final time-loop, currently does nothing
+        virtual bool end();
+
+        //- Write the FUNCTIONOBJECT
+        virtual bool write();
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 };
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+<<<<<<< HEAD
+=======
+} // End namespace functionObjects
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 } // End namespace Foam
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

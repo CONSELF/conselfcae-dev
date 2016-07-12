@@ -1,4 +1,5 @@
 /*--------------------------------*- C++ -*----------------------------------*\
+<<<<<<< HEAD
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
 |  \\    /   O peration     | Version:  3.0.x                                 |  
@@ -19,46 +20,65 @@ surfaces
     #includeEtc "caseDicts/postProcessing/visualization/surfaces.cfg"
 
     fields       ( p U );
+=======
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Web:      www.OpenFOAM.org
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Description
+    Writes out surface files with interpolated field data in VTK format, e.g.
+    cutting planes, iso-surfaces and patch boundary surfaces.
 
-    surfaces
-    (
-        xNormal
-        {
-            $cuttingPlane;
-        }
+    This file includes a selection of example surfaces, each of which the user
+    should configure and/or remove.
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
-        yNormal
-        {
-            $cuttingPlane;
-            pointAndNormalDict
-            {
-                normalVector $y;      // Overrides default normalVector (1 0 0)
-            }                         // $y: macro for (0 1 0)
-        }
+\*---------------------------------------------------------------------------*/
 
-        zNormal
-        {
-            $cuttingPlane;
-            pointAndNormalDict
-            {
-                basePoint    (0 0 2); // Overrides default basePoint (0 0 0)
-                normalVector $z;      // $y: macro for (0 0 1)
-            }
-        }
+#includeEtc "caseDicts/postProcessing/visualization/surfaces.cfg"
 
-        p100
-        {
-            $isosurface;
-            isoField    p;
-            isoValue    100;
-        }
+fields       (p U);
 
-        CAD
+surfaces
+(
+    xNormal
+    {
+        $cuttingPlane;
+    }
+
+    yNormal
+    {
+        $cuttingPlane;
+        pointAndNormalDict
         {
-            $patchSurface;
-            patches     ( CAD );
+            normalVector $y;      // Overrides default normalVector (1 0 0)
+        }                         // $y: macro for (0 1 0)
+    }
+
+    zNormal
+    {
+        $cuttingPlane;
+        pointAndNormalDict
+        {
+            basePoint    (0 0 2); // Overrides default basePoint (0 0 0)
+            normalVector $z;      // $y: macro for (0 0 1)
         }
-    );
-}
+    }
+
+    p100
+    {
+        $isosurface;
+        isoField    p;
+        isoValue    100;
+    }
+
+    CAD
+    {
+        $patchSurface;
+        patches     (CAD);
+    }
+);
 
 // ************************************************************************* //

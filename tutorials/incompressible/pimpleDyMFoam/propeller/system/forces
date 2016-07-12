@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -10,17 +14,15 @@ forces
 {
     type        forces;
 
-    functionObjectLibs ( "libforces.so" );
+    libs ( "libforces.so" );
 
-    outputControl   timeStep;
+    writeControl   timeStep;
     timeInterval    1;
 
     log         yes;
 
     patches     ( "propeller.*" );
-    pName       p;
-    UName       U;
-    rhoName     rhoInf;     // Indicates incompressible
+    rho         rhoInf;     // Indicates incompressible
     log         true;
     rhoInf      1;          // Redundant for incompressible
 

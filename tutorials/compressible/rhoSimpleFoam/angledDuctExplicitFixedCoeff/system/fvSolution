@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -23,10 +27,7 @@ solvers
         tolerance       1e-08;
         relTol          0.05;
         smoother        GaussSeidel;
-        cacheAgglomeration on;
         nCellsInCoarsestLevel 20;
-        agglomerator    faceAreaPair;
-        mergeLevels     1;
     }
 
     U
@@ -57,7 +58,7 @@ solvers
 SIMPLE
 {
     nNonOrthogonalCorrectors 0;
-    rhoMin          0.5;
+    rhoMin          0.4;
     rhoMax          1.5;
 
     residualControl
@@ -66,7 +67,7 @@ SIMPLE
         U               1e-4;
         e               1e-3;
 
-        // possibly check turbulence fields
+        // Possibly check turbulence fields
         "(k|epsilon|omega)" 1e-3;
     }
 }

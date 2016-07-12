@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -14,62 +18,56 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dictionaryReplacement
+boundary
 {
-    boundary
+    minZ
     {
-        minZ
-        {
-            type            patch;
-        }
-        maxZ
-        {
-            type            patch;
-        }
+        type            patch;
     }
-
-    T
+    maxZ
     {
-        internalField   uniform 300;
+        type            patch;
+    }
+}
 
-        boundaryField
+T
+{
+    internalField   uniform 300;
+
+    boundaryField
+    {
+        ".*"
         {
-            ".*"
-            {
-                type            zeroGradient;
-                value           uniform 300;
-            }
+            type            zeroGradient;
+            value           uniform 300;
+        }
 
-            rightSolid_to_topAir
-            {
-                type            compressible::turbulentTemperatureRadCoupledMixed;
-                Tnbr            T;
-                kappa           solidThermo;
-                QrNbr           Qr;
-                Qr              none;
-                kappaName       none;
-                value           uniform 300;
-            }
+        rightSolid_to_topAir
+        {
+            type            compressible::turbulentTemperatureRadCoupledMixed;
+            Tnbr            T;
+            kappaMethod     solidThermo;
+            QrNbr           Qr;
+            Qr              none;
+            value           uniform 300;
+        }
 
-            rightSolid_to_bottomAir
-            {
-                type            compressible::turbulentTemperatureRadCoupledMixed;
-                Tnbr            T;
-                kappa           solidThermo;
-                QrNbr           Qr;
-                Qr              none;
-                kappaName       none;
-                value           uniform 300;
-            }
+        rightSolid_to_bottomAir
+        {
+            type            compressible::turbulentTemperatureRadCoupledMixed;
+            Tnbr            T;
+            kappaMethod     solidThermo;
+            QrNbr           Qr;
+            Qr              none;
+            value           uniform 300;
+        }
 
-            "rightSolid_to_.*"
-            {
-                type            compressible::turbulentTemperatureCoupledBaffleMixed;
-                Tnbr            T;
-                kappa           solidThermo;
-                kappaName       none;
-                value           uniform 300;
-            }
+        "rightSolid_to_.*"
+        {
+            type            compressible::turbulentTemperatureCoupledBaffleMixed;
+            Tnbr            T;
+            kappaMethod     solidThermo;
+            value           uniform 300;
         }
     }
 }

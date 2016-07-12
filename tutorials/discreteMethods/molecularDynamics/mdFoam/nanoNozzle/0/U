@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -22,33 +26,27 @@ boundaryField
 {
     sectionAEnd
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            noSlip;
     }
     sectionCEnd
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            noSlip;
     }
     front
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            noSlip;
     }
     back
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            noSlip;
     }
     top
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            noSlip;
     }
     bottom
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            noSlip;
     }
 }
 

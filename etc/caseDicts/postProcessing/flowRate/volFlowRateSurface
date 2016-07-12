@@ -1,4 +1,5 @@
 /*--------------------------------*- C++ -*----------------------------------*\
+<<<<<<< HEAD
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
 |  \\    /   O peration     | Version:  3.0.x                                 |  
@@ -13,16 +14,24 @@ FoamFile
     object      volFlowRateSurface;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+=======
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Web:      www.OpenFOAM.org
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Description
+    Calculates volumetric flow rate through a specified triangulated surface
+    by interpolating velocity onto the triangles and integrating over the
+    surface area.  Triangles need to be small (<= cell size) for an accurate
+    result.
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
-// This packaged function object interpolates velocity U onto triangles in
-// triSurface file and integrates over the surface area.  Triangles need to
-// be small (<= cell size) for an accurate integration.
+\*---------------------------------------------------------------------------*/
 
-volFlowRateSurface
-{
-    triSurface <triSurfaceFile>;
+triSurface <triSurfaceFile>;
 
-    #includeEtc "caseDicts/postProcessing/flowRate/volFlowRateSurface.cfg"
-}
+#includeEtc "caseDicts/postProcessing/flowRate/volFlowRateSurface.cfg"
 
 // ************************************************************************* //

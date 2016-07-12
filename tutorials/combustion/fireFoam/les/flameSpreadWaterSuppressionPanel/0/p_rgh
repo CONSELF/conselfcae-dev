@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -17,32 +21,20 @@ FoamFile
 
 dimensions      [1 -1 -2 0 0 0 0];
 
-internalField   uniform 101325;
+internalField   uniform 0;
 
 boundaryField
 {
-    outlet
+    "(side|outlet)"
     {
-        type            fixedFluxPressure;
+        type            prghTotalHydrostaticPressure;
+        p0              $internalField;
         value           $internalField;
     }
 
     ground
     {
         type            fixedFluxPressure;
-
-    }
-
-    side
-    {
-        type            totalPressure;
-        U               U;
-        phi             phi;
-        rho             rho;
-        psi             none;
-        gamma           1.4;
-        p0              $internalField;
-        value           $internalField;
     }
 
     inlet

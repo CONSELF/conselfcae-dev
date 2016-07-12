@@ -1,28 +1,29 @@
 /*--------------------------------*- C++ -*----------------------------------*\
+<<<<<<< HEAD
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
 |  \\    /   O peration     | Version:  3.0.x                                 |  
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
+=======
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Web:      www.OpenFOAM.org
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Description
+    Writes out files of streamlines with interpolated field data in VTK format.
+
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 \*---------------------------------------------------------------------------*/
-FoamFile
-{
-    version     2.0;
-    format      ascii;
-    class       dictionary;
-    object      streamlines.cfg;
-}
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-streamlines
-{
-    nLines  20;
-    start   (0 -4 1e-06); // Ensure that points do not coincide with
-    end     (0  4 1e-06); // mesh faces, but instead lie inside cells
-    fields  ( U p );
+nLines  20;
+start   (0 -4 1e-06); // Ensure that points do not coincide with
+end     (0  4 1e-06); // mesh faces, but instead lie inside cells
+fields  (U p);
 
-    // Must be last entry
-    #includeEtc "caseDicts/postProcessing/visualization/streamlines.cfg"
-}
+// Must be last entry
+#includeEtc "caseDicts/postProcessing/visualization/streamlines.cfg"
 
 // ************************************************************************* //

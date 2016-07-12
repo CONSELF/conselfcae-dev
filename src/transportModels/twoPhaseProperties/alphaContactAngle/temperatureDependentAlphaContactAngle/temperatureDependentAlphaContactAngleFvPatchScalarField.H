@@ -27,24 +27,39 @@ Class
 Description
     Temperature-dependent constant alphaContactAngle scalar boundary condition.
 
+<<<<<<< HEAD
     \heading Patch usage
 
     \table
         Property     | Description             | Required    | Default value
         TName        | Temperature field name  | no          | T
+=======
+Usage
+    \table
+        Property     | Description             | Required    | Default value
+        T            | Temperature field name  | no          | T
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
         theta0       | Contact angle data      | yes         |
     \endtable
 
     Example of the boundary condition specification:
     \verbatim
+<<<<<<< HEAD
     myPatch
+=======
+    <patchName>
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     {
         type            temperatureDependentAlphaContactAngle;
         theta0          constant 60;
     }
     \endverbatim
 
+<<<<<<< HEAD
 SeeAlso
+=======
+See also
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     Foam::alphaContactAngleFvPatchScalarField
     Foam::constantAlphaContactAngleFvPatchScalarField
 
@@ -57,7 +72,11 @@ SourceFiles
 #define temperatureDependentAlphaContactAngleFvPatchScalarField_H
 
 #include "alphaContactAngleFvPatchScalarField.H"
+<<<<<<< HEAD
 #include "DataEntry.H"
+=======
+#include "Function1.H"
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -78,7 +97,11 @@ class temperatureDependentAlphaContactAngleFvPatchScalarField
         word TName_;
 
         //- Equilibrium contact angle table
+<<<<<<< HEAD
         autoPtr<DataEntry<scalar> > theta0_;
+=======
+        autoPtr<Function1<scalar>> theta0_;
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 
 public:

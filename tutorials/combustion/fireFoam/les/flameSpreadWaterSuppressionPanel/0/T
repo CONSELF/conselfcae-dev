@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -52,10 +56,9 @@ boundaryField
         pyrolysisRegion pyrolysisRegion;
         filmRegion      filmRegion;
         Tnbr            T;
-        kappa           fluidThermo;
+        kappaMethod     fluidThermo;
         QrNbr           none;
         Qr              Qr;
-        kappaName       none;
         filmDeltaDry    0.0;
         filmDeltaWet    2e-4;
         value           $internalField;

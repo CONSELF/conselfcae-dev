@@ -1,33 +1,35 @@
 /*--------------------------------*- C++ -*----------------------------------*\
+<<<<<<< HEAD
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
 |  \\    /   O peration     | Version:  3.0.x                                 |  
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
+=======
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Web:      www.OpenFOAM.org
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Description
+    Writes out values of fields at a cloud of points, interpolated to
+    specified boundary patches.
+
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 \*---------------------------------------------------------------------------*/
-FoamFile
-{
-    version     2.0;
-    format      ascii;
-    class       dictionary;
-    object      boundaryCloud;
-}
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-boundaryCloud
-{
-    fields ( p U );
+fields (p U);
 
-    points
-    (
-        (0 0 0)
-    );
+points
+(
+    (0 0 0)
+);
 
-    maxDistance 0.1;
+maxDistance 0.1;
 
-    patches     (".*");
+patches     (".*");
 
-    #includeEtc "caseDicts/postProcessing/probes/boundaryCloud.cfg"
-}
+#includeEtc "caseDicts/postProcessing/probes/boundaryCloud.cfg"
 
 // ************************************************************************* //

@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -57,7 +61,7 @@ PIMPLE
     nNonOrthogonalCorrectors 0;
     consistent          yes;
 
-    rhoMin          0.5;
+    rhoMin          0.4;
     rhoMax          2.0;
 
     residualControl
@@ -69,7 +73,7 @@ PIMPLE
         }
     }
 
-    turbOnFinalIterOnly off;
+    turbOnFinalIterOnly no;
 }
 
 relaxationFactors

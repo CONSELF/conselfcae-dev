@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -10,6 +14,7 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
+    location    "system";
     object      fvSolution;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -23,21 +28,16 @@ solvers
         relTol          0.05;
 
         smoother        GaussSeidel;
-        nPreSweeps      0;
-        nPostSweeps     2;
 
-        cacheAgglomeration true;
 
         nCellsInCoarsestLevel 50;
-        agglomerator    faceAreaPair;
-        mergeLevels     1;
-    };
+    }
 
     pFinal
     {
         $p;
         relTol          0;
-    };
+    }
 
     "(U|k|B|nuTilda)"
     {
@@ -45,7 +45,7 @@ solvers
         smoother        symGaussSeidel;
         tolerance       1e-7;
         relTol          0;
-    };
+    }
 }
 
 PISO

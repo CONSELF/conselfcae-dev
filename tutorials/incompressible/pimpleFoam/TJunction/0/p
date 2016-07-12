@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -23,18 +27,11 @@ boundaryField
     inlet
     {
         type            uniformTotalPressure;
-        pressure        table
+        p0              table
         (
             (0 10)
             (1 40)
         );
-        p0              40; // only used for restarts
-        U               U;
-        phi             phi;
-        rho             none;
-        psi             none;
-        gamma           1;
-        value           uniform 40;
     }
 
     outlet1

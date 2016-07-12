@@ -2,7 +2,11 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
+<<<<<<< HEAD
     \\  /    A nd           | Copyright (C) 2012-2015 OpenFOAM Foundation
+=======
+    \\  /    A nd           | Copyright (C) 2012-2016 OpenFOAM Foundation
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -137,7 +141,7 @@ void Foam::porosityModel::transformModelData()
 {
     if (!mesh_.upToDatePoints(*this))
     {
-        calcTranformModelData();
+        calcTransformModelData();
 
         // set model up-to-date wrt points
         mesh_.setUpToDatePoints(*this);
@@ -154,11 +158,11 @@ Foam::tmp<Foam::vectorField> Foam::porosityModel::porosityModel::force
 {
     transformModelData();
 
-    tmp<vectorField> tforce(new vectorField(U.size(), vector::zero));
+    tmp<vectorField> tforce(new vectorField(U.size(), Zero));
 
     if (!cellZoneIDs_.empty())
     {
-        this->calcForce(U, rho, mu, tforce());
+        this->calcForce(U, rho, mu, tforce.ref());
     }
 
     return tforce;

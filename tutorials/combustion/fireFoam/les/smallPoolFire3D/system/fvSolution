@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -31,10 +35,6 @@ solvers
         tolerance           1e-6;
         relTol              0.1;
         smoother            GaussSeidel;
-        cacheAgglomeration  true;
-        nCellsInCoarsestLevel   10;
-        agglomerator    faceAreaPair;
-        mergeLevels     1;
     };
 
     p_rghFinal
@@ -43,6 +43,11 @@ solvers
         tolerance           1e-6;
         relTol              0;
     };
+
+    ph_rgh
+    {
+        $p_rgh;
+    }
 
 
     "(U|Yi|k|h)"
@@ -67,12 +72,7 @@ solvers
         tolerance           1e-4;
         relTol              0;
         smoother            symGaussSeidel;
-        cacheAgglomeration  true;
-        nCellsInCoarsestLevel   10;
-        agglomerator        faceAreaPair;
-        mergeLevels         1;
         maxIter             1;
-        nPreSweeps          0;
         nPostSweeps         1;
     }
 
@@ -92,6 +92,9 @@ PIMPLE
     nOuterCorrectors  1;
     nCorrectors       2;
     nNonOrthogonalCorrectors 0;
+
+    hydrostaticInitialization yes;
+    nHydrostaticCorrectors 5;
 }
 
 relaxationFactors

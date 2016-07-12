@@ -24,18 +24,33 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "FUNCTIONOBJECT.H"
+<<<<<<< HEAD
 #include "dictionary.H"
+=======
+#include "Time.H"
+#include "fvMesh.H"
+#include "addToRunTimeSelectionTable.H"
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 
 namespace Foam
 {
+<<<<<<< HEAD
 defineTypeNameAndDebug(FUNCTIONOBJECT, 0);
+=======
+namespace functionObjects
+{
+    defineTypeNameAndDebug(FUNCTIONOBJECT, 0);
+    addToRunTimeSelectionTable(functionObject, FUNCTIONOBJECT, dictionary);
+}
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 }
 
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
+<<<<<<< HEAD
 Foam::FUNCTIONOBJECT::FUNCTIONOBJECT
 (
     const word& name,
@@ -46,6 +61,16 @@ Foam::FUNCTIONOBJECT::FUNCTIONOBJECT
 :
     name_(name),
     obr_(obr),
+=======
+Foam::functionObjects::FUNCTIONOBJECT::FUNCTIONOBJECT
+(
+    const word& name,
+    const Time& runTime,
+    const dictionary& dict
+)
+:
+    fvMeshFunctionObject(name, runTime, dict),
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     wordData_(dict.lookupOrDefault<word>("wordData", "defaultWord")),
     scalarData_(readScalar(dict.lookup("scalarData"))),
     labelData_(readLabel(dict.lookup("labelData")))
@@ -56,17 +81,26 @@ Foam::FUNCTIONOBJECT::FUNCTIONOBJECT
 
 // * * * * * * * * * * * * * * * * Destructor  * * * * * * * * * * * * * * * //
 
+<<<<<<< HEAD
 Foam::FUNCTIONOBJECT::~FUNCTIONOBJECT()
+=======
+Foam::functionObjects::FUNCTIONOBJECT::~FUNCTIONOBJECT()
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 {}
 
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
+<<<<<<< HEAD
 void Foam::FUNCTIONOBJECT::read(const dictionary& dict)
+=======
+bool Foam::functionObjects::FUNCTIONOBJECT::read(const dictionary& dict)
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 {
     dict.readIfPresent("wordData", wordData_);
     dict.lookup("scalarData") >> scalarData_;
     dict.lookup("labelData") >> labelData_;
+<<<<<<< HEAD
 }
 
 
@@ -90,6 +124,28 @@ void Foam::FUNCTIONOBJECT::timeSet()
 
 void Foam::FUNCTIONOBJECT::write()
 {
+=======
+
+    return true;
+}
+
+
+bool Foam::functionObjects::FUNCTIONOBJECT::execute()
+{
+    return true;
+}
+
+
+bool Foam::functionObjects::FUNCTIONOBJECT::end()
+{
+    return true;
+}
+
+
+bool Foam::functionObjects::FUNCTIONOBJECT::write()
+{
+    return true;
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 }
 
 

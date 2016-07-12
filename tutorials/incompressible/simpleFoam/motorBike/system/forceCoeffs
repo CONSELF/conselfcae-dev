@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -10,15 +14,15 @@ forceCoeffs1
 {
     type        forceCoeffs;
 
-    functionObjectLibs ( "libforces.so" );
+    libs ( "libforces.so" );
 
-    outputControl   timeStep;
+    writeControl   timeStep;
     timeInterval    1;
 
     log         yes;
 
-    patches     ( motorBikeGroup );
-    rhoName     rhoInf;      // Indicates incompressible
+    patches     (motorBikeGroup);
+    rho         rhoInf;      // Indicates incompressible
     rhoInf      1;           // Redundant for incompressible
     liftDir     (0 0 1);
     dragDir     (1 0 0);
@@ -27,14 +31,14 @@ forceCoeffs1
     magUInf     20;
     lRef        1.42;        // Wheelbase length
     Aref        0.75;        // Estimated
-/*
+    /*
     binData
     {
         nBin        20;          // output data into 20 bins
         direction   (1 0 0);     // bin direction
         cumulative  yes;
     }
-*/
+    */
 }
 
 

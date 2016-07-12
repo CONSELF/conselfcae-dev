@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -50,13 +54,11 @@ functions
     forces
     {
         type                forces;
-        functionObjectLibs  ( "libforces.so" );
-        outputControl       timeStep;
-        outputInterval      10;
+        libs  ( "libforces.so" );
+        writeControl        timeStep;
+        writeInterval       10;
         patches             (wing);
-        pName               p;
-        UName               U;
-        rhoName             rhoInf;
+        rho                 rhoInf;
         log                 true;
         rhoInf              1;
         CofR                (0.4974612746 -0.01671895744 0.125);

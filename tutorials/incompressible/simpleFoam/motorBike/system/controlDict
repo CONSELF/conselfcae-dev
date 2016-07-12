@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -32,13 +36,6 @@ writeInterval   100;
 
 purgeWrite      0;
 
-
-//- Uncomment to have regular (every 2 hours of run time) restart files
-//secondaryWriteControl    cpuTime; // runtime
-//secondaryWriteInterval   7200;    // seconds
-//secondaryPurgeWrite      1;       // keep all but last dump
-
-
 writeFormat     binary;
 
 writePrecision  6;
@@ -53,7 +50,6 @@ runTimeModifiable true;
 
 functions
 {
-    #include "readFields"
     #include "streamLines"
     #include "wallBoundedStreamLines"
     #include "cuttingPlane"

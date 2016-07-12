@@ -22,9 +22,8 @@ EXE_INC = \
     -I$(LIB_SRC)/surfMesh/lnInclude \
     -I$(LIB_SRC)/triSurface/lnInclude \
     -I$(LIB_SRC)/sampling/lnInclude \
-    -I$(LIB_SRC)/mesh/autoMesh/lnInclude \
-    -IPrintTable \
-    -I/usr/include
+    -I$(LIB_SRC)/mesh/snappyHexMesh/lnInclude \
+    -IPrintTable
 
 LIB_LIBS = \
     ${CGAL_LIBS} \
@@ -35,4 +34,4 @@ LIB_LIBS = \
     -ldynamicMesh \
     -lsurfMesh \
     -lsampling \
-    -lautoMesh
+    -lsnappyHexMesh

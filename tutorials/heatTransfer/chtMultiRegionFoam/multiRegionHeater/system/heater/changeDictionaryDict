@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -14,60 +18,55 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dictionaryReplacement
+boundary
 {
-    boundary
+    minY
     {
+        type            patch;
+    }
+    minZ
+    {
+        type            patch;
+    }
+    maxZ
+    {
+        type            patch;
+    }
+}
+
+T
+{
+    internalField   uniform 300;
+
+    boundaryField
+    {
+        ".*"
+        {
+            type            zeroGradient;
+            value           uniform 300;
+        }
+        "heater_to_.*"
+        {
+            type            compressible::turbulentTemperatureCoupledBaffleMixed;
+            Tnbr            T;
+            kappaMethod     solidThermo;
+            value           uniform 300;
+        }
+
+        heater_to_leftSolid
+        {
+            type            compressible::turbulentTemperatureCoupledBaffleMixed;
+            Tnbr            T;
+            kappaMethod     solidThermo;
+            thicknessLayers (1e-3);
+            kappaLayers     (5e-4);
+            value           uniform 300;
+        }
+
         minY
         {
-            type            patch;
-        }
-        minZ
-        {
-            type            patch;
-        }
-        maxZ
-        {
-            type            patch;
-        }
-    }
-
-    T
-    {
-        internalField   uniform 300;
-
-        boundaryField
-        {
-            ".*"
-            {
-                type            zeroGradient;
-                value           uniform 300;
-            }
-            "heater_to_.*"
-            {
-                type            compressible::turbulentTemperatureCoupledBaffleMixed;
-                Tnbr            T;
-                kappa           solidThermo;
-                kappaName       none;
-                value           uniform 300;
-            }
-
-            heater_to_leftSolid
-            {
-                type            compressible::turbulentTemperatureCoupledBaffleMixed;
-                Tnbr            T;
-                kappa           solidThermo;
-                kappaName       none;
-                thicknessLayers (1e-3);
-                kappaLayers     (5e-4);
-                value           uniform 300;
-            }
-
-            minY
-            {
-                type            fixedValue;
-                value           uniform 500;
-            }
+            type            fixedValue;
+            value           uniform 500;
         }
     }
 }

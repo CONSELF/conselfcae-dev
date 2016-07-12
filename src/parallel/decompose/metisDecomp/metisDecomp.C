@@ -2,7 +2,11 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
+<<<<<<< HEAD
     \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+=======
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -61,18 +65,18 @@ Foam::label Foam::metisDecomp::decompose
 
     label numCells = xadj.size()-1;
 
-    // decomposition options
+    // Decomposition options
     List<label> options(METIS_NOPTIONS);
     METIS_SetDefaultOptions(options.begin());
 
-    // processor weights initialised with no size, only used if specified in
+    // Processor weights initialised with no size, only used if specified in
     // a file
     Field<scalar> processorWeights;
 
-    // cell weights (so on the vertices of the dual)
+    // Cell weights (so on the vertices of the dual)
     List<label> cellWeights;
 
-    // face weights (so on the edges of the dual)
+    // Face weights (so on the edges of the dual)
     List<label> faceWeights;
 
 
@@ -94,6 +98,7 @@ Foam::label Foam::metisDecomp::decompose
                 << " does not equal number of cells " << numCells
                 << exit(FatalError);
         }
+
         // Convert to integers.
         cellWeights.setSize(cWeights.size());
         forAll(cellWeights, i)
@@ -108,6 +113,7 @@ Foam::label Foam::metisDecomp::decompose
     {
         const dictionary& metisCoeffs =
             decompositionDict_.subDict("metisCoeffs");
+
         word weightsFile;
 
         if (metisCoeffs.readIfPresent("method", method))
@@ -153,6 +159,7 @@ Foam::label Foam::metisDecomp::decompose
                     << exit(FatalError);
             }
         }
+<<<<<<< HEAD
 
         //if (metisCoeffs.readIfPresent("cellWeightsFile", weightsFile))
         //{
@@ -189,6 +196,17 @@ Foam::label Foam::metisDecomp::decompose
     finalDecomp.setSize(numCells);
 
     // output: number of cut edges
+=======
+    }
+
+    label ncon = 1;
+    label nProcs = nProcessors_;
+
+    // Output: cell -> processor addressing
+    finalDecomp.setSize(numCells);
+
+    // Output: number of cut edges
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     label edgeCut = 0;
 
     if (method == "recursive")
@@ -214,7 +232,7 @@ Foam::label Foam::metisDecomp::decompose
     {
         METIS_PartGraphKway
         (
-            &numCells,         // num vertices in graph
+            &numCells,          // num vertices in graph
             &ncon,              // num balancing constraints
             const_cast<List<label>&>(xadj).begin(),   // indexing into adjncy
             const_cast<List<label>&>(adjncy).begin(), // neighbour info

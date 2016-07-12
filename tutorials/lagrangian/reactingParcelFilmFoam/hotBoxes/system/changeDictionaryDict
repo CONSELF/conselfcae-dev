@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -14,57 +18,54 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dictionaryReplacement
+T
 {
-    T
+    boundaryField
     {
-        boundaryField
+        wallFilm
         {
-            wallFilm
-            {
-                type            mapped;
-                fieldName       Tsf;
-                average         300;
-                setAverage      no;
-                value           uniform 300;
-            }
+            type            mapped;
+            field       Tsf;
+            average         300;
+            setAverage      no;
+            value           uniform 300;
         }
     }
+}
 
-    U
+U
+{
+    boundaryField
     {
-        boundaryField
+        wallFilm
         {
-            wallFilm
-            {
-                type            mapped;
-                fieldName       Usf;
-                average         (0 0 0);
-                setAverage      no;
-                value           uniform (0 0 0);
-            }
+            type            mapped;
+            field       Usf;
+            average         (0 0 0);
+            setAverage      no;
+            value           uniform (0 0 0);
         }
     }
+}
 
-    "nut"
+"nut"
+{
+    boundaryField
     {
-        boundaryField
+        wallFilm
         {
-            wallFilm
-            {
-                value           uniform 0;
-            }
+            value           uniform 0;
         }
     }
+}
 
-    "alphat"
+"alphat"
+{
+    boundaryField
     {
-        boundaryField
+        wallFilm
         {
-            wallFilm
-            {
-                value           uniform 0;
-            }
+            value           uniform 0;
         }
     }
 }

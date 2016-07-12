@@ -2,7 +2,11 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
+<<<<<<< HEAD
     \\  /    A nd           | Copyright (C) 2011-2015 OpenFOAM Foundation
+=======
+    \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -39,9 +43,9 @@ waveDisplacementPointPatchVectorField
 )
 :
     fixedValuePointPatchField<vector>(p, iF),
-    amplitude_(vector::zero),
+    amplitude_(Zero),
     omega_(0.0),
-    waveNumber_(vector::zero)
+    waveNumber_(Zero)
 {}
 
 
@@ -56,7 +60,11 @@ waveDisplacementPointPatchVectorField
     fixedValuePointPatchField<vector>(p, iF, dict),
     amplitude_(dict.lookup("amplitude")),
     omega_(readScalar(dict.lookup("omega"))),
+<<<<<<< HEAD
     waveNumber_(dict.lookupOrDefault<vector>("waveNumber", vector::zero))
+=======
+    waveNumber_(dict.lookupOrDefault<vector>("waveNumber", Zero))
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 {
     if (!dict.found("value"))
     {
@@ -104,7 +112,7 @@ void Foam::waveDisplacementPointPatchVectorField::updateCoeffs()
         return;
     }
 
-    const polyMesh& mesh = this->dimensionedInternalField().mesh()();
+    const polyMesh& mesh = this->internalField().mesh()();
     const Time& t = mesh.time();
 
     const scalarField points( waveNumber_ & patch().localPoints());

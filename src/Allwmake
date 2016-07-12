@@ -21,7 +21,11 @@ wmakeCheckPwd "$WM_PROJECT_DIR/src" || {
 set -x
 
 # Update OpenFOAM version strings if required
+<<<<<<< HEAD
 wmakePrintBuild -check || /bin/rm -f conselfcae/Make/*/global.? 2>/dev/null
+=======
+wmakePrintBuild -check || wrmo OpenFOAM/global/global.o 2>/dev/null
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 
 wmakeLnInclude conselfcae
 wmakeLnInclude OSspecific/${WM_OSTYPE:-POSIX}
@@ -41,15 +45,17 @@ wmake $targetType edgeMesh
 parallel/decompose/AllwmakeLnInclude
 dummyThirdParty/Allwmake $targetType $*
 
+wmakeLnInclude fvOptions
+
 wmake $targetType finiteVolume
 wmake $targetType lagrangian/basic
 wmake $targetType lagrangian/distributionModels
 wmake $targetType genericPatchFields
 
 wmake $targetType conversion
-wmake $targetType sampling
 wmake $targetType mesh/extrudeModel
 wmake $targetType dynamicMesh
+wmake $targetType sampling
 wmake $targetType dynamicFvMesh
 wmake $targetType topoChangerFvMesh
 
@@ -74,9 +80,11 @@ wmake $targetType engine
 wmake $targetType fvOptions
 wmake $targetType regionCoupled
 
-postProcessing/Allwmake $targetType $*
+functionObjects/Allwmake $targetType $*
 
 wmake $targetType sixDoFRigidBodyMotion
+wmake $targetType rigidBodyDynamics
+wmake $targetType rigidBodyMeshMotion
 
 
-# ----------------------------------------------------------------- end-of-file
+#------------------------------------------------------------------------------

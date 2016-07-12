@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -21,19 +25,26 @@ dynamicRefineFvMeshCoeffs
 {
     // How often to refine
     refineInterval  1;
+
     // Field to be refinement on
     field           alpha.water;
+
     // Refine field inbetween lower..upper
     lowerRefineLevel 0.001;
     upperRefineLevel 0.999;
+
     // If value < unrefineLevel unrefine
     unrefineLevel   10;
+
     // Have slower than 2:1 refinement
     nBufferLayers   1;
+
     // Refine cells only up to maxRefinement levels
     maxRefinement   2;
+
     // Stop refinement if maxCells reached
     maxCells        200000;
+
     // Flux field and corresponding velocity field. Fluxes on changed
     // faces get recalculated by interpolating the velocity. Use 'none'
     // on surfaceScalarFields that do not need to be reinterpolated.
@@ -45,6 +56,7 @@ dynamicRefineFvMeshCoeffs
         (alphaPhi none)
         (ghf none)
     );
+
     // Write the refinement level as a volScalarField
     dumpLevel       true;
 }

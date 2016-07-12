@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -45,16 +49,12 @@ boundaryField
     inlet
     {
         type                totalFlowRateAdvectiveDiffusive;
-        phi                 phi;
-        rho                 rho;
         value               uniform 1;
     }
 
     region0_to_pyrolysisRegion_coupledWall
     {
         type                totalFlowRateAdvectiveDiffusive;
-        phi                 phi;
-        rho                 rho;
         massFluxFraction    1.0;
         value               $internalField;
     }

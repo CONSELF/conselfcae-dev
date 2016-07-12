@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -43,7 +47,7 @@ boundaryField
         sampleMode      nearestPatchFace;
         samplePatch     region0_to_panelRegion_fLeft_zone;
         offset          (0 0 0);
-        fieldName       Qr;
+        field       Qr;
         setAverage      no;
         average         0;
         value           uniform 0;
@@ -56,7 +60,7 @@ boundaryField
         sampleMode      nearestPatchFace;
         samplePatch     region0_to_panelRegion_fRight_zone;
         offset          (0 0 0);
-        fieldName       Qr;
+        field       Qr;
         setAverage      no;
         average         0;
         value           uniform 0;

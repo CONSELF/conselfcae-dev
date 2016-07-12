@@ -25,7 +25,7 @@ refineMeshByCellSet()
    done
 }
 
-cp -r 0.org 0
+cp -r 0.orig 0
 
 runApplication blockMesh
 refineMeshByCellSet 1 2 3
@@ -34,7 +34,7 @@ refineMeshByCellSet 1 2 3
 #runApplication mapFields ../throttle -sourceTime latestTime
 
 runApplication decomposePar
-runParallel $application 4
+runParallel $application
 runApplication reconstructPar
 
-# ----------------------------------------------------------------- end-of-file
+#------------------------------------------------------------------------------

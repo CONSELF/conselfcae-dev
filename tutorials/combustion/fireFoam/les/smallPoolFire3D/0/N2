@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -21,6 +25,7 @@ internalField   uniform 0.76699;
 
 boundaryField
 {
+<<<<<<< HEAD
     outlet
     {
         type            calculated;
@@ -30,16 +35,32 @@ boundaryField
     {
         type            calculated;
         value           uniform 0;
+=======
+    "(outlet|sides)"
+    {
+        type            calculated;
+        value           $internalField;
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     }
+
     base
     {
         type            calculated;
+<<<<<<< HEAD
         value           uniform 0;
+=======
+        value           $internalField;
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     }
+
     inlet
     {
         type            calculated;
+<<<<<<< HEAD
         value           uniform 0;
+=======
+        value           $internalField;
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
     }
 }
 

@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -17,19 +21,19 @@ FoamFile
 
 application     potentialFoam;
 
-startFrom       startTime;
+startFrom        latestTime;
 
 startTime       0;
 
-stopAt          endTime;
+stopAt           nextWrite;
 
 endTime         1;
 
 deltaT          1;
 
-writeControl    timeStep;
+writeControl     timeStep;
 
-writeInterval   1;
+writeInterval    1;
 
 purgeWrite      0;
 
@@ -47,20 +51,23 @@ runTimeModifiable true;
 
 functions
 {
-    difference
+    error
     {
         // Load the library containing the 'coded' functionObject
-        functionObjectLibs ("libutilityFunctionObjects.so");
+        libs ("libutilityFunctionObjects.so");
+
         type coded;
+
         // Name of on-the-fly generated functionObject
-        redirectType error;
-        code
+        name error;
+
+        codeEnd
         #{
             // Lookup U
             Info<< "Looking up field U\n" << endl;
             const volVectorField& U = mesh().lookupObject<volVectorField>("U");
 
-            Info<< "Reading inlet velocity  uInfX\n" << endl;
+            Info<< "Reading inlet velocity uInfX\n" << endl;
 
             scalar ULeft = 0.0;
             label leftI = mesh().boundaryMesh().findPatchID("left");

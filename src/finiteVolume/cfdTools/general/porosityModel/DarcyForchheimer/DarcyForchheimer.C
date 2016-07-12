@@ -2,7 +2,11 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
+<<<<<<< HEAD
     \\  /    A nd           | Copyright (C) 2012-2015 OpenFOAM Foundation
+=======
+    \\  /    A nd           | Copyright (C) 2012-2016 OpenFOAM Foundation
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -63,7 +67,7 @@ Foam::porosityModels::DarcyForchheimer::DarcyForchheimer
     adjustNegativeResistance(dXYZ_);
     adjustNegativeResistance(fXYZ_);
 
-    calcTranformModelData();
+    calcTransformModelData();
 }
 
 
@@ -75,16 +79,16 @@ Foam::porosityModels::DarcyForchheimer::~DarcyForchheimer()
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
-void Foam::porosityModels::DarcyForchheimer::calcTranformModelData()
+void Foam::porosityModels::DarcyForchheimer::calcTransformModelData()
 {
     if (coordSys_.R().uniform())
     {
-        forAll (cellZoneIDs_, zoneI)
+        forAll(cellZoneIDs_, zoneI)
         {
             D_[zoneI].setSize(1);
             F_[zoneI].setSize(1);
 
-            D_[zoneI][0] = tensor::zero;
+            D_[zoneI][0] = Zero;
             D_[zoneI][0].xx() = dXYZ_.value().x();
             D_[zoneI][0].yy() = dXYZ_.value().y();
             D_[zoneI][0].zz() = dXYZ_.value().z();
@@ -92,7 +96,7 @@ void Foam::porosityModels::DarcyForchheimer::calcTranformModelData()
             D_[zoneI][0] = coordSys_.R().transformTensor(D_[zoneI][0]);
 
             // leading 0.5 is from 1/2*rho
-            F_[zoneI][0] = tensor::zero;
+            F_[zoneI][0] = Zero;
             F_[zoneI][0].xx() = 0.5*fXYZ_.value().x();
             F_[zoneI][0].yy() = 0.5*fXYZ_.value().y();
             F_[zoneI][0].zz() = 0.5*fXYZ_.value().z();
@@ -111,13 +115,13 @@ void Foam::porosityModels::DarcyForchheimer::calcTranformModelData()
 
             forAll(cells, i)
             {
-                D_[zoneI][i] = tensor::zero;
+                D_[zoneI][i] = Zero;
                 D_[zoneI][i].xx() = dXYZ_.value().x();
                 D_[zoneI][i].yy() = dXYZ_.value().y();
                 D_[zoneI][i].zz() = dXYZ_.value().z();
 
                 // leading 0.5 is from 1/2*rho
-                F_[zoneI][i] = tensor::zero;
+                F_[zoneI][i] = Zero;
                 F_[zoneI][i].xx() = 0.5*fXYZ_.value().x();
                 F_[zoneI][i].yy() = 0.5*fXYZ_.value().y();
                 F_[zoneI][i].zz() = 0.5*fXYZ_.value().z();
@@ -130,7 +134,7 @@ void Foam::porosityModels::DarcyForchheimer::calcTranformModelData()
         }
     }
 
-    if (debug && mesh_.time().outputTime())
+    if (debug && mesh_.time().writeTime())
     {
         volTensorField Dout
         (
@@ -143,7 +147,7 @@ void Foam::porosityModels::DarcyForchheimer::calcTranformModelData()
                 IOobject::NO_WRITE
             ),
             mesh_,
-            dimensionedTensor("0", dXYZ_.dimensions(), tensor::zero)
+            dimensionedTensor("0", dXYZ_.dimensions(), Zero)
         );
         volTensorField Fout
         (
@@ -156,7 +160,7 @@ void Foam::porosityModels::DarcyForchheimer::calcTranformModelData()
                 IOobject::NO_WRITE
             ),
             mesh_,
-            dimensionedTensor("0", fXYZ_.dimensions(), tensor::zero)
+            dimensionedTensor("0", fXYZ_.dimensions(), Zero)
         );
 
         UIndirectList<tensor>(Dout, mesh_.cellZones()[cellZoneIDs_[0]]) = D_[0];
@@ -177,7 +181,7 @@ void Foam::porosityModels::DarcyForchheimer::calcForce
 ) const
 {
     scalarField Udiag(U.size(), 0.0);
-    vectorField Usource(U.size(), vector::zero);
+    vectorField Usource(U.size(), Zero);
     const scalarField& V = mesh_.V();
 
     apply(Udiag, Usource, V, rho, mu, U);

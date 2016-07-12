@@ -5,8 +5,12 @@ cd ${0%/*} || exit 1    # Run from this directory
 . $WM_PROJECT_DIR/bin/tools/RunFunctions
 
 runApplication blockMesh
+<<<<<<< HEAD
 cp -r 0.org 0
+=======
+cp -r 0.orig 0
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 runApplication setFields
 runApplication $(getApplication)
 
-# ----------------------------------------------------------------- end-of-file
+#------------------------------------------------------------------------------

@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -56,12 +60,10 @@ functions
     forces
     {
         type            forces;
-        functionObjectLibs ("libforces.so");
-        outputControl   outputTime;
+        libs ("libforces.so");
+        writeControl    writeTime;
         patches         (floatingObject);
-        pName           p;
-        UName           U;
-        rhoName         rhoInf;
+        rho             rhoInf;
         log             yes;
         rhoInf          1000;
         CofR            (0 0 0);
@@ -69,16 +71,15 @@ functions
 
     poolHeight
     {
-        type            faceSource;
-        functionObjectLibs ("libfieldFunctionObjects.so");
-        enabled         yes;
-        outputControl   timeStep;
-        outputInterval  1;
+        type            surfaceRegion;
+        libs ("libfieldFunctionObjects.so");
+        writeControl   timeStep;
+        writeInterval  1;
         log             yes;
         writeTotalArea  no;
-        valueOutput     no;
-        source          faceZone;
-        sourceName      f0;
+        writeFields     no;
+        regionType      faceZone;
+        name            f0;
         operation       areaAverage;
         fields
         (

@@ -1,7 +1,11 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+<<<<<<< HEAD
 |  \\    /   O peration     | Version:  3.0.x                                 |
+=======
+|  \\    /   O peration     | Version:  4.x                                   |
+>>>>>>> 90e2f8d87bcd3a8588545c2de68a62d5b5c54a99
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -48,16 +52,15 @@ runTimeModifiable yes;
 
 functions
 {
-    faceSource1
+    surfaceRegion1
     {
-        type            faceSource;
-        functionObjectLibs ("libfieldFunctionObjects.so");
-        enabled         yes;
-        outputControl   outputTime;
+        type            surfaceRegion;
+        libs            ("libfieldFunctionObjects.so");
+        writeControl    writeTime;
         log             yes;
-        valueOutput     no;
-        source          patch;
-        sourceName      outlet;
+        writeFields     no;
+        regionType      patch;
+        name            outlet;
         operation       weightedAverage;
         weightField     phi;
         fields
