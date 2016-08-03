@@ -1,0 +1,39 @@
+#---------------------------------*- sh -*-------------------------------------
+# =========                 |
+# \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+#  \\    /   O peration     |
+#   \\  /    A nd           | Copyright (C) 2016 CONSELF srl
+#    \\/     M anipulation  |
+#------------------------------------------------------------------------------
+
+#!/bin/sh
+
+. $CONSELFcaeSRC/bin/tools/RunFunctions
+
+gnuplot > /dev/null 2>&1 << EOF
+        set title "Outlet flows vs. Iteration"
+        set xlabel "Iteration"
+        set ylabel "OutletFlow [m3/s or kg/s]"
+
+        FILES = system("ls -1 postProcessing/*-flow/*/*.dat")
+
+        plot for [i=1:words(FILES)] word(FILES,i) u 1:2 title word(FILES,i) with lines
+
+        set term png
+        set output "postflows.png"
+        replot
+
+        clear
+
+        set title "Inlet Pressure vs. Iteration"
+        set xlabel "Iteration"
+        set ylabel "Inlet Pressure [m2/s2 or Pa]"
+
+        FILES = system("ls -1 postProcessing/*-pressure/*/*.dat")
+
+        plot for [i=1:words(FILES)] word(FILES,i) u 1:2 title word(FILES,i) with lines
+
+        set term png
+        set output "postpress.png"
+        replot
+EOF

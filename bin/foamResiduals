@@ -12,7 +12,7 @@
 
 foamLog log.`getApplication` > log.foamLog
 
-gnuplot -persist > /dev/null 2>&1 << EOF
+gnuplot > /dev/null 2>&1 << EOF
         set logscale y
         set title "Residual vs. Iteration"
         set xlabel "Iteration"
@@ -36,4 +36,3 @@ gnuplot -persist > /dev/null 2>&1 << EOF
         set output "residuals.png"
         replot
 EOF
-
