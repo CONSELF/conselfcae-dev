@@ -53,6 +53,7 @@ Foam::wordList Foam::functionObjects::forces::createFileNames
     DynamicList<word> names(1);
 
     const word forceType(dict.lookup("type"));
+    names.append(forceType);
 
     if (dict.found("binData"))
     {
@@ -63,8 +64,6 @@ Foam::wordList Foam::functionObjects::forces::createFileNames
             names.append(forceType + "_bins");
         }
     }
-
-    names.append(forceType);
 
     return names;
 }
@@ -291,7 +290,12 @@ Foam::tmp<Foam::volScalarField> Foam::functionObjects::forces::mu() const
         const dictionary& transportProperties =
              obr_.lookupObject<dictionary>("transportProperties");
 
-        dimensionedScalar nu(transportProperties.lookup("nu"));
+        dimensionedScalar nu
+        (
+            "nu",
+            dimViscosity,
+            transportProperties.lookup("nu")
+        );
 
         return rho()*nu;
     }
