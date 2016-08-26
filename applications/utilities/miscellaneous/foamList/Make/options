@@ -54,7 +54,7 @@ EXE_LIBS = \
     -lmolecularMeasurements \
     -lmolecule \
     -lODE \
-    -lOpenFOAM \
+    -lconselfcae \
     -lpairPatchAgglomeration \
     -lphaseChangeTwoPhaseMixtures \
     -lpotential \
