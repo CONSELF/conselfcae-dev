@@ -52,46 +52,6 @@ autoPtr<incompressible::turbulenceModel> turbulence
     incompressible::turbulenceModel::New(U, phi, laminarTransport)
 );
 
-// CONSELFcae CO field input data
-
-    Info<< "Reading field CO\n" << endl;
-    volScalarField CO
-    (
-        IOobject
-        (
-            "CO",
-            runTime.timeName(),
-            mesh,
-            IOobject::MUST_READ,
-            IOobject::AUTO_WRITE
-        ),
-        mesh
-    );
-
-
-    IOdictionary transportProperties
-    (
-        IOobject
-        (
-            "transportProperties",
-            runTime.constant(),
-            mesh,
-            IOobject::MUST_READ_IF_MODIFIED,
-            IOobject::NO_WRITE
-        )
-    );
-
-
-    Info<< "Reading diffusivity DCO\n" << endl;
-
-    dimensionedScalar DCO
-    (
-        "DCO",
-        dimViscosity,
-        transportProperties.lookup("DCO")
-    );
-// ------------------------------------------------------
-
 // Kinematic density for buoyancy force
 volScalarField rhok
 (
