@@ -99,12 +99,12 @@ unset versionNum
 # handle standard and debian naming convention
 #
 case "$projectDirName" in
-conselfcae-*)         # standard naming convention OpenFOAM-<VERSION>
-    version="${projectDirName##conselfcae-}"
+OpenFOAM-*)         # standard naming convention OpenFOAM-<VERSION>
+    version="${projectDirName##OpenFOAM-}"
     ;;
 
-conselfcae[0-9]*)     # debian naming convention 'openfoam<VERSION>'
-    versionNum="${projectDirName##conselfcae}"
+OpenFOAM[0-9]*)     # debian naming convention 'openfoam<VERSION>'
+    versionNum="${projectDirName##OpenFOAM}"
     case "$versionNum" in
     ??)         # convert 2 digit version number to decimal delineated
         version=$(echo "$versionNum" | sed -e 's@\(.\)\(.\)@\1.\2@')
