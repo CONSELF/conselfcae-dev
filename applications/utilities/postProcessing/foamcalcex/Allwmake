@@ -1,8 +1,0 @@
-#!/bin/bash
-set -e
-
-pushd postProcessing
-./Allwmake
-popd
-
-wmake foamCalcExApp

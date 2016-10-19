@@ -82,7 +82,7 @@ void Foam::codedFunctionObject::prepare
         "-I$(LIB_SRC)/meshTools/lnInclude \\\n"
       + context.options()
       + "\n\nLIB_LIBS = \\\n"
-      + "    -lconselfcae \\\n"
+      + "    -lOpenFOAM \\\n"
       + "    -lfiniteVolume \\\n"
       + "    -lmeshTools \\\n"
       + context.libs()

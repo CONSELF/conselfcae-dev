@@ -132,7 +132,7 @@ void Foam::codedFixedValueFvPatchField<Type>::prepare
             "-I$(LIB_SRC)/finiteVolume/lnInclude \\\n"
             + context.options()
             + "\n\nLIB_LIBS = \\\n"
-            + "    -lconselfcae \\\n"
+            + "    -lOpenFOAM \\\n"
             + "    -lfiniteVolume \\\n"
             + context.libs()
         );

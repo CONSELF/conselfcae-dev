@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2015-2016 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2016 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -22,103 +22,98 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::fv::buoyancyEnergy
+    Foam::PBiCGStab
 
 Description
-    Calculates and applies the buoyancy energy source rho*(U&g) to the energy
-    equation.
+    Preconditioned bi-conjugate gradient stabilized solver for asymmetric
+    lduMatrices using a run-time selectable preconditioner.
 
-Usage
-    Example usage:
+    References:
     \verbatim
-    buoyancyEnergyCoeffs
-    {
-        fields          (h);                    // Name of energy field
-    }
+        Van der Vorst, H. A. (1992).
+        Bi-CGSTAB: A fast and smoothly converging variant of Bi-CG
+        for the solution of nonsymmetric linear systems.
+        SIAM Journal on scientific and Statistical Computing, 13(2), 631-644.
+
+        Barrett, R., Berry, M. W., Chan, T. F., Demmel, J., Donato, J.,
+        Dongarra, J., Eijkhout, V., Pozo, R., Romine, C. & Van der Vorst, H.
+        (1994).
+        Templates for the solution of linear systems:
+        building blocks for iterative methods
+        (Vol. 43). Siam.
     \endverbatim
 
 SourceFiles
-    buoyancyEnergy.C
+    PBiCGStab.C
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef buoyancyEnergy_H
-#define buoyancyEnergy_H
+#ifndef PBiCGStab_H
+#define PBiCGStab_H
 
-#include "fvOption.H"
-#include "uniformDimensionedFields.H"
+#include "lduMatrix.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 namespace Foam
 {
-namespace fv
-{
 
 /*---------------------------------------------------------------------------*\
-               Class buoyancyEnergy Declaration
+                           Class PBiCGStab Declaration
 \*---------------------------------------------------------------------------*/
 
-class buoyancyEnergy
+class PBiCGStab
 :
-    public option
+    public lduMatrix::solver
 {
-    // Private data
-
-        //- Name of velocity field; default = U
-        word UName_;
-
-
     // Private Member Functions
 
         //- Disallow default bitwise copy construct
-        buoyancyEnergy(const buoyancyEnergy&);
+        PBiCGStab(const PBiCGStab&);
 
         //- Disallow default bitwise assignment
-        void operator=(const buoyancyEnergy&);
+        void operator=(const PBiCGStab&);
 
 
 public:
 
     //- Runtime type information
-    TypeName("buoyancyEnergy");
+    TypeName("PBiCGStab");
 
 
     // Constructors
 
-        //- Construct from explicit source name and mesh
-        buoyancyEnergy
+        //- Construct from matrix components and solver data stream
+        PBiCGStab
         (
-            const word& sourceName,
-            const word& modelType,
-            const dictionary& dict,
-            const fvMesh& mesh
+            const word& fieldName,
+            const lduMatrix& matrix,
+            const FieldField<Field, scalar>& interfaceBouCoeffs,
+            const FieldField<Field, scalar>& interfaceIntCoeffs,
+            const lduInterfaceFieldPtrsList& interfaces,
+            const dictionary& solverControls
         );
+
+
+    //- Destructor
+    virtual ~PBiCGStab()
+    {}
 
 
     // Member Functions
 
-        // Evaluate
-
-            //- Add explicit contribution to compressible momentum equation
-            virtual void addSup
-            (
-                const volScalarField& rho,
-                fvMatrix<scalar>& eqn,
-                const label fieldi
-            );
-
-
-        // IO
-
-            //- Read source dictionary
-            virtual bool read(const dictionary& dict);
+        //- Solve the matrix with this solver
+        virtual solverPerformance solve
+        (
+            scalarField& psi,
+            const scalarField& source,
+            const direction cmpt=0
+        ) const;
 };
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-} // End namespace fv
 } // End namespace Foam
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

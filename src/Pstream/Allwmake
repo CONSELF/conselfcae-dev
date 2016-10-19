@@ -27,7 +27,7 @@ wmakeMpiLib()
     done
     set -x
 }
-
+echo "SONO QUIIII!!!"
 set -x
 wmake $targetType dummy
 

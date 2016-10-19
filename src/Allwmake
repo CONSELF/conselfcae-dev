@@ -21,14 +21,14 @@ wmakeCheckPwd "$WM_PROJECT_DIR/src" || {
 set -x
 
 # Update OpenFOAM version strings if required
-wmakePrintBuild -check || wrmo conselfcae/global/global.o 2>/dev/null
+wmakePrintBuild -check || wrmo OpenFOAM/global/global.o 2>/dev/null
 
-wmakeLnInclude conselfcae
+wmakeLnInclude OpenFOAM
 wmakeLnInclude OSspecific/${WM_OSTYPE:-POSIX}
 Pstream/Allwmake $targetType $*
 
 OSspecific/${WM_OSTYPE:-POSIX}/Allwmake $*
-wmake $targetType conselfcae
+wmake $targetType OpenFOAM
 
 wmake $targetType fileFormats
 wmake $targetType surfMesh
