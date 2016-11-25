@@ -12,7 +12,7 @@
 
 foamLog log.`getApplication` > log.foamLog
 
-gnuplot -persist > /dev/null 2>&1 << EOF
+gnuplot > /dev/null 2>&1 << EOF
         set logscale y
         set title "Residual vs. Iteration"
         set xlabel "Iteration"
@@ -23,12 +23,6 @@ gnuplot -persist > /dev/null 2>&1 << EOF
              "logs/Urelx_0" with lines,\
              "logs/Urely_0" with lines,\
              "logs/Urelz_0" with lines,\
-             "logs/U.fluidx_0" with lines,\
-             "logs/U.fluidy_0" with lines,\
-             "logs/U.fluidz_0" with lines,\
-             "logs/Dx_0" with lines,\
-             "logs/Dy_0" with lines,\
-             "logs/Dz_0" with lines,\
              "logs/p_rgh_0" with lines,\
              "logs/p_0" with lines
 
