@@ -57,7 +57,7 @@ USAGE
 
 plotFileHeader() {
     cat<<EOF
-set term x11 1 font "helvetica,17" linewidth 1.5 persist noraise
+set term x11 1 font "helvetica,17" linewidth 1.5 
 $LOGSCALE
 $YRANGE
 set title "Data Monitoring"
@@ -69,8 +69,9 @@ EOF
 plotFileFooter() {
     cat<<EOF
 
-pause $REFRESH
-reread
+set term png
+set output "residuals.png"
+replot
 EOF
 }
 
@@ -164,18 +165,8 @@ done
 plotFileFooter >> $GPFILE
 
 touch $FILE
-$GNUPLOT $GPFILE &
-PID=$!
+$GNUPLOT $GPFILE
 
-while true
-do
-    MODTIME=$(stat --format=%Y $FILE)
-    IDLEAGO=$(expr $(date +%s) - $IDLE)
-    test "$MODTIME" -gt "$IDLEAGO" || break
-    sleep $REFRESH
-done
-
-kill -9 $PID
 rm $GPFILE
 
 #------------------------------------------------------------------------------
