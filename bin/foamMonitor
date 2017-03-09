@@ -57,6 +57,9 @@ USAGE
 
 plotFileHeader() {
     cat<<EOF
+#!/bin/sh
+gnuplot > /dev/null 2>&1 << EOF
+set term png
 $LOGSCALE
 $YRANGE
 set title "Data Monitoring"
@@ -67,8 +70,6 @@ EOF
 
 plotFileFooter() {
     cat<<EOF
-
-set term png
 set output "residuals.png"
 replot
 EOF
@@ -162,9 +163,11 @@ do
     echo $PLOTLINE >> $GPFILE
 done
 plotFileFooter >> $GPFILE
+echo "EOF" >> $GPFILE
 
 touch $FILE
-$GNUPLOT $GPFILE
+chmod +x $GPFILE
+$GPFILE
 
 rm $GPFILE
 
