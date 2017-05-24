@@ -4,7 +4,7 @@ cd ${0%/*} || exit 1    # Run from this directory
 # CONSELFcae for UBUNTU 14.04
 # official package list: http://www.openfoam.org/download/source.php
 echo "CONSELFcae runs on UBUNTU only!"
-sudo apt-get install build-essential flex bison cmake zlib1g-dev libopenmpi-dev openmpi-bin gnuplot libreadline-dev libncurses-dev libxt-dev qt4-dev-tools libqt4-dev libqt4-opengl-dev freeglut3-dev libqtwebkit-dev libscotch-dev libcgal-dev lam4-dev libmpich-dev libopenmpi-dev libptscotch-dev
+sudo apt-get install build-essential flex bison cmake zlib1g-dev libopenmpi-dev openmpi-bin gnuplot libreadline-dev libncurses-dev libxt-dev qt4-dev-tools libqt4-dev libqt4-opengl-dev freeglut3-dev libqtwebkit-dev libscotch-dev libcgal-dev lam4-dev libopenmpi-dev libptscotch-dev
 
 # Parse arguments for library compilation without documentation by default
 genDoc=0
