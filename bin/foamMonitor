@@ -64,6 +64,7 @@ $LOGSCALE
 $YRANGE
 set title "Data Monitoring"
 set xlabel "$XLABEL"
+set grid
 plot \\
 EOF
 }
