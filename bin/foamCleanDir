@@ -17,3 +17,5 @@ rm -rf log.*
 rm -rf logs
 
 rm -rf residuals.png
+
+rm -rf postProcessing
