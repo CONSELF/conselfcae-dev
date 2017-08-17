@@ -3,8 +3,8 @@
 # =========                 |
 # \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
 #  \\    /   O peration     |
-#   \\  /    A nd           | Copyright (C) 2015 OpenFOAM Foundation
-#    \\/     M anipulation  |
+#   \\  /    A nd           | Copyright (C) 2015-2017 OpenFOAM Foundation
+#    \\/     M anipulation  | Copyright (C) 2017 CONSELF srl
 #-------------------------------------------------------------------------------
 # License
 #     This file is part of OpenFOAM.
@@ -32,17 +32,15 @@
 #
 #------------------------------------------------------------------------------
 usage() {
-    exec 1>&2
-    while [ "$#" -ge 1 ]; do echo "$1"; shift; done
     cat<<USAGE
 
 Usage: ${0##*/} [OPTION] <file>
 options:
-  -h | -help            print the usage
-  -i | -idle <time>     stops if <file> unchanging for <time> sec (default = 60)
-  -l | -logscale        plots data (y-axis) on log scale, e.g. for residuals
-  -r | -refresh <time>  refreshes display every <time> sec (default = 10)
-  -y | -yrange <range>  sets data (y-axis) <range>, format "[0:1]"
+  -help     | -h         print the usage
+  -idle     | -i <time>  stops if <file> unchanging for <time> sec (default 60s)
+  -logscale | -l         plots data (y-axis) on log scale, e.g. for residuals
+  -refresh  | -r <time>  refreshes display every <time> sec (default 10s)
+  -yrange   | -y <range> sets data (y-axis) <range>, format "[0:1]"
 
 Monitor data with Gnuplot from time-value(s) graphs written by OpenFOAM
 e.g. by functionObjects
@@ -52,6 +50,12 @@ Example:
   foamMonitor -l postProcessing/residuals/0/residuals.dat
 
 USAGE
+}
+
+error() {
+    exec 1>&2
+    while [ "$#" -ge 1 ]; do echo "$1"; shift; done
+    usage
     exit 1
 }
 

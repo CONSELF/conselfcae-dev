@@ -28,17 +28,18 @@ Group
     grpFieldFunctionObjects
 
 Description
-    This function object generates streamline data by sampling a set of
-    user-specified fields along a particle track, transported by a
-    user-specified velocity field.
+    Generates streamline data by sampling a set of user-specified fields along a
+    particle track, transported by a user-specified velocity field.
 
     Example of function object specification:
     \verbatim
     streamLine1
     {
         type            streamLine;
-        libs ("libfieldFunctionObjects.so");
-        ...
+        libs            ("libfieldFunctionObjects.so");
+
+        writeControl    writeTime;
+
         setFormat       vtk;
         U               U;
         trackForward    yes;
@@ -54,8 +55,7 @@ Description
         nSubCycle       5;
         cloudName       particleTracks;
 
-        seedSampleSet   uniform;
-        uniformCoeffs
+        seedSampleSet
         {
             type        uniform;
             axis        x;  //distance;
@@ -80,7 +80,7 @@ Usage
         seedSampleSet| Seeding method (see below)| yes       |
     \endtable
 
-    Where \c seedSampleSet is typically one of
+    Where \c seedSampleSet \c type is typically one of
     \plaintable
         uniform | uniform particle seeding
         cloud   | cloud of points
@@ -105,7 +105,7 @@ SourceFiles
 #ifndef functionObjects_streamLine_H
 #define functionObjects_streamLine_H
 
-#include "functionObject.H"
+#include "fvMeshFunctionObject.H"
 #include "volFieldsFwd.H"
 #include "DynamicList.H"
 #include "scalarList.H"
@@ -119,7 +119,6 @@ namespace Foam
 {
 
 // Forward declaration of classes
-class objectRegistry;
 class meshSearch;
 class sampledSet;
 
@@ -132,12 +131,9 @@ namespace functionObjects
 
 class streamLine
 :
-    public functionObject
+    public fvMeshFunctionObject
 {
     // Private data
-
-        //- Database this class is registered to
-        const objectRegistry& obr_;
 
         //- Input dictionary
         dictionary dict_;

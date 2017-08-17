@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  4.x                                   |
+|  \\    /   O peration     | Version:  5                                     |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -30,7 +30,7 @@ unit_cube.stl
     subsetFeatures
     {
         // Use a plane to select feature edges
-        // (normal)(basePoint)
+        // (normal)(point)
         // Keep only edges that intersect the plane will be included
         plane               (0 0 1)(0 0 0);
 

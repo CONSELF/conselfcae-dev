@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  4.x                                   |
+|  \\    /   O peration     | Version:  5                                     |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -53,12 +53,12 @@ functions
 {
     probes
     {
-        libs ( "libsampling.so" );
-        type probes;
-        name probes;
-        writeControl timeStep;
-        writeInterval 1;
-        fields ( p );
+        libs            ("libsampling.so");
+        type            probes;
+        name            probes;
+        writeControl    timeStep;
+        writeInterval   1;
+        fields          (p);
         probeLocations
         (
             ( -0.045  0     0     )
