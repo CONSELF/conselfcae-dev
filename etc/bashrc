@@ -3,7 +3,11 @@
 # \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
 #  \\    /   O peration     |
 #   \\  /    A nd           | Copyright (C) 2011-2017 OpenFOAM Foundation
+<<<<<<< HEAD
 #    \\/     M anipulation  | Copyright (C) 2017 CONSELF srl
+=======
+#    \\/     M anipulation  |
+>>>>>>> af02f92b9e45b49edbfe574d5f84cfabee3ec5c8
 #------------------------------------------------------------------------------
 # License
 #     This file is part of OpenFOAM.
@@ -32,7 +36,7 @@
 #------------------------------------------------------------------------------
 
 export WM_PROJECT=OpenFOAM
-export WM_PROJECT_VERSION=dev
+export WM_PROJECT_VERSION=5.x
 
 #Add to your bash the following line
 #export CONSELFcaeSRC=/path/to/this/file
@@ -43,6 +47,7 @@ export WM_PROJECT_VERSION=dev
 # FOAM_INST_DIR is the location of the OpenFOAM installation which defaults to
 # the directory containing this file if sourced by a bash shell.
 #
+<<<<<<< HEAD
 # Location of the OpenFOAM installation
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -56,6 +61,16 @@ export FOAMY_HEX_MESH=yes
 # Parallel run
 export WM_NCOMPPROCS=4
 
+=======
+# Please set to the appropriate path if the default is not correct.
+#
+[ "$BASH" -o "$ZSH_NAME" ] && \
+export FOAM_INST_DIR=$(cd $(dirname ${BASH_SOURCE:-$0})/../.. && pwd -P) || \
+export FOAM_INST_DIR=$HOME/$WM_PROJECT
+# export FOAM_INST_DIR=~$WM_PROJECT
+# export FOAM_INST_DIR=/opt/$WM_PROJECT
+# export FOAM_INST_DIR=/usr/local/$WM_PROJECT
+>>>>>>> af02f92b9e45b49edbfe574d5f84cfabee3ec5c8
 #
 # END OF (NORMAL) USER EDITABLE PART
 ################################################################################
@@ -69,7 +84,7 @@ export WM_NCOMPPROCS=4
 export WM_COMPILER_TYPE=system
 
 #- Compiler:
-#    WM_COMPILER = Gcc | Gcc45 | Gcc46 | Gcc47 | Gcc48 | Gcc49| Clang | Icc
+#    WM_COMPILER = Gcc | Gcc48 ... Gcc62 | Clang | Icc
 export WM_COMPILER=Gcc
 unset WM_COMPILER_ARCH WM_COMPILER_LIB_ARCH
 
@@ -93,7 +108,7 @@ export WM_COMPILE_OPTION=Opt
 
 #- MPI implementation:
 #    WM_MPLIB = SYSTEMOPENMPI | OPENMPI | SYSTEMMPI | MPICH | MPICH-GM | HPMPI
-#               | MPI | QSMPI | SGIMPI
+#               | MPI | FJMPI | QSMPI | SGIMPI | INTELMPI
 export WM_MPLIB=SYSTEMOPENMPI
 
 #- Operating System:
