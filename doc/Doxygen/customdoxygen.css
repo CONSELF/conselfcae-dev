@@ -47,10 +47,12 @@
     font-size: 160%;
 }
 
+/*
 #projectnumber a::before
 {
     content: "v";
 }
+*/
 
 #titlearea::before
 {

@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  4.x                                   |
+|  \\    /   O peration     | Version:  5                                     |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -19,7 +19,7 @@ functions
     readFields1
     {
         type            readFields;
-        libs ("libfieldFunctionObjects.so");
+        libs            ("libfieldFunctionObjects.so");
         enabled         true;
         writeControl    timeStep;
         writeInterval   1;
@@ -32,8 +32,8 @@ functions
 
     faceObj2
     {
-        type            surfaceRegion;
-        libs ("libfieldFunctionObjects.so");
+        type            surfaceFieldValue;
+        libs            ("libfieldFunctionObjects.so");
         enabled         true;
         writeControl    timeStep;
         writeInterval   1;

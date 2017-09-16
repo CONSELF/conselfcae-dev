@@ -23,18 +23,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "CompressibleTurbulenceModel.H"
-#include "compressibleTransportModel.H"
-#include "fluidThermo.H"
-#include "addToRunTimeSelectionTable.H"
-#include "makeTurbulenceModel.H"
-
-#include "ThermalDiffusivity.H"
-#include "EddyDiffusivity.H"
-
-#include "laminar.H"
-#include "RASModel.H"
-#include "LESModel.H"
+#include "turbulentFluidThermoModels.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -48,13 +37,16 @@ makeBaseTurbulenceModel
     fluidThermo
 );
 
-#define makeRASModel(Type)                                                     \
-    makeTemplatedTurbulenceModel                                               \
-    (fluidThermoCompressibleTurbulenceModel, RAS, Type)
 
-#define makeLESModel(Type)                                                     \
-    makeTemplatedTurbulenceModel                                               \
-    (fluidThermoCompressibleTurbulenceModel, LES, Type)
+// -------------------------------------------------------------------------- //
+// Laminar models
+// -------------------------------------------------------------------------- //
+
+#include "Stokes.H"
+makeLaminarModel(Stokes);
+
+#include "Maxwell.H"
+makeLaminarModel(Maxwell);
 
 
 // -------------------------------------------------------------------------- //
@@ -87,6 +79,9 @@ makeRASModel(kOmegaSST);
 
 #include "kOmegaSSTSAS.H"
 makeRASModel(kOmegaSSTSAS);
+
+#include "kOmegaSSTLM.H"
+makeRASModel(kOmegaSSTLM);
 
 #include "v2f.H"
 makeRASModel(v2f);

@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  4.x                                   |
+|  \\    /   O peration     | Version:  5                                     |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -67,7 +67,7 @@ functions
 
     poolHeight
     {
-        type            surfaceRegion;
+        type            surfaceFieldValue;
         libs            ("libfieldFunctionObjects.so");
         writeControl    timeStep;
         writeInterval   1;

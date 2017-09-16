@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  4.x                                   |
+|  \\    /   O peration     | Version:  5                                     |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -56,7 +56,7 @@ functions
     fieldAverage1
     {
         type            fieldAverage;
-        libs ( "libfieldFunctionObjects.so" );
+        libs            ("libfieldFunctionObjects.so");
         writeControl    writeTime;
         fields
         (

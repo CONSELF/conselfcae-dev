@@ -125,7 +125,7 @@ Foam::autoPtr<Foam::lduMatrix::solver> Foam::lduMatrix::solver::New
                "no diagonal or off-diagonal coefficient"
             << exit(FatalIOError);
 
-        return autoPtr<lduMatrix::solver>(NULL);
+        return autoPtr<lduMatrix::solver>(nullptr);
     }
 }
 

@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  4.x                                   |
+|  \\    /   O peration     | Version:  5                                     |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -48,9 +48,9 @@ runTimeModifiable yes;
 
 functions
 {
-    surfaceRegion1
+    surfaceFieldValue1
     {
-        type            surfaceRegion;
+        type            surfaceFieldValue;
         libs            ("libfieldFunctionObjects.so");
         writeControl    writeTime;
         log             yes;

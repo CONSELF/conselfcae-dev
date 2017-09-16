@@ -31,18 +31,6 @@ template<class Thermo, int PolySize>
 inline Foam::polynomialSolidTransport<Thermo, PolySize>::
 polynomialSolidTransport
 (
-    const polynomialSolidTransport& pt
-)
-:
-    Thermo(pt),
-    kappaCoeffs_(pt.kappaCoeffs_)
-{}
-
-
-template<class Thermo, int PolySize>
-inline Foam::polynomialSolidTransport<Thermo, PolySize>::
-polynomialSolidTransport
-(
     const Thermo& t,
     const Polynomial<PolySize>& kappaCoeffs
 )
@@ -72,17 +60,6 @@ Foam::polynomialSolidTransport<Thermo, PolySize>::clone() const
     return autoPtr<polynomialSolidTransport<Thermo, PolySize>>
     (
         new polynomialSolidTransport<Thermo, PolySize>(*this)
-    );
-}
-
-
-template<class Thermo, int PolySize>
-inline Foam::autoPtr<Foam::polynomialSolidTransport<Thermo, PolySize>>
-Foam::polynomialSolidTransport<Thermo, PolySize>::New(Istream& is)
-{
-    return autoPtr<polynomialSolidTransport<Thermo, PolySize>>
-    (
-        new polynomialSolidTransport<Thermo, PolySize>(is)
     );
 }
 
@@ -165,31 +142,14 @@ inline void Foam::polynomialSolidTransport<Thermo, PolySize>::operator+=
     const polynomialSolidTransport<Thermo, PolySize>& pt
 )
 {
-    scalar molr1 = this->nMoles();
+    scalar Y1 = this->Y();
 
     Thermo::operator+=(pt);
 
-    molr1 /= this->nMoles();
-    scalar molr2 = pt.nMoles()/this->nMoles();
+    Y1 /= this->Y();
+    scalar Y2 = pt.Y()/this->Y();
 
-    kappaCoeffs_ = molr1*kappaCoeffs_ + molr2*pt.kappaCoeffs_;
-}
-
-
-template<class Thermo, int PolySize>
-inline void Foam::polynomialSolidTransport<Thermo, PolySize>::operator-=
-(
-    const polynomialSolidTransport<Thermo, PolySize>& pt
-)
-{
-    scalar molr1 = this->nMoles();
-
-    Thermo::operator-=(pt);
-
-    molr1 /= this->nMoles();
-    scalar molr2 = pt.nMoles()/this->nMoles();
-
-    kappaCoeffs_ = molr1*kappaCoeffs_ - molr2*pt.kappaCoeffs_;
+    kappaCoeffs_ = Y1*kappaCoeffs_ + Y2*pt.kappaCoeffs_;
 }
 
 
@@ -217,36 +177,13 @@ inline Foam::polynomialSolidTransport<Thermo, PolySize> Foam::operator+
         static_cast<const Thermo&>(pt1) + static_cast<const Thermo&>(pt2)
     );
 
-    scalar molr1 = pt1.nMoles()/t.nMoles();
-    scalar molr2 = pt2.nMoles()/t.nMoles();
+    scalar Y1 = pt1.Y()/t.Y();
+    scalar Y2 = pt2.Y()/t.Y();
 
     return polynomialSolidTransport<Thermo, PolySize>
     (
         t,
-        molr1*pt1.kappaCoeffs_ + molr2*pt2.kappaCoeffs_
-    );
-}
-
-
-template<class Thermo, int PolySize>
-inline Foam::polynomialSolidTransport<Thermo, PolySize> Foam::operator-
-(
-    const polynomialSolidTransport<Thermo, PolySize>& pt1,
-    const polynomialSolidTransport<Thermo, PolySize>& pt2
-)
-{
-    Thermo t
-    (
-        static_cast<const Thermo&>(pt1) - static_cast<const Thermo&>(pt2)
-    );
-
-    scalar molr1 = pt1.nMoles()/t.nMoles();
-    scalar molr2 = pt2.nMoles()/t.nMoles();
-
-    return polynomialSolidTransport<Thermo, PolySize>
-    (
-        t,
-        molr1*pt1.kappaCoeffs_ - molr2*pt2.kappaCoeffs_
+        Y1*pt1.kappaCoeffs_ + Y2*pt2.kappaCoeffs_
     );
 }
 
@@ -263,17 +200,6 @@ inline Foam::polynomialSolidTransport<Thermo, PolySize> Foam::operator*
         s*static_cast<const Thermo&>(pt),
         pt.kappaCoeffs_
     );
-}
-
-
-template<class Thermo, int PolySize>
-inline Foam::polynomialSolidTransport<Thermo, PolySize> Foam::operator==
-(
-    const polynomialSolidTransport<Thermo, PolySize>& pt1,
-    const polynomialSolidTransport<Thermo, PolySize>& pt2
-)
-{
-    return pt2 - pt1;
 }
 
 

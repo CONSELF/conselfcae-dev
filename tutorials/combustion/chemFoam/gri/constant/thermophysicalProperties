@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  4.x                                   |
+|  \\    /   O peration     | Version:  5                                     |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -26,8 +26,8 @@ thermoType
     specie          specie;
 }
 
-CHEMKINFile     "$FOAM_CASE/chemkin/chem.inp";
-CHEMKINThermoFile "$FOAM_CASE/chemkin/therm.dat";
-CHEMKINTransportFile "$FOAM_CASE/chemkin/transportProperties";
+chemistryReader foamChemistryReader;
+foamChemistryFile "$FOAM_CASE/constant/reactions";
+foamChemistryThermoFile "$FOAM_CASE/constant/thermo";
 
 // ************************************************************************* //

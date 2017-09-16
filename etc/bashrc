@@ -2,8 +2,8 @@
 # =========                 |
 # \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
 #  \\    /   O peration     |
-#   \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
-#    \\/     M anipulation  | Copyright (C) 2016 CONSELF srl
+#   \\  /    A nd           | Copyright (C) 2011-2017 OpenFOAM Foundation
+#    \\/     M anipulation  | Copyright (C) 2017 CONSELF srl
 #------------------------------------------------------------------------------
 # License
 #     This file is part of OpenFOAM.
@@ -69,7 +69,7 @@ export WM_NCOMPPROCS=4
 export WM_COMPILER_TYPE=system
 
 #- Compiler:
-#    WM_COMPILER = Gcc | Gcc45 | Gcc46 | Gcc47 | Gcc48 | Gcc49| Clang | Icc
+#    WM_COMPILER = Gcc | Gcc48 ... Gcc62 | Clang | Icc
 export WM_COMPILER=Gcc
 unset WM_COMPILER_ARCH WM_COMPILER_LIB_ARCH
 
@@ -93,7 +93,7 @@ export WM_COMPILE_OPTION=Opt
 
 #- MPI implementation:
 #    WM_MPLIB = SYSTEMOPENMPI | OPENMPI | SYSTEMMPI | MPICH | MPICH-GM | HPMPI
-#               | MPI | QSMPI | SGIMPI
+#               | MPI | FJMPI | QSMPI | SGIMPI | INTELMPI
 export WM_MPLIB=SYSTEMOPENMPI
 
 #- Operating System:
@@ -216,5 +216,9 @@ unset cleaned foamClean foamOldDirs
 # Unload initialization functions:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 . $WM_PROJECT_DIR/etc/config.sh/functions
+
+# Source the bash completion file:
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[ "$BASH" ] && . $WM_PROJECT_DIR/etc/config.sh/bash_completion
 
 #------------------------------------------------------------------------------

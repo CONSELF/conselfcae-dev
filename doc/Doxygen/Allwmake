@@ -2,9 +2,9 @@
 cd ${0%/*} || exit 1    # Run from this directory
 
 [ -d "$WM_PROJECT_DIR" ] || {
-    echo "Error: WM_PROJECT_DIR directory does not exist"
-    echo "    Check the OpenFOAM entries in your dot-files and source them."
-    echo "    WM_PROJECT_DIR=$WM_PROJECT_DIR"
+    echo "    Error: WM_PROJECT_DIR directory does not exist"
+    echo "        Check the OpenFOAM entries in your dot-files and source them."
+    echo "        WM_PROJECT_DIR=$WM_PROJECT_DIR"
     exit 1
 }
 
@@ -25,11 +25,11 @@ USAGE
 defineURL() {
 
   case "$WM_PROJECT_VERSION" in
-  [0-9].x)
+  [0-9].[0-9].x)
     FOAM_BRANCH_NAME="master"
     FOAM_REPO_VERSION="$WM_PROJECT-$WM_PROJECT_VERSION"
     ;;
-  [0-9].[0-9])
+  [0-9].[0-9].[0-9])
     FOAM_BRANCH_NAME="version-$WM_PROJECT_VERSION"
     FOAM_REPO_VERSION="$WM_PROJECT-${WM_PROJECT_VERSION%.*}.x"
     ;;
@@ -43,7 +43,7 @@ defineURL() {
   export FOAM_ONLINE_REPO="$FOAM_BASE_REPO/tree/$FOAM_BRANCH_NAME"
 }
 
-# Parse options
+# parse options
 while [ "$#" -gt 0 ]
 do
     case "$1" in
@@ -62,19 +62,17 @@ done
 
 #------------------------------------------------------------------------------
 
-set -x
-
 rm -rf latex man
 
-# Remove html directory in background
+# remove html directory in background
 mv html html-stagedRemove$$ 2> /dev/null
 rm -rf html-stagedRemove$$ >/dev/null 2>&1 &
 
-# Ensure that created files are readable by everyone
+# ensure that created files are readable by everyone
 umask 22
 doxygen
 
-# Fix permissions (NB: '+X' and not '+x'!)
+# fix permissions (NB: '+X' and not '+x'!)
 chmod -R a+rX html latex man 2>/dev/null
 
 echo
